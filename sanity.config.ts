@@ -9,13 +9,21 @@ import { deskTool } from 'sanity/desk'
 // see https://www.sanity.io/docs/api-versioning for how versioning works
 import { apiVersion, dataset, projectId } from './sanity/env'
 import { schema } from './sanity/schema'
+import page from './sanity/schemas/page'
+import section from './sanity/schemas/section'
 
 export default defineConfig({
   basePath: '/studio',
   projectId,
   dataset,
   //edit schemas in './sanity/schema'
-  schema,
+  schema: {
+    // If you want more content types, you can add them to this array
+    types: [      
+      page,
+      section      
+    ],
+  },
   plugins: [
     deskTool(),
     // Vision lets you query your content with GROQ in the studio
