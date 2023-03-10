@@ -12,21 +12,21 @@ export default function TextImagePanel({ data }) {
     return (
         <div className='textImagePanel grid grid-cols-2 gap-12 p-10'>
             {/* Text */}
-            <div className='flex flex-col'>
+            <div className='contentPanel'>
                 { data.headerText && 
-                  <div className='text-2xl'>{data.headerText}</div>
+                  <div className='heading'>{data.headerText}</div>
                 }
                 { data.bodyText && 
                   <div>{data.bodyText}</div>
                 }
                 { data.buttonText && 
-                  <a href='/' className='border border-indigo-500 rounded-lg p-2 bg-purple-200' style={{width:'fit-content'}}>{data.buttonText}</a>
+                  <a href='/' className='button hollow' style={{width:'fit-content'}}>{data.buttonText}</a>
                 }
             </div>
 
             {/* Image */}
-            <div>
-                This is the image!
+            <div className='imagePanel'>
+                {/* <div style={{width: '100%', height: '100%', border: '1px solid #777'}}></div> */}
             </div>
         </div>
     );
