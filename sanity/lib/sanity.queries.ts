@@ -7,9 +7,12 @@ export const homePageQuery = groq`
   title, 
   sections[]->{
     _type == 'textImagePanel' => {
+      textOnLeft,
       headerText,
       bodyText,
-      buttonText
+      buttonText,
+      image,
+      altText,
     },
     "id": _id,
     type,

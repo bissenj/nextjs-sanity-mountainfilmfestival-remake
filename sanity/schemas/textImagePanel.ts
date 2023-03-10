@@ -23,7 +23,6 @@ export default defineType({
             if (typeof index === 'undefined') {
                 return true;
             }
-
             return index != 3 ? 'Index must be 3' : true 
         }).warning(),
         // Create a custom validation rule, eventually.
@@ -47,7 +46,18 @@ export default defineType({
       defineField({
         type: 'boolean',
         name: 'textOnLeft',
-        title: 'Text on Left',        
-      }),      
+        title: 'Text on Left',  
+        initialValue: true,      
+      }),  
+      defineField({
+        type: 'image',
+        name: 'image',
+        title: 'Select an Image',
+      }),
+      defineField({
+        type: 'string',
+        name: 'altText',
+        title: 'Describe the image (alt text for the visually impaired).',
+      })    
     ]
 })

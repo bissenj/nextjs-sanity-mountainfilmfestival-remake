@@ -29,7 +29,7 @@ body {
 .page {  
   position: relative;  
   min-height: 100vh;
-  background: linear-gradient(rgba(0, 123, 255, 0.1) 25%, rgba(255,255,255, 1));  
+//   background: linear-gradient(rgba(0, 123, 255, 0.1) 25%, rgba(255,255,255, 1));  
   border: 2px solid skyblue;
 }
 // .page > h1 { 
@@ -46,27 +46,34 @@ body {
 }
 
 .textImagePanel {
-    min-height: 60vh;
+    overflow: hidden;
+
+    min-height: 80vh;
+    max-height: 80vh;
+    // height: 65vh;
+
     margin: 40px;
 
     display: grid;
     grid-template-columns: 1.4fr 2fr;
-
+    
     .contentPanel {
-        border: 1px solid #ccc;
+        // border: 1px solid #ccc;
         place-content: center;
-        padding: 30px 20px;
+        // padding: 30px 20px;
         display: flex;
         flex-direction: column;
         gap: 15px;
         
         .heading {
-            font-size: clamp(1.25rem,-1.25rem + 5.8333333333vw,1.725rem);
+            font-size: clamp(1.00rem,-1.25rem + 5.8333333333vw,1.525rem);
             text-transform: uppercase;
+            font-weight: 700;
         }
 
         .body {
             font-size: 1rem;
+            font-size: clamp(0.9rem,-1.25rem + 2.8333333333vw,1.0rem);
         } 
     }
 
@@ -77,10 +84,10 @@ body {
         border: 1px solid #777;
         overflow: hidden;    /* Change this after animation ends */
     }
-    .imagePanel:hover {
-        animation: unclip 0s forwards;
-        animation-delay: 1.0s;
-    }
+    // .imagePanel:hover {
+    //     animation: unclip 0s forwards;
+    //     animation-delay: 1.0s;
+    // }
     @keyframes unclip {        
         100% { overflow: unset; }
     }
@@ -93,12 +100,18 @@ body {
         left: 0;        
         height: 14px;
         width: 120px;
-        background-color: $accent-color-green;        
+
+        background-color: $accent-color-green;                
     }
-    .imagePanel:hover::after {
-        animation: stretch 0.4s forwards;
-        animation-delay: 0.99s;
+
+    &:nth-child(2n) .imagePanel:after {         
+        background-color: $accent-color-yellow;                
     }
+   
+    // .imagePanel:hover::after {
+    //     animation: stretch 0.4s forwards;
+    //     animation-delay: 0.99s;
+    // }
     @keyframes stretch {            
         100% { 
             width: 150px; 
@@ -121,9 +134,9 @@ body {
         );  
         transform: translateX(0%);      
     }
-    .imagePanel:hover::before {
-        animation: reveal 1.0s ease-out forwards;
-    }
+    // .imagePanel:hover::before {
+    //     animation: reveal 1.0s ease-out forwards;
+    // }
     @keyframes reveal {
         0% { transform: translateX(0%); }
         80% { opacity: 1; }
@@ -132,10 +145,91 @@ body {
             opacity: 0;
         }
     }
+
+    &.active {
+        // Move white/gray container off image
+        .imagePanel::before {
+            animation: reveal 1.0s ease-out forwards;
+        }
+
+        // Allow content to exist outside container
+        .imagePanel {
+            animation: unclip 0s forwards;
+            animation-delay: 1.0s;
+        }
+
+         // Stretch the accent line 
+         .imagePanel::after {
+            animation: stretch 0.4s forwards;
+            animation-delay: 0.99s;
+        }
+    }
+
+
+    // REVERSE LAYOUT AND ANIMATIONS
+    &.left {
+        grid-template-columns: 2fr 1.4fr;
+
+        .contentPanel { 
+            order: 1;
+        }
+
+        .imagePanel::after {            
+            left: calc(100% - 120px);
+        }
+        // .imagePanel:hover::after {
+        //     animation: stretch-reverse 0.4s forwards;
+        //     animation-delay: 0.99s;
+        // }
+        .imagePanel::before {
+            background: linear-gradient(
+            to left,
+            white,
+            white 51%,
+            #ccc 55%,
+            #ccc
+        );
+            transform: translateX(-50%);      
+        }
+        // .imagePanel:hover::before {
+        //     animation: reveal-reverse 1.0s ease-out forwards;
+        // }      
+
+        @keyframes stretch-reverse {            
+            100% { 
+                width: 150px;                 
+            }
+        }
+        @keyframes reveal-reverse {
+            0% { transform: translateX(-50%); }
+            80% { opacity: 1; }
+            100% { 
+                transform: translateX(50%);
+                opacity: 0;
+            }
+        }
+
+        &.active {
+            // Stretch the accent line 
+            .imagePanel::after {
+                animation: stretch-reverse 0.4s forwards;
+                animation-delay: 0.99s;
+            }
+    
+            // Move white/gray container off image
+            .imagePanel::before {
+                animation: reveal-reverse 1.0s ease-out forwards;
+            } 
+        }
+
+    }
 }
 
 
 .button {
+    position: relative;
+    z-index: 300;
+    
     font-size: .875rem;
     font-weight: 700;
     line-height: 1.5714285714;
@@ -151,8 +245,14 @@ body {
     &.hollow:hover {
         background-color: $accent-color-bright;
         border-color: $accent-color-bright;
-        color: $primary-color;
+        color: $primary-color;        
     }
 }
 
 
+
+
+// Good Resources
+// Gradients - https://css-tricks.com/books/greatest-css-tricks/hard-stop-gradients/
+// Animations - https://cssanimation.rocks/pseudo-elements/
+// Sass - https://sass-lang.com/documentation/variables

@@ -1,4 +1,6 @@
+import Image from 'next/image'
 
+import { urlForImage } from '../../sanity/lib/sanity.image'
 
 interface TextImagePanel {
     textOnLeft: boolean;
@@ -9,8 +11,20 @@ interface TextImagePanel {
 }
 
 export default function TextImagePanel({ data }) {
+    const { image, altText } = data;
+
+    
+    let textOnLeft = data.textOnLeft ? '' : 'left';
+    console.log('Text Location: ', textOnLeft);
+
+    function handleMouseOver(e) {
+      console.log('handleMouseOver(): ', e.target);
+      e.target.classList.add('active');
+
+    }
+
     return (
-        <div className='textImagePanel grid grid-cols-2 gap-12 p-10'>
+        <div className={`textImagePanel ${textOnLeft} gap-12 p-10`} onMouseOver={handleMouseOver}>
             {/* Text */}
             <div className='contentPanel'>
                 { data.headerText && 
@@ -26,7 +40,18 @@ export default function TextImagePanel({ data }) {
 
             {/* Image */}
             <div className='imagePanel'>
-                {/* <div style={{width: '100%', height: '100%', border: '1px solid #777'}}></div> */}
+              <Image
+                src={
+                  image?.asset?._ref
+                    ? urlForImage(image).fit('crop').url()
+                    : ''
+                }
+                fill={true}
+                className="object-cover"
+                // height={96}
+                // width={96}                
+                alt={altText}
+              />
             </div>
         </div>
     );

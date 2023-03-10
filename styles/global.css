@@ -19,7 +19,6 @@ body {
 .page {
   position: relative;
   min-height: 100vh;
-  background: linear-gradient(rgba(0, 123, 255, 0.1) 25%, rgb(255, 255, 255));
   border: 2px solid skyblue;
 }
 
@@ -31,25 +30,27 @@ body {
 }
 
 .textImagePanel {
-  min-height: 60vh;
+  overflow: hidden;
+  min-height: 80vh;
+  max-height: 80vh;
   margin: 40px;
   display: grid;
   grid-template-columns: 1.4fr 2fr;
 }
 .textImagePanel .contentPanel {
-  border: 1px solid #ccc;
   place-content: center;
-  padding: 30px 20px;
   display: flex;
   flex-direction: column;
   gap: 15px;
 }
 .textImagePanel .contentPanel .heading {
-  font-size: clamp(1.25rem, -1.25rem + 5.8333333333vw, 1.725rem);
+  font-size: clamp(1rem, -1.25rem + 5.8333333333vw, 1.525rem);
   text-transform: uppercase;
+  font-weight: 700;
 }
 .textImagePanel .contentPanel .body {
   font-size: 1rem;
+  font-size: clamp(0.9rem, -1.25rem + 2.8333333333vw, 1rem);
 }
 .textImagePanel .imagePanel {
   position: relative;
@@ -57,10 +58,6 @@ body {
   height: 100%;
   border: 1px solid #777;
   overflow: hidden; /* Change this after animation ends */
-}
-.textImagePanel .imagePanel:hover {
-  animation: unclip 0s forwards;
-  animation-delay: 1s;
 }
 @keyframes unclip {
   100% {
@@ -77,9 +74,8 @@ body {
   width: 120px;
   background-color: #00a17b;
 }
-.textImagePanel .imagePanel:hover::after {
-  animation: stretch 0.4s forwards;
-  animation-delay: 0.99s;
+.textImagePanel:nth-child(2n) .imagePanel:after {
+  background-color: #ffde59;
 }
 @keyframes stretch {
   100% {
@@ -96,9 +92,6 @@ body {
   background: linear-gradient(to right, white, white 51%, #ccc 55%, #ccc);
   transform: translateX(0%);
 }
-.textImagePanel .imagePanel:hover::before {
-  animation: reveal 1s ease-out forwards;
-}
 @keyframes reveal {
   0% {
     transform: translateX(0%);
@@ -111,8 +104,58 @@ body {
     opacity: 0;
   }
 }
+.textImagePanel.active .imagePanel::before {
+  animation: reveal 1s ease-out forwards;
+}
+.textImagePanel.active .imagePanel {
+  animation: unclip 0s forwards;
+  animation-delay: 1s;
+}
+.textImagePanel.active .imagePanel::after {
+  animation: stretch 0.4s forwards;
+  animation-delay: 0.99s;
+}
+.textImagePanel.left {
+  grid-template-columns: 2fr 1.4fr;
+}
+.textImagePanel.left .contentPanel {
+  order: 1;
+}
+.textImagePanel.left .imagePanel::after {
+  left: calc(100% - 120px);
+}
+.textImagePanel.left .imagePanel::before {
+  background: linear-gradient(to left, white, white 51%, #ccc 55%, #ccc);
+  transform: translateX(-50%);
+}
+@keyframes stretch-reverse {
+  100% {
+    width: 150px;
+  }
+}
+@keyframes reveal-reverse {
+  0% {
+    transform: translateX(-50%);
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(50%);
+    opacity: 0;
+  }
+}
+.textImagePanel.left.active .imagePanel::after {
+  animation: stretch-reverse 0.4s forwards;
+  animation-delay: 0.99s;
+}
+.textImagePanel.left.active .imagePanel::before {
+  animation: reveal-reverse 1s ease-out forwards;
+}
 
 .button {
+  position: relative;
+  z-index: 300;
   font-size: 0.875rem;
   font-weight: 700;
   line-height: 1.5714285714;
