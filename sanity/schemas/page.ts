@@ -3,6 +3,7 @@ import { DocumentIcon, ImageIcon } from '@sanity/icons'
 import { defineArrayMember, defineField, defineType } from 'sanity'
 
 import section from './section'
+import textImagePanel from './textImagePanel'
 
 
 export default defineType({
@@ -37,7 +38,14 @@ export default defineType({
           // Page Sections
           defineArrayMember({
             type: 'reference',
+            name: 'section',
             to: [{ type: section.name }],
+          }), 
+          // Page Sections
+          defineArrayMember({
+            type: 'reference',
+            name: 'textImagePanel',
+            to: [{ type: textImagePanel.name }],
           }),                              
         ],
       }), 

@@ -2,17 +2,18 @@ import { groq } from 'next-sanity'
 
 export const homePageQuery = groq`
 *[_type == "page"][0]{
-    _id,     
-    overview,     
-    title, 
-    sections[]->{
-      type,
-      title
+  "id": _id,     
+  overview,     
+  title, 
+  sections[]->{
+    _type == 'textImagePanel' => {
+      headerText,
+      bodyText,
+      buttonText
     },
-    body[] {
-      children[0]->{
-        text
-      }
-    },
-  }
+    "id": _id,
+    type,
+    title,      
+  },       
+}
 `

@@ -11,6 +11,7 @@ import { apiVersion, dataset, projectId } from './sanity/env'
 import { schema } from './sanity/schema'
 import page from './sanity/schemas/page'
 import section from './sanity/schemas/section'
+import textImagePanel from './sanity/schemas/textImagePanel'
 
 export default defineConfig({
   basePath: '/studio',
@@ -21,7 +22,8 @@ export default defineConfig({
     // If you want more content types, you can add them to this array
     types: [      
       page,
-      section      
+      section,
+      textImagePanel      
     ],
   },
   plugins: [
