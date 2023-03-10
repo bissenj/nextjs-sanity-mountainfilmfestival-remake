@@ -1,3 +1,6 @@
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -8,7 +11,7 @@ body,
 }
 
 html {
-  font-size: 16px;
+  font-size: 15px;
 }
 
 body {
@@ -31,8 +34,8 @@ body {
 
 .textImagePanel {
   overflow: hidden;
-  min-height: 80vh;
-  max-height: 80vh;
+  min-height: 90vh;
+  max-height: 90vh;
   margin: 40px;
   display: grid;
   grid-template-columns: 1.4fr 2fr;
@@ -44,9 +47,11 @@ body {
   gap: 15px;
 }
 .textImagePanel .contentPanel .heading {
-  font-size: clamp(1rem, -1.25rem + 5.8333333333vw, 1.525rem);
+  font-size: clamp(1rem, -1.25rem + 5.8333333333vw, 2.2525rem);
   text-transform: uppercase;
   font-weight: 700;
+  font-family: "Roboto", sans-seriff;
+  line-height: 1em;
 }
 .textImagePanel .contentPanel .body {
   font-size: 1rem;

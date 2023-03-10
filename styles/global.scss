@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&display=swap");
+
 html,
 body,
 #__next {
@@ -17,7 +21,7 @@ $primary-color: #000;
 $secondary-color: #fff;
 
 html {
-    font-size: 16px;
+    font-size: 15px;
 }
 
 body {
@@ -48,8 +52,8 @@ body {
 .textImagePanel {
     overflow: hidden;
 
-    min-height: 80vh;
-    max-height: 80vh;
+    min-height: 90vh;
+    max-height: 90vh;
     // height: 65vh;
 
     margin: 40px;
@@ -66,9 +70,14 @@ body {
         gap: 15px;
         
         .heading {
-            font-size: clamp(1.00rem,-1.25rem + 5.8333333333vw,1.525rem);
+            font-size: clamp(1.00rem,-1.25rem + 5.8333333333vw,2.2525rem);
             text-transform: uppercase;
             font-weight: 700;
+
+            // font-family: "Oswald", sans-seriff;
+            font-family: "Roboto", sans-seriff;
+            // font-family: "Open Sans", sans-seriff;
+            line-height: 1em;
         }
 
         .body {
@@ -229,7 +238,7 @@ body {
 .button {
     position: relative;
     z-index: 300;
-    
+
     font-size: .875rem;
     font-weight: 700;
     line-height: 1.5714285714;
