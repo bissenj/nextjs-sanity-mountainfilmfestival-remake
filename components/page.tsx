@@ -1,6 +1,10 @@
+/* eslint-disable simple-import-sort/imports */
 import Footer from './footer';
 import Header from './header';
-import TextImagePanel from './sections/textImagePanel';
+import TextImagePanel from './sections/textImagePanel/textImagePanel';
+import SingleImageBannerPanel from './sections/singleImageBannerPanel/singleImageBannerPanel';
+import Sidebar from './sidebar/sidebar';
+import Sitemenu from './menu/menu';
 
 export default function Page({ data }) {
     console.log('Page: ', data);
@@ -20,14 +24,26 @@ export default function Page({ data }) {
     }
 
     return (
-        <div className='page'>
-            <h1>This is a page</h1>
+        <>
+            <div className='page'>
+                
+                {/* PUT SIDE MENU HERE */}
+                {/* <div className='side-bar'></div> */}
+                <Sitemenu></Sitemenu>
+                <Sidebar></Sidebar>
 
-            {/* Sections go here */}
-            {data.sections.map((s) => (
-                panelFactory(s)                
-            ))}
+                <SingleImageBannerPanel></SingleImageBannerPanel>
 
-        </div>
+                {/* Sections go here */}
+                {data.sections.map((s) => (
+                    panelFactory(s)                
+                ))}
+
+                <div style={{backgroundColor: '#000', minHeight:'70vh'}}></div>
+            </div>
+            <div style={{backgroundColor: '#fff', minHeight:'10vh'}}></div>
+            <div style={{backgroundColor: '#000', minHeight:'40vh'}}></div>
+        
+        </>
     );
 }

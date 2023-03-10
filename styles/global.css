@@ -10,6 +10,16 @@ body,
   height: 100%;
 }
 
+:root {
+  --accent-color-yellow: #ffde59;
+  --accent-color-green: #00a17b;
+  --accent-color-bright: #3bd0ff;
+  --accent-color-blue: #0038d6;
+  --accent-color-red: #ff1e29;
+  --primary-color: #000;
+  --secondary-color: #fff;
+}
+
 html {
   font-size: 15px;
 }
@@ -22,7 +32,6 @@ body {
 .page {
   position: relative;
   min-height: 100vh;
-  border: 2px solid skyblue;
 }
 
 .header, .footer {
@@ -58,10 +67,10 @@ body {
   font-size: clamp(0.9rem, -1.25rem + 2.8333333333vw, 1rem);
 }
 .textImagePanel .imagePanel {
+  pointer-events: none;
   position: relative;
   width: 100%;
   height: 100%;
-  border: 1px solid #777;
   overflow: hidden; /* Change this after animation ends */
 }
 @keyframes unclip {
@@ -131,7 +140,7 @@ body {
 }
 .textImagePanel.left .imagePanel::before {
   background: linear-gradient(to left, white, white 51%, #ccc 55%, #ccc);
-  transform: translateX(-50%);
+  transform: translateX(-49%);
 }
 @keyframes stretch-reverse {
   100% {
@@ -160,7 +169,6 @@ body {
 
 .button {
   position: relative;
-  z-index: 300;
   font-size: 0.875rem;
   font-weight: 700;
   line-height: 1.5714285714;

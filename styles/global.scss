@@ -12,6 +12,16 @@ body,
   height: 100%;
 }
 
+:root {
+    --accent-color-yellow: #ffde59;
+    --accent-color-green: #00a17b;
+    --accent-color-bright: #3bd0ff;
+    --accent-color-blue: #0038d6;
+    --accent-color-red: #ff1e29;
+    --primary-color: #000;
+    --secondary-color: #fff;    
+}
+
 $accent-color-yellow: #ffde59;
 $accent-color-green: #00a17b;
 $accent-color-bright: #3bd0ff;
@@ -34,7 +44,7 @@ body {
   position: relative;  
   min-height: 100vh;
 //   background: linear-gradient(rgba(0, 123, 255, 0.1) 25%, rgba(255,255,255, 1));  
-  border: 2px solid skyblue;
+//   border: 2px solid skyblue;
 }
 // .page > h1 { 
 //   text-align: center;
@@ -48,6 +58,12 @@ body {
   display: grid;
   place-content: center;
 }
+
+
+
+// ----------------------------------------------------------------------
+//                          TEXT IMAGE PANEL
+// ----------------------------------------------------------------------
 
 .textImagePanel {
     overflow: hidden;
@@ -87,10 +103,12 @@ body {
     }
 
     .imagePanel {
+        pointer-events: none;
+
         position: relative;
         width: 100%;
         height: 100%;
-        border: 1px solid #777;
+        // border: 1px solid #777;
         overflow: hidden;    /* Change this after animation ends */
     }
     // .imagePanel:hover {
@@ -198,7 +216,7 @@ body {
             #ccc 55%,
             #ccc
         );
-            transform: translateX(-50%);      
+            transform: translateX(-49%);      // Fixes bug where just a sliver was visible on wider screens
         }
         // .imagePanel:hover::before {
         //     animation: reveal-reverse 1.0s ease-out forwards;
@@ -234,10 +252,9 @@ body {
     }
 }
 
-
 .button {
     position: relative;
-    z-index: 300;
+    // z-index: 300;
 
     font-size: .875rem;
     font-weight: 700;
@@ -257,6 +274,14 @@ body {
         color: $primary-color;        
     }
 }
+
+
+// ----------------------------------------------------------------------
+//                          VERTICAL SIDE BAR
+// ----------------------------------------------------------------------
+
+
+
 
 
 

@@ -1,6 +1,6 @@
 import Image from 'next/image'
 
-import { urlForImage } from '../../sanity/lib/sanity.image'
+import { urlForImage } from '../../../sanity/lib/sanity.image'
 
 interface TextImagePanel {
     textOnLeft: boolean;

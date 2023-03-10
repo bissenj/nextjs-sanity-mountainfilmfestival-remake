@@ -1,0 +1,93 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap");
+
+.floating-nav {   
+    /* color: #000; */
+    mix-blend-mode: difference;
+
+    height: 100vh;
+    width: 80px;   
+    position: sticky;
+    top: 22px;    
+    z-index: 99;
+    margin-bottom: 200px;   
+    margin-top: -130vh;
+        /* -80%;                  WHY 80%????                  */
+}
+
+
+.brand-nav {       
+    padding: 10px;
+    width:80px;  
+    height: 260px;    
+
+    /* mix-blend so need to set the opposite of what you actually want. 
+       ex.  White on White is black. */
+    color: white;    
+
+    /* border: 1px solid gray; */
+}
+
+
+.vertical-text {
+    transform: rotate(270deg) translate(-180px, -16px);
+    transform-origin: top;    
+
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: 2px;
+    font-size: 1.3rem;
+}
+
+.upper-case {
+    text-transform: uppercase;
+}
+
+.no-wrap {
+    white-space: nowrap;
+}
+
+.circle {
+    border-radius: 50%;
+    padding: 8px 12px;
+    margin: 5px;
+    min-width: 16px;
+    min-height: 16px;
+    text-align: center;
+    color: black;
+    background-color: #fff;
+
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.8rem;
+
+}
+.circle:hover {
+    background-color: red;
+}
+
+
+.social-nav {     
+    width: 80px;    
+
+    padding-top: 28vh;
+    display: flex;
+    flex-direction: column;
+    
+    align-items: center;
+    gap:12px;
+}
+.social-nav span {
+    font-size: 0.8rem;  
+    font-weight: 700;
+    font-family: 'Roboto', sans-serif;
+
+    border-radius: 50%;
+    padding: 5px 12px;
+        
+    text-align: center;
+    color: black;
+    background-color: #fff;
+}
+.social-nav span:hover {
+    background-color: red;
+    transition: background-color 0.2s;
+    color: white;
+}

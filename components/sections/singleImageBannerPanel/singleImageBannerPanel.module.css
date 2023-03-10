@@ -1,0 +1,35 @@
+
+.container {
+    position: relative;
+    padding-left: 80px;
+    height: 100vh;
+    /* border: 1px solid red; */
+}
+
+.image-wrapper {
+    /* border: 1px solid #ccc; */
+    height: 74vh;
+    width: 100%;
+    background-color: #ccc;
+}
+
+.slider-container {
+    position: absolute;
+    z-index: 10;
+    left: 65%;
+    top: 50%;
+    width: 330px;
+    height: 230px;
+    background-color: var(--accent-color-green);
+}
+
+.color-stripe {
+    position: absolute;
+    z-index: 10;
+    left: 50%;
+    top: 65%;
+    width: 10px;
+    height: 230px;
+    background-color: var(--accent-color-bright);
+     /* #3bd0ff; */
+}
