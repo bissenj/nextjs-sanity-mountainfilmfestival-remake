@@ -5,6 +5,7 @@ import { defineArrayMember, defineField, defineType } from 'sanity'
 import section from './section'
 import textImagePanel from './textImagePanel'
 import singleImageBannerPanel from './singleImageBannerPanel'
+import siteMenu from './siteMenu'
 
 
 export default defineType({
@@ -27,7 +28,26 @@ export default defineType({
           source: 'title',
         },
         validation: (rule) => rule.required(),
-      }),      
+      }), 
+
+      defineField({
+        name: 'siteMenu',
+        type: 'reference',
+        to: [{ type: 'siteMenu' }],                
+      }), 
+      
+      // defineField({
+      //   name: 'siteMenu',
+      //   type: 'object',
+      //   fields: [
+      //     {
+      //       title: 'Site Menu',
+      //       name: 'siteMenu',
+      //       type: 'reference',
+      //       to: [{ type: 'siteMenu' }],        
+      //     }
+      //   ]                
+      // }), 
 
       defineField({
         type: 'array',

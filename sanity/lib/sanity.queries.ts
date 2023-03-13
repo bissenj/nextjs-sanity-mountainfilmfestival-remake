@@ -5,6 +5,15 @@ export const homePageQuery = groq`
   "id": _id,     
   overview,     
   title, 
+  slug,
+  siteMenu->{    
+    menuItems[]->{
+      "id": _id,
+      type,
+      text,
+      classes
+    }    
+  },
   sections[]->{
     _type == 'textImagePanel' => {
       textOnLeft,

@@ -87,7 +87,7 @@ body {
   z-index: 100;
   top: 30%;
   left: 0;
-  height: 14px;
+  height: 12px;
   width: 120px;
   background-color: #00a17b;
 }
@@ -209,7 +209,7 @@ body {
     height: 50vh;
   }
   .textImagePanel .imagePanel:after, .textImagePanel.left .imagePanel:after {
-    width: 10px;
+    width: 12px;
     height: 70px;
     top: 80%;
     left: 5%;

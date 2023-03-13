@@ -4,7 +4,7 @@ import Header from './header';
 import TextImagePanel from './sections/textImagePanel/textImagePanel';
 import SingleImageBannerPanel from './sections/singleImageBannerPanel/singleImageBannerPanel';
 import Sidebar from './sidebar/sidebar';
-import Sitemenu from './menu/menu';
+import SiteMenu from './siteMenu/siteMenu';
 
 export default function Page({ data }) {
     console.log('Page: ', data);
@@ -31,7 +31,7 @@ export default function Page({ data }) {
                 
                 {/* PUT SIDE MENU HERE */}
                 {/* <div className='side-bar'></div> */}
-                <Sitemenu></Sitemenu>
+                <SiteMenu data={data.siteMenu}></SiteMenu>
                 <Sidebar></Sidebar>
 
                 {/* <SingleImageBannerPanel></SingleImageBannerPanel> */}
