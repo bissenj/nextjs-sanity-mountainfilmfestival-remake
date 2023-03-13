@@ -14,6 +14,13 @@ export const homePageQuery = groq`
       image,
       altText,
     },
+    _type == 'singleImageBannerPanel' => {      
+      headerText,
+      bodyText,
+      buttonText,
+      image,
+      altText,
+    },
     "id": _id,
     type,
     title,      

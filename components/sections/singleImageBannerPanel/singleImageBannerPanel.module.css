@@ -8,6 +8,7 @@
 
 .image-wrapper {
     /* border: 1px solid #ccc; */
+    position: relative;
     height: 74vh;
     width: 100%;
     background-color: #ccc;
@@ -15,8 +16,8 @@
 
 .slider-container {
     position: absolute;
-    z-index: 10;
-    left: 65%;
+    z-index: 10;    
+    right: 40px;    
     top: 50%;
     width: 330px;
     height: 230px;
@@ -32,4 +33,49 @@
     height: 230px;
     background-color: var(--accent-color-bright);
      /* #3bd0ff; */
+}
+
+
+.content-container {
+    position: absolute;
+    z-index: 10;
+    left: 15%;
+    top: 10%;
+    width: 330px;    
+    
+    /* color: white; */
+}
+
+.button-link {        
+    border: 2px solid white;
+    background-color: white;
+
+    width:fit-content;
+}
+
+
+/* ----------------------------------------------------------------------
+//                          MEDIA QUERIES
+// ---------------------------------------------------------------------- */
+
+
+
+/* Screens smaller than 900px */
+@media screen and (max-width: 900px) {
+    .color-stripe { 
+        display: none;
+    }
+}
+
+
+/* Screens smaller than 767px */
+@media screen and (max-width: 767px) {
+    .slider-container { 
+        position: relative;        
+        width: 100%;
+        top: unset;
+        right: unset;
+        width: calc(100% - 20px);
+        margin: -40px 10px;
+    }
 }

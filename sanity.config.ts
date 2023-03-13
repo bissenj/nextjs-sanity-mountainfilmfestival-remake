@@ -1,3 +1,4 @@
+/* eslint-disable simple-import-sort/imports */
 /**
  * This config is used to set up Sanity Studio that's mounted on the `/pages/studio/[[...index]].tsx` route
  */
@@ -12,6 +13,7 @@ import { schema } from './sanity/schema'
 import page from './sanity/schemas/page'
 import section from './sanity/schemas/section'
 import textImagePanel from './sanity/schemas/textImagePanel'
+import singleImageBannerPanel from './sanity/schemas/singleImageBannerPanel'
 
 export default defineConfig({
   basePath: '/studio',
@@ -23,7 +25,8 @@ export default defineConfig({
     types: [      
       page,
       section,
-      textImagePanel      
+      textImagePanel,
+      singleImageBannerPanel
     ],
   },
   plugins: [

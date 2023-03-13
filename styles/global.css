@@ -18,6 +18,7 @@ body,
   --accent-color-red: #ff1e29;
   --primary-color: #000;
   --secondary-color: #fff;
+  --small-screen: 767px;
 }
 
 html {
@@ -41,30 +42,32 @@ body {
   place-content: center;
 }
 
-.textImagePanel {
-  overflow: hidden;
-  min-height: 90vh;
-  max-height: 90vh;
-  margin: 40px;
-  display: grid;
-  grid-template-columns: 1.4fr 2fr;
-}
-.textImagePanel .contentPanel {
+.contentPanel {
   place-content: center;
   display: flex;
   flex-direction: column;
   gap: 15px;
 }
-.textImagePanel .contentPanel .heading {
+.contentPanel .heading {
   font-size: clamp(1rem, -1.25rem + 5.8333333333vw, 2.2525rem);
   text-transform: uppercase;
   font-weight: 700;
   font-family: "Roboto", sans-seriff;
   line-height: 1em;
 }
-.textImagePanel .contentPanel .body {
+.contentPanel .body {
   font-size: 1rem;
   font-size: clamp(0.9rem, -1.25rem + 2.8333333333vw, 1rem);
+}
+
+.textImagePanel {
+  overflow: hidden;
+  min-height: 90vh;
+  max-height: 90vh;
+  padding: 80px;
+  margin: 40px;
+  display: grid;
+  grid-template-columns: 1.4fr 2fr;
 }
 .textImagePanel .imagePanel {
   pointer-events: none;
@@ -173,16 +176,52 @@ body {
   font-weight: 700;
   line-height: 1.5714285714;
   padding: 16px 30px 12px;
+  transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+  border-radius: 30px;
 }
 .button.hollow {
   background: transparent;
   border: 2px solid #000;
-  border-radius: 30px;
   color: #000;
-  transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
 }
-.button.hollow:hover {
+.button:hover {
   background-color: #3bd0ff;
   border-color: #3bd0ff;
   color: #000;
+}
+
+.white {
+  color: white;
+}
+
+/* Screens smaller than 900px */
+@media screen and (max-width: 900px) {
+  .textImagePanel, .textImagePanel.left {
+    grid-template-columns: 1fr;
+    max-height: unset;
+    min-height: unset;
+    margin: 0;
+    padding: 20px;
+    padding-left: 80px;
+  }
+  .textImagePanel .imagePanel, .textImagePanel.left .imagePanel {
+    grid-row-start: -1;
+    height: 50vh;
+  }
+  .textImagePanel .imagePanel:after, .textImagePanel.left .imagePanel:after {
+    width: 10px;
+    height: 70px;
+    top: 80%;
+    left: 5%;
+  }
+  @keyframes stretch {
+    100% {
+      height: 85px;
+    }
+  }
+  @keyframes stretch-reverse {
+    100% {
+      height: 85px;
+    }
+  }
 }/*# sourceMappingURL=global.css.map */

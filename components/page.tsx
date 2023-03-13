@@ -18,6 +18,8 @@ export default function Page({ data }) {
                 return <Footer key={section.id} data={section}></Footer>
             case 3:
                 return <TextImagePanel key={section.id} data={section}></TextImagePanel>
+            case 4:
+                return <SingleImageBannerPanel key={section.id} data={section}></SingleImageBannerPanel>
             default:
                 return <div key={section.id}>{section.title}</div>
         }
@@ -32,7 +34,7 @@ export default function Page({ data }) {
                 <Sitemenu></Sitemenu>
                 <Sidebar></Sidebar>
 
-                <SingleImageBannerPanel></SingleImageBannerPanel>
+                {/* <SingleImageBannerPanel></SingleImageBannerPanel> */}
 
                 {/* Sections go here */}
                 {data.sections.map((s) => (

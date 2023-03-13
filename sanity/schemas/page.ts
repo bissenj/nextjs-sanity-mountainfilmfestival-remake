@@ -4,6 +4,7 @@ import { defineArrayMember, defineField, defineType } from 'sanity'
 
 import section from './section'
 import textImagePanel from './textImagePanel'
+import singleImageBannerPanel from './singleImageBannerPanel'
 
 
 export default defineType({
@@ -46,6 +47,11 @@ export default defineType({
             type: 'reference',
             name: 'textImagePanel',
             to: [{ type: textImagePanel.name }],
+          }),
+          defineArrayMember({
+            type: 'reference',
+            name: 'singleImageBannerPanel',
+            to: [{ type: singleImageBannerPanel.name }],
           }),                              
         ],
       }), 

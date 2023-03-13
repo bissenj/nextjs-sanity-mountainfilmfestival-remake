@@ -19,7 +19,9 @@ body,
     --accent-color-blue: #0038d6;
     --accent-color-red: #ff1e29;
     --primary-color: #000;
-    --secondary-color: #fff;    
+    --secondary-color: #fff;   
+    
+    --small-screen: 767px;
 }
 
 $accent-color-yellow: #ffde59;
@@ -65,56 +67,53 @@ body {
 //                          TEXT IMAGE PANEL
 // ----------------------------------------------------------------------
 
+.contentPanel {
+    // border: 1px solid #ccc;
+    place-content: center;
+    // padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    
+    .heading {
+        font-size: clamp(1.00rem,-1.25rem + 5.8333333333vw,2.2525rem);
+        text-transform: uppercase;
+        font-weight: 700;
+
+        // font-family: "Oswald", sans-seriff;
+        font-family: "Roboto", sans-seriff;
+        // font-family: "Open Sans", sans-seriff;
+        line-height: 1em;
+    }
+
+    .body {
+        font-size: 1rem;
+        font-size: clamp(0.9rem,-1.25rem + 2.8333333333vw,1.0rem);
+    } 
+}
+
 .textImagePanel {
     overflow: hidden;
 
     min-height: 90vh;
-    max-height: 90vh;
-    // height: 65vh;
+    max-height: 90vh;    
+
+    padding: 80px;
 
     margin: 40px;
 
     display: grid;
     grid-template-columns: 1.4fr 2fr;
     
-    .contentPanel {
-        // border: 1px solid #ccc;
-        place-content: center;
-        // padding: 30px 20px;
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-        
-        .heading {
-            font-size: clamp(1.00rem,-1.25rem + 5.8333333333vw,2.2525rem);
-            text-transform: uppercase;
-            font-weight: 700;
-
-            // font-family: "Oswald", sans-seriff;
-            font-family: "Roboto", sans-seriff;
-            // font-family: "Open Sans", sans-seriff;
-            line-height: 1em;
-        }
-
-        .body {
-            font-size: 1rem;
-            font-size: clamp(0.9rem,-1.25rem + 2.8333333333vw,1.0rem);
-        } 
-    }
-
     .imagePanel {
         pointer-events: none;
 
         position: relative;
         width: 100%;
-        height: 100%;
-        // border: 1px solid #777;
+        height: 100%;        
         overflow: hidden;    /* Change this after animation ends */
     }
-    // .imagePanel:hover {
-    //     animation: unclip 0s forwards;
-    //     animation-delay: 1.0s;
-    // }
+    
     @keyframes unclip {        
         100% { overflow: unset; }
     }
@@ -159,11 +158,10 @@ body {
             #ccc 55%,
             #ccc
         );  
+
         transform: translateX(0%);      
     }
-    // .imagePanel:hover::before {
-    //     animation: reveal 1.0s ease-out forwards;
-    // }
+    
     @keyframes reveal {
         0% { transform: translateX(0%); }
         80% { opacity: 1; }
@@ -254,34 +252,86 @@ body {
 
 .button {
     position: relative;
-    // z-index: 300;
-
+    
     font-size: .875rem;
     font-weight: 700;
     line-height: 1.5714285714;
     padding: 16px 30px 12px;
 
+    transition: color .2s ease, border-color .2s ease, background-color .2s ease;
+    border-radius: 30px;    
+
     &.hollow {
         background: transparent;
-        border: 2px solid $primary-color;
-        border-radius: 30px;
-        color: $primary-color;        
-        transition: color .2s ease, border-color .2s ease, background-color .2s ease;
+        border: 2px solid $primary-color;        
+        color: $primary-color;    
     }
-    &.hollow:hover {
+        
+    &:hover {
         background-color: $accent-color-bright;
         border-color: $accent-color-bright;
         color: $primary-color;        
     }
 }
 
+.white {
+    color: white;
+}
+
 
 // ----------------------------------------------------------------------
-//                          VERTICAL SIDE BAR
+//                          MEDIA QUERIES
 // ----------------------------------------------------------------------
 
 
 
+/* Screens smaller than 900px */
+@media screen and (max-width: 900px) {
+    .textImagePanel, .textImagePanel.left  {
+        grid-template-columns: 1fr;
+        
+        max-height: unset;
+        min-height: unset;
+
+        margin: 0;
+        // margin-left: 80px;        
+        padding: 20px;
+        padding-left: 80px;
+
+        .imagePanel {
+            grid-row-start: -1;
+            height: 50vh;
+        }
+        .imagePanel:after {
+            width: 10px;
+            height: 70px;
+            top: 80%;
+            left: 5%;           
+        }       
+    }
+
+    .textImagePanel {
+        @keyframes stretch {                     
+            100% { 
+                 height: 85px;                 
+            }
+        }
+        
+        @keyframes stretch-reverse {                     
+            100% { 
+                 height: 85px;                 
+            }
+        }
+
+        // &.left {
+        //     @keyframes stretch {                     
+        //         100% { 
+        //              height: 85px;                 
+        //         }
+        //     }
+        // }
+    }
+}
 
 
 

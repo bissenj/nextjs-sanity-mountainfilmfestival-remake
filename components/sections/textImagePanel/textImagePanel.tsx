@@ -1,5 +1,5 @@
+/* eslint-disable simple-import-sort/imports */
 import Image from 'next/image'
-
 import { urlForImage } from '../../../sanity/lib/sanity.image'
 
 interface TextImagePanel {
@@ -47,9 +47,7 @@ export default function TextImagePanel({ data }) {
                     : ''
                 }
                 fill={true}
-                className="object-cover"
-                // height={96}
-                // width={96}                
+                className="object-cover"                             
                 alt={altText}
               />
             </div>
