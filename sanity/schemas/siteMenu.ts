@@ -22,8 +22,7 @@ export default defineType({
         title: 'Menu Items',
         description:
           "All the Menu Items",
-        of: [
-          // Page Sections
+        of: [          
           defineArrayMember({
             type: 'reference',
             name: 'siteMenuItem',

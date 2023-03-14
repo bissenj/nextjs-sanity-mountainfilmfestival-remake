@@ -11,7 +11,16 @@ export const homePageQuery = groq`
       "id": _id,
       type,
       text,
-      classes
+      classes,
+      siteContent->{
+        'lists': contentLists[0]{
+          title,
+          menuItems[]{
+            title,
+            url
+          }
+        }
+      }
     }    
   },
   sections[]->{

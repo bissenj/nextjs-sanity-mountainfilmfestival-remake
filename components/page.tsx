@@ -1,12 +1,17 @@
 /* eslint-disable simple-import-sort/imports */
+import React, { useState } from 'react';
+
 import Footer from './footer';
 import Header from './header';
 import TextImagePanel from './sections/textImagePanel/textImagePanel';
 import SingleImageBannerPanel from './sections/singleImageBannerPanel/singleImageBannerPanel';
 import Sidebar from './sidebar/sidebar';
 import SiteMenu from './siteMenu/siteMenu';
+import SiteMenuContent from './siteMenu/siteMenuContent';
 
 export default function Page({ data }) {
+    const [menuVisible, setMenuVisible] = useState(true);
+
     console.log('Page: ', data);
 
     // This renders out each section as it's own custom component.
@@ -25,13 +30,16 @@ export default function Page({ data }) {
         }
     }
 
+    function handleClick(data) {        
+        setMenuVisible(!menuVisible);        
+    }
+
     return (
         <>
             <div className='page'>
-                
-                {/* PUT SIDE MENU HERE */}
-                {/* <div className='side-bar'></div> */}
-                <SiteMenu data={data.siteMenu}></SiteMenu>
+                                
+                <SiteMenuContent visible={menuVisible}></SiteMenuContent>
+                <SiteMenu data={data.siteMenu} handleClick={handleClick}></SiteMenu>
                 <Sidebar></Sidebar>
 
                 {/* <SingleImageBannerPanel></SingleImageBannerPanel> */}

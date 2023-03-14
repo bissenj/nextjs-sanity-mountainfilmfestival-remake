@@ -2,7 +2,7 @@
 /* eslint-disable simple-import-sort/imports */
 import style from './siteMenu.module.css';
 
-export default function SiteMenu({ data }) {
+export default function SiteMenu({ data, handleClick }) {
 
     console.log('SiteMenu data: ', data);
 
@@ -10,7 +10,7 @@ export default function SiteMenu({ data }) {
     function menuItemFactory(menuItem) {
         switch(menuItem.type) {
             case 0:
-                return <span>{ menuItem.text } </span>
+                return <span onClick={handleClick}>{ menuItem.text } </span>
             case 1:
                 return <a className='button'> { menuItem.text } </a>
             // case 2:

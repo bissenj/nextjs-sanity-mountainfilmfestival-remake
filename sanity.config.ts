@@ -17,6 +17,7 @@ import singleImageBannerPanel from './sanity/schemas/singleImageBannerPanel'
 
 import siteMenu from './sanity/schemas/siteMenu'
 import siteMenuItem from './sanity/schemas/siteMenuItem'
+import siteMenuContent from './sanity/schemas/siteMenuContent'
 
 export default defineConfig({
   basePath: '/studio',
@@ -31,7 +32,8 @@ export default defineConfig({
       textImagePanel,
       singleImageBannerPanel,
       siteMenu,
-      siteMenuItem
+      siteMenuItem,
+      siteMenuContent
     ],
   },
   plugins: [

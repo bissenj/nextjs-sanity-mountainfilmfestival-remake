@@ -1,6 +1,7 @@
 import { ImageIcon } from '@sanity/icons'
 import { defineArrayMember, defineField, defineType } from 'sanity'
 
+import siteMenuContent from './siteMenuContent'
 
 export default defineType({
     type: 'document',
@@ -30,6 +31,12 @@ export default defineType({
         name: 'text',
         type: 'string',        
         title: 'Text',        
+      }),
+      defineField({
+        name: 'siteContent',
+        title: 'Content Panel', 
+        type: 'reference',                
+        to: [{ type: siteMenuContent.name }],       
       }),
     ]
 })

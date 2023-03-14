@@ -1,0 +1,21 @@
+
+.site-menu-content {
+    position: absolute;
+    z-index: 99;
+    top: -510px;
+    left: 80px;
+    
+    width: calc(100% - 80px);
+    height: 510px;
+
+    background-color: #ebebe3;
+    /* border: 10px solid red; */
+
+    transition: transform 1s ease-in;
+    /* transform: translateY(100%); */
+}
+
+.site-menu-content.active {
+    position: absolute;    
+    transform: translateY(590px);
+}
