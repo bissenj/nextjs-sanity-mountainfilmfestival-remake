@@ -8,7 +8,7 @@
     width: 80px;   
     position: sticky;
     top: 22px;    
-    z-index: 99;
+    z-index: 200;
     margin-bottom: 200px;   
     margin-top: -130vh;
         /* -80%;                  WHY 80%????                  */

@@ -1,5 +1,5 @@
 /* eslint-disable simple-import-sort/imports */
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 
 import Footer from './footer';
 import Header from './header';
@@ -7,12 +7,13 @@ import TextImagePanel from './sections/textImagePanel/textImagePanel';
 import SingleImageBannerPanel from './sections/singleImageBannerPanel/singleImageBannerPanel';
 import Sidebar from './sidebar/sidebar';
 import SiteMenu from './siteMenu/siteMenu';
-import SiteMenuContent from './siteMenu/siteMenuContent';
+
 
 export default function Page({ data }) {
-    const [menuVisible, setMenuVisible] = useState(true);
+    // const [menuVisible, setMenuVisible] = useState(false);
+    // const [selectedMenuIndex, setSelectedMenuIndex] = useState(-1);
 
-    console.log('Page: ', data);
+    //console.log('Page: ', data);
 
     // This renders out each section as it's own custom component.
     function panelFactory(section) {
@@ -30,16 +31,11 @@ export default function Page({ data }) {
         }
     }
 
-    function handleClick(data) {        
-        setMenuVisible(!menuVisible);        
-    }
-
     return (
         <>
             <div className='page'>
-                                
-                <SiteMenuContent visible={menuVisible}></SiteMenuContent>
-                <SiteMenu data={data.siteMenu} handleClick={handleClick}></SiteMenu>
+                
+                <SiteMenu data={data.siteMenu}></SiteMenu>
                 <Sidebar></Sidebar>
 
                 {/* <SingleImageBannerPanel></SingleImageBannerPanel> */}

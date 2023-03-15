@@ -11,8 +11,21 @@
     background-color: #ebebe3;
     /* border: 10px solid red; */
 
-    transition: transform 1s ease-in;
+    transition: transform 0.5s ease-in;
     /* transform: translateY(100%); */
+
+    display: flex;
+    justify-content: space-around;
+    padding-top: 80px;
+    /* gap: 20px 0px; */
+    /* align-items: center; */
+}
+.site-menu-content h1 { 
+    font-weight: 700;
+    padding: 10px;
+}
+.site-menu-content ul li {     
+    margin: 10px 0;
 }
 
 .site-menu-content.active {

@@ -1,8 +1,6 @@
 import { ImageIcon } from '@sanity/icons'
 import { defineArrayMember, defineField, defineType } from 'sanity'
 
-import siteMenuContentItem from './siteMenuContentItem'
-
 export default defineType({
     type: 'document',
     name: 'siteMenuContent',
@@ -31,6 +29,11 @@ export default defineType({
                 type: 'string',
                 name: 'title',
                 title: 'Title',                
+              }), 
+              defineField({
+                type: 'string',
+                name: 'classes',
+                title: 'Classes',                
               }),   
               {
                 type: 'array',

@@ -13,9 +13,12 @@ export const homePageQuery = groq`
       text,
       classes,
       siteContent->{
-        'lists': contentLists[0]{
+        'lists': contentLists[]{
+          "id": _key,
           title,
+          classes,
           menuItems[]{
+            "id": _key,
             title,
             url
           }
