@@ -1,16 +1,16 @@
 import { test, expect } from '@playwright/test';
 
+
+// Test Page Title.
 test('has title', async ({ page }) => {
-  //await page.goto('https://playwright.dev/');
   await page.goto('http://localhost:3000/');
 
   // Expect a title "to contain" a substring.
-  //await expect(page).toHaveTitle(/Playwright/);
   await expect(page).toHaveTitle(/Home | Mountainfilm Festival/);
-
 });
 
 
+// Test opening the site menu.
 test('site menu click - open', async ({ page }) => {  
   await page.goto('http://localhost:3000/');
   
@@ -22,6 +22,7 @@ test('site menu click - open', async ({ page }) => {
 });
 
 
+// Test that site menu stays open between menu clicks.
 test('site menu click - sibling', async ({ page }) => {  
   await page.goto('http://localhost:3000/');
   
@@ -36,6 +37,7 @@ test('site menu click - sibling', async ({ page }) => {
 });
 
 
+// Test closing the site menu.
 test('site menu click - close', async ({ page }) => {  
   await page.goto('http://localhost:3000/');
   
