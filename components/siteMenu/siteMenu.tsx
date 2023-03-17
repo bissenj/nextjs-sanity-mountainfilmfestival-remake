@@ -51,7 +51,7 @@ export default function SiteMenu({ data }) {
 
         switch(menuItem.type) {
             case 0:
-                return <span className={`site-menu-item ${activeClass}`} onClick={handleClick}>{ menuItem.text } </span>
+                return <button name={ menuItem.text } className={`site-menu-item ${activeClass}`} onClick={handleClick}>{ menuItem.text } </button>
             case 1:
                 return <a className='button'> { menuItem.text } </a>
             // case 2:

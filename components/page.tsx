@@ -1,6 +1,8 @@
 /* eslint-disable simple-import-sort/imports */
 import React, { useState, useRef } from 'react';
 
+import Head from 'next/head';
+
 import Footer from './footer';
 import Header from './header';
 import TextImagePanel from './sections/textImagePanel/textImagePanel';
@@ -33,6 +35,9 @@ export default function Page({ data }) {
 
     return (
         <>
+            <Head>
+                <title>Home | Mountainfilm Festival</title>        
+            </Head>
             <div className='page'>
                 
                 <SiteMenu data={data.siteMenu}></SiteMenu>

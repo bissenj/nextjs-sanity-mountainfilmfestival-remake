@@ -7,7 +7,11 @@
     "lint": "next lint -- --ignore-path .gitignore",
     "lint:fix": "npm run format && npm run lint -- --fix",
     "start": "next start",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "test": "npx playwright test",
+    "test-2": "npx playwright test --project=chromium --headed",
+    "test-3": "npx playwright test --project=chromium --trace on",
+    "test-chrome": "npx playwright test --project=chromium"
   },
   "prettier": {
     "semi": false,
@@ -26,6 +30,7 @@
     "styled-components": "^5.3.6"
   },
   "devDependencies": {
+    "@playwright/test": "^1.31.2",
     "@types/react": "^18.0.26",
     "autoprefixer": "^10.4.13",
     "eslint": "^8.31.0",

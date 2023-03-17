@@ -15,7 +15,7 @@ export default function SiteMenuContent({ visible, content }) {
     const visibleClass = (visible ? 'active' : '');
 
     return(        
-        <div className={`${style['site-menu-content']} ${style[visibleClass]}`}>
+        <div id="siteMenuContents" data-testid="site-menu-contents" className={`${style['site-menu-content']} ${style[visibleClass]}`}>
         
             {content?.siteContent?.lists.map((list) => (
                 <div key={list.id}>
