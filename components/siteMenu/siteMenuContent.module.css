@@ -8,17 +8,16 @@
     width: calc(100% - 80px);
     height: 510px;
 
-    background-color: #ebebe3;
-    /* border: 10px solid red; */
+    background-color: #ebebe3;    
 
-    transition: transform 0.5s ease-in;
-    /* transform: translateY(100%); */
-
+    transition: transform 0.3s ease-in;
+    
     display: flex;
     justify-content: space-around;
     padding-top: 80px;
-    /* gap: 20px 0px; */
-    /* align-items: center; */
+    padding-left: 40px;
+    padding-bottom: 80px;   
+    
 }
 .site-menu-content h1 { 
     font-weight: 700;
@@ -28,7 +27,12 @@
     margin: 10px 0;
 }
 
-.site-menu-content.active {
-    position: absolute;    
+.site-menu-content ul li a {
+    display: inline-block;
+    font-size: 0.9rem;
+}
+
+.site-menu-content.active {    
     transform: translateY(590px);
+    /* transform: translateY(290px); */
 }

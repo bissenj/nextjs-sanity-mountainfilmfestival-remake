@@ -33,7 +33,10 @@ export default function SiteMenu({ data }) {
             // Clicking on the same menu item -> Close menu
             if (index == selectedMenuIndex) {                
                 setMenuVisible(false);   
-                setSelectedMenuIndex(-1);
+                setTimeout(() => {
+                    setSelectedMenuIndex(-1);
+                }, 500)
+                
             }
             // Clicking on a different menu item -> Set new item as selected
             else {                
