@@ -194,6 +194,43 @@ body {
   color: white;
 }
 
+.left-control, .right-control {
+  position: relative;
+  border-radius: 50%;
+  border: 1px solid white;
+  height: 30px;
+  width: 30px;
+  margin: 0 20px;
+  transition: opacity 0.3s;
+  opacity: 0;
+  color: white;
+}
+
+.left-control::after {
+  content: "<";
+  position: absolute;
+  top: -4px;
+  left: 5px;
+  font-size: 1.5em;
+}
+
+.right-control::after {
+  content: ">";
+  position: absolute;
+  top: -4px;
+  left: 7px;
+  font-size: 1.5em;
+}
+
+.right-control:hover, .left-control:hover {
+  color: black;
+  border-color: black;
+}
+
+#slideContainer:hover .left-control, #slideContainer:hover .right-control {
+  opacity: 1;
+}
+
 /* Screens smaller than 900px */
 @media screen and (max-width: 900px) {
   .textImagePanel, .textImagePanel.left {
