@@ -24,11 +24,18 @@ export default function SiteMenuContent({ visible, content }) {
     
     const visibleClass = (visible ? 'active' : '');
 
-    const cta: iCTAPanel = {
-        style: 'blue',
-        heading: 'Bring Mountainfilm to your town',
-        details: 'Become a host',
-        url: '/'
+    // const cta: iCTAPanel = {
+    //     style: 'blue',
+    //     heading: 'Bring Mountainfilm to your town',
+    //     details: 'Become a host',
+    //     url: '/'
+    // }
+
+    const cta: iCTAPanel = {        
+        heading: content?.siteContent?.cta?.heading ?? 'Heading',
+        details: content?.siteContent?.cta?.details ?? 'Details',
+        url: content?.siteContent?.cta?.url ?? '/',
+        style: content?.siteContent?.cta?.classes ?? 'green',
     }
 
     return(        

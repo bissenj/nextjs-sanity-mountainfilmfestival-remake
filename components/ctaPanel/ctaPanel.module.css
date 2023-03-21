@@ -35,6 +35,18 @@
     background-color: var(--accent-color-blue);
 }
 
+.cta-panel.red {
+    background-color: var(--accent-color-red);
+}
+
+.cta-panel.green {
+    background-color: var(--accent-color-green);
+}
+
+.cta-panel.yellow {
+    background-color: var(--accent-color-yellow);
+}
+
 .cta-heading {
     font-family: 'Open Sans', sans-serif;
     font-size: 1.65rem;

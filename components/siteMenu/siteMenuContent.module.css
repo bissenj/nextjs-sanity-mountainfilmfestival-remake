@@ -21,8 +21,14 @@
 }
 .site-menu-content h1 { 
     font-weight: 700;
-    padding: 10px;
+    padding: 10px;    
 }
+/* .site-menu-content h1.invisible {
+    opacity: 0;
+    color: red;
+} */
+
+
 .site-menu-content ul li {     
     margin: 10px 0;
 }

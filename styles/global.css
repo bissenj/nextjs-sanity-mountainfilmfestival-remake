@@ -194,6 +194,15 @@ body {
   color: white;
 }
 
+.dark-button {
+  background-color: black;
+  color: white;
+}
+
+.invisible {
+  opacity: 0;
+}
+
 .left-control, .right-control {
   position: relative;
   border-radius: 50%;

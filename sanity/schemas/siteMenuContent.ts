@@ -12,7 +12,35 @@ export default defineType({
         name: 'title',
         title: 'Title',
         validation: (rule) => rule.required(),
-      }),      
+      }), 
+      defineField({
+        type: 'object',
+        name: 'cta',
+        title: 'Call To Action',
+        fields: [          
+          defineField({
+            type: 'string',
+            name: 'heading',
+            title: 'Heading',                
+          }), 
+          defineField({
+            type: 'string',
+            name: 'details',
+            title: 'Details (Link Text)',                
+          }), 
+          defineField({
+            type: 'string',
+            name: 'url',
+            title: 'Url (Link)',                
+          }), 
+          defineField({
+            type: 'string',
+            name: 'classes',
+            title: 'blue, green, yellow, or red',  
+            initialValue: 'blue'
+          }), 
+        ]
+      }),    
       defineField({
         type: 'array',
         name: 'contentLists',

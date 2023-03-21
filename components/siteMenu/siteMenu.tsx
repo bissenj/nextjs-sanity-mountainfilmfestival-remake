@@ -50,13 +50,13 @@ export default function SiteMenu({ data }) {
     // This renders out each menuitem as it's own custom component.
     function menuItemFactory(menuItem, index) {
         const activeClass = (index == selectedMenuIndex) ? 'active' : '';
-        console.log(menuItem.text, activeClass);
+        console.log(menuItem.text, activeClass, menuItem);
 
         switch(menuItem.type) {
             case 0:
                 return <button name={ menuItem.text } className={`site-menu-item ${activeClass}`} onClick={handleClick}>{ menuItem.text } </button>
             case 1:
-                return <a className='button'> { menuItem.text } </a>
+                return <a className={`button ${menuItem.classes}`}> { menuItem.text } </a>
             // case 2:
             //     return <span>{ menuItem.text } </span>            
             default:

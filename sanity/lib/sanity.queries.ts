@@ -13,6 +13,7 @@ export const homePageQuery = groq`
       text,
       classes,
       siteContent->{
+        cta,
         'lists': contentLists[]{
           "id": _key,
           title,
