@@ -240,6 +240,44 @@ body {
   opacity: 1;
 }
 
+.blue {
+  background-color: var(--accent-color-blue);
+}
+
+.red {
+  background-color: var(--accent-color-red);
+}
+
+.green {
+  background-color: var(--accent-color-green);
+}
+
+.yellow {
+  background-color: var(--accent-color-yellow);
+}
+
+.hover-link {
+  display: flex;
+  text-transform: uppercase;
+  font-size: 0.95rem;
+  color: white;
+}
+
+.hover-link::before {
+  content: " ";
+  background-color: white;
+  width: 14px;
+  height: 4px;
+  position: relative;
+  top: 8px;
+  margin-right: 8px;
+  transition: width 0.2s ease-out;
+}
+
+.hover-link:hover::before {
+  width: 20px;
+}
+
 /* Screens smaller than 900px */
 @media screen and (max-width: 900px) {
   .textImagePanel, .textImagePanel.left {

@@ -1,0 +1,17 @@
+
+.quote-container {
+    padding-left: 80px;    
+    margin: 6rem 12rem;
+}
+
+.quote-text {
+    font-weight: 700;
+    font-size: 1.5rem;
+    line-height: 1.3m;
+    margin-bottom: 20px;
+}
+
+.quote-author {
+    font-size: 0.9rem;
+    line-height: 1.6;;
+}

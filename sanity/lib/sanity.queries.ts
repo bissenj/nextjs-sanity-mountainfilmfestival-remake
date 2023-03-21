@@ -43,6 +43,22 @@ export const homePageQuery = groq`
       image,
       altText,
     },
+    _type == 'imageImagePanel' => {      
+      imageList[]{
+        "id": _key,
+        image,
+        altText,
+        heading,
+        details,           
+        url,
+        classes
+      }
+    },
+    _type == 'quotePanel' => {  
+      "id": _key,
+      quote,
+      author        
+    },
     "id": _id,
     type,
     title,      

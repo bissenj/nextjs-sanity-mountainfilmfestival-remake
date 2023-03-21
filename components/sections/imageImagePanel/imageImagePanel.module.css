@@ -1,0 +1,44 @@
+
+.image-image-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: auto;
+    gap: 20px;
+    color: white;
+
+    padding-left: 80px;   
+}
+
+.cta {
+    position: relative;
+    bottom: 70px;
+    left: 20px;
+    padding: 20px;
+    max-width: 18rem;
+}
+
+.cta.green {
+    background-color: var(--accent-color-green);    
+}
+
+.cta-link {
+    display: flex;
+    flex-direction: column;
+}
+
+.image-wrapper {    
+    position: relative;
+    height: 50vh;
+    width: 100%;
+    background-color: #ccc;
+    overflow:hidden;
+}
+
+.image-wrapper img {
+    transition: 0.2s transform ease-out;
+}
+
+.image-wrapper:hover img {
+    transform: scale(1.05);
+}
+
