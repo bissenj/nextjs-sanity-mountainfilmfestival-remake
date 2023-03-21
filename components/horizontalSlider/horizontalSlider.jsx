@@ -7,7 +7,7 @@ import styles from './horizontalSlider.module.css'
 // const data = [{id: 1, text: "This is Slide 1", background: "#FFCF47"}, {id: 2, text: "Slide 2", background: "#7ADCEF"}, {id: 3, text: "3rd Slide", background: "#a78df5" }, {id:4, text:"Last Slide.  4", background: "#ff8686"}];
 
 // export const HorizontalSlider = ({index, updateSelectedIndex, data}) => {
-export const HorizontalSlider = ({index, updateSelectedIndex, slides, children}) => {   
+export const HorizontalSlider = ({index, updateSelectedIndex, name, children}) => {   
     const sliderRef = useRef(null);
     const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
     const currentIndex = useRef(-1);
@@ -187,6 +187,8 @@ export const HorizontalSlider = ({index, updateSelectedIndex, slides, children})
             <div className={styles.slideViewer}>
                 {/* <div ref={sliderRef} className='slide-group animating' style={{ transform: `translateX(-${index * 100}%)` }}> */}
                 <div 
+                    name={name}       // For End to End Testing
+                    data-index={index}
                     ref={sliderRef} 
                     className={styles['slide-group'] + " " + styles['animating']} 
                     style={{ transform: `translateX(-${index * 100}%)` }}                    

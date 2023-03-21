@@ -82,7 +82,7 @@ export default function SingleImageBannerPanel({ data }) {
 
             {/* Slider */}
             <div id='slideContainer' className={`${style['slider-container']}`}>                
-                <HorizontalSlider index={selectedIndex} updateSelectedIndex={setSelectedIndex} slides={slides}>
+                <HorizontalSlider index={selectedIndex} updateSelectedIndex={setSelectedIndex} name={'hero-slider'}>
                     {/* <p>This is a child - 1</p>
                     <p>This is a child - 2</p>
                     <HeroSlide topic={'Topic'} heading={'Heading'} cta={'CTA'} url={'URL'} id={1} /> */}

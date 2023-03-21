@@ -35,5 +35,7 @@
 
 .control-box:focus {
     outline: none;
+    outline: 1px solid yellow;
+    /* opacity: 0.5; */
 }
 

@@ -20,12 +20,12 @@ export const ControlGrid = ({quantity, index, updateSelectedIndex, forwardBackCo
         for (let i = 0; i < quantity; i++) {            
             if (i == index) {  
                 content.push(
-                    <div key={i} tabIndex={0} data-index={i} className={styles['control-box'] + " " + styles['selected']} onClick={handleClick}  onKeyDown={handleKeyDown}></div>
+                    <button key={i} tabIndex={0} data-index={i} className={styles['control-box'] + " " + styles['selected']} onClick={handleClick} onKeyDown={(e) => handleKeyDown(e, i)}></button>
                 )                                     
             }
             else {           
                 content.push(
-                    <div key={i} tabIndex={0} data-index={i} className={styles['control-box']} onClick={handleClick}  onKeyDown={handleKeyDown}></div>
+                    <button key={i} tabIndex={0} data-index={i} className={styles['control-box']} onClick={handleClick} onKeyDown={(e) => handleKeyDown(e, i)}></button>
                 )     
             }                
         }
@@ -47,8 +47,8 @@ export const ControlGrid = ({quantity, index, updateSelectedIndex, forwardBackCo
     }
 
     // Handle Key Down
-    const handleKeyDown = ({key}) => {    
-        console.log('handleKeyDown');
+    const handleKeyDown = ({key}, elementIndex) => {    
+        console.log('handleKeyDown: ', key, elementIndex);
 
         if (key === 'ArrowRight') {
             setBoundedIndex(index + 1)                
@@ -56,7 +56,11 @@ export const ControlGrid = ({quantity, index, updateSelectedIndex, forwardBackCo
 
         if (key === 'ArrowLeft') {
             setBoundedIndex(index - 1)                
-        }        
+        }      
+        
+        if (key === 'Enter') {            
+            setBoundedIndex(elementIndex)       
+        }
     }
     
     // CLICK HANDLER
@@ -73,7 +77,7 @@ export const ControlGrid = ({quantity, index, updateSelectedIndex, forwardBackCo
 
 
     return (
-        <div className={styles.controlGrid}>
+        <div name='control-grid' className={styles.controlGrid}>
             {forwardBackControls && 
                 <div className='left-control' onClick={() => handleArrowClick(-1)}>  </div>
             }

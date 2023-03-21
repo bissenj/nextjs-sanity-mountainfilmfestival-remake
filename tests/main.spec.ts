@@ -53,3 +53,5 @@ test('site menu click - close', async ({ page }) => {
   // Expects the site menu contents panel to be visible  
   await expect(page.getByTestId('site-menu-contents')).not.toBeInViewport({ ratio: 0.9 });
 });
+
+
