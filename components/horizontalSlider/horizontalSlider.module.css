@@ -34,10 +34,6 @@
     display: flex;        
 }
 
-/* Prevent link navigating while slide is being dragged */
-.dragstart {
-    pointer-events: none;
-}
 
 .slide-group.animating {
     transition: left 0.5s ease-out;
@@ -50,7 +46,7 @@
     transition: all 1s;
     position: relative;
 
-    /* min-width: 300px; */
+    min-width: 300px;
     inline-size: 100%;
     block-size: 100%;    
     

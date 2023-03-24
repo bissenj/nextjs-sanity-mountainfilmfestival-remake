@@ -92,29 +92,32 @@ export const HorizontalSlider = ({index, updateSelectedIndex, name, children}) =
         if (dragging.current) requestAnimationFrame(animation);
     }
 
+
+    function disableClickEvents(el) {        
+        let link = findParentLink(el, 5);
+        if (link.href) {           
+            link.classList.add('dragstart');           
+        }        
+    }
+    function enableClickEvents(el) {        
+        const elements = el.querySelectorAll('a').forEach((el) => {
+            el.classList.remove('dragstart');
+        })       
+    }
+
+    function findParentLink(el, count) {
+        if (el.href || count == 0) {
+            return el;
+        }
+        return findParentLink(el.parentNode, count-1);
+    }
+
     // Handle drag start
     function handleDragStart(e) { 
-        console.log('handleDragStart');
-
-        //e.preventDefault();
-        //e.stopPropagation();
-        //e.stopImmediatePropagation();
-        //console.log(e);      
-        
-        //e.target.querySelector('a').classList.add('dragstart');
-        // if (e.target.href) {
-        //     e.target.classList.add('dragstart');
-        // }
-        // else {
-            // const elements = sliderRef.current.querySelectorAll('a').forEach((el) => {
-            //     console.log(el);
-            //     el.classList.add('dragstart');
-            // });
-        // }       
-        
-        //e.target.classList.add('dragstart');
+        //console.log('handleDragStart');        
         
         if (!animating.current) {
+            console.log('drag start animating');
             dragging.current = true;
             startPos.current = e.pageX;
             animationRef.current = requestAnimationFrame(animation);
@@ -130,6 +133,10 @@ export const HorizontalSlider = ({index, updateSelectedIndex, name, children}) =
 
      // Handle drag end
      function handleDragEnd(e) {
+
+        console.log('handleDragEnd: ', e.target);
+
+        enableClickEvents(e.target);
         
         // const elements = e.target.querySelectorAll('a').forEach((el) => {
         //     el.classList.remove('dragstart');
@@ -156,12 +163,20 @@ export const HorizontalSlider = ({index, updateSelectedIndex, name, children}) =
 
     
     // Handle drag move
-    function handleDragMove(e) {
+    function handleDragMove(e) {        
         e.preventDefault();  // Need this or IMAGE drags won't work.
 
         if (dragging.current) {
+
+            console.log('handleDragMove');        
+            disableClickEvents(e.target);
+
             const currentPosition = e.pageX;
             const newTranslate = prevTranslate.current + currentPosition - startPos.current;
+            //console.log(newTranslate);
+
+           // const distanceMoved = prevTranslate.current + currentPosition;
+            
             
             // if (newTranslate < 0 && newTranslate > (-dimensions.width * (slides.length-1))) {
             if (newTranslate < 0 && newTranslate > (-dimensions.width * MAX_INDEX)) {
@@ -175,7 +190,7 @@ export const HorizontalSlider = ({index, updateSelectedIndex, name, children}) =
 
                 console.log("Bailing - Lost control of the mouse.");
             } 
-        }
+        } 
     }
 
 
@@ -210,7 +225,7 @@ export const HorizontalSlider = ({index, updateSelectedIndex, name, children}) =
             const childElement = element.firstChild;
             const childWidth = childElement.clientWidth;
             const childHeight = childElement.clientHeight;
-            console.log('Child Dimensions: ', childWidth, childHeight);
+            //console.log('Child Dimensions: ', childWidth, childHeight);
             return {width: childWidth, height: childHeight};
         }
 
@@ -244,6 +259,26 @@ export const HorizontalSlider = ({index, updateSelectedIndex, name, children}) =
                 >
 
                     {children}
+
+
+                    {/* {dragging.current &&                     
+                        React.Children.map(children,
+                            child => {
+                                return React.cloneElement(child,
+                                { animating: false }, null); //third parameter is null
+                                // Because we are not adding any children
+                            })
+                        
+                    }
+                    {!dragging.current &&                     
+                        React.Children.map(children,
+                            child => {
+                                return React.cloneElement(child,
+                                { animating: true }, null); //third parameter is null
+                                // Because we are not adding any children
+                            })
+                        
+                    } */}
 
                     {/* {React.Children.map(children,
                     child => {

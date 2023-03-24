@@ -8,7 +8,7 @@ interface newsPost {
     id: string;
 }
 
-export default function NewsSlide({post} : { post: newsPost }) {    
+export default function NewsSlide({post, animating = false} : { post: newsPost, animating: boolean }) {    
     
     //console.log('NewsSlide: ', post); 
 
@@ -17,20 +17,25 @@ export default function NewsSlide({post} : { post: newsPost }) {
     const postTitle = post?.postTitle ?? '';
     const postUrl = post?.url ?? '';
     const id = post?.id ?? 0;
+
+    const border = (animating) ? '1px solid green' : '1px solid blue';
     
 
     function handleClick(e) {
-        console.log('handleClick');
-        // console.log('handleClick: ', animating);
-        // if (animating) {
-        //     e.preventDefault();
-        // }
+        // console.log('handleClick');
+        console.log('handleClick: ', animating);
+
+        //if (animating) {
+            //e.preventDefault();
+        //}
+
+        
     }
 
     return(
-        <article key={id} className={styles['news-slide']}>
+        <article key={id} className={styles['news-slide']} style={{border: `${border}`}}>
             {/* <a href={postUrl} className={`${styles['post-link']} ${styles['dragstart']}`}> */}            
-
+            <a href={postUrl} className={`${styles['post-link']}`} onClick={handleClick}>
                 {/* IMAGE */}
                 <div className={styles['post-image']}>
                     <img src={postImageSrc} alt='Post Image' />
@@ -40,7 +45,7 @@ export default function NewsSlide({post} : { post: newsPost }) {
                 <div className={styles['post-date']}>
                     <span>{postDate}</span>
                 </div>
-            <a href={postUrl} className={`${styles['post-link']}`} onClick={handleClick}>
+            
                 {/* TITLE */}
                 <div className={styles['post-title']}>
                     <h2>{postTitle}</h2>

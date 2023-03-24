@@ -35,18 +35,18 @@ export default function NewsPanel() {
     return (
         <section className={`${style['news-panel']}`}>
             {/* News & Community Banner */}
-            <div className={`${style['banner']}`}>
+            <div className={`${style['news-banner']}`}>
                 <h1>News & Community</h1>
             </div>
 
-            <div className={`${style['content']}`}>
+            <div className={`${style['news-content']}`}>
                 {/* Slider */}
                 <div className={`${style['content-body']}`}>
                     <HorizontalSlider index={selectedIndex} updateSelectedIndex={setSelectedIndex} name={'hero-slider'}>
 
                         {newsSlides && 
                             newsSlides.map((item, slideIndex) => {
-                                return <NewsSlide key={slideIndex} post={item}></NewsSlide>
+                                return <NewsSlide key={slideIndex} post={item} animating={false}></NewsSlide>
                             })
                         }  
 

@@ -1,6 +1,5 @@
 
 .news-panel {
-
     /* HACKS FOR DEV */
     position: relative;
     z-index: 1000;    
@@ -8,18 +7,24 @@
     margin-bottom: 200px;
 
     /* REAL STYLES HERE */
+    overflow: hidden;
     padding-left: 80px;
 
     display: grid;
     grid-template-columns: 100px 1fr;
 }
 
-.banner {
+.news-banner {
     border: 1px solid black;    
 }
 
-.content {
+.news-content {
     border: 1px solid red;
+}
+
+.content-body {
+    position: relative;
+    overflow-x:hidden;
 }
 
 

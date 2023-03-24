@@ -15,12 +15,12 @@ export default function SingleImageBannerPanel({ data }) {
     
     const slides = [{id: 1, text: "This is Slide 1", background: "#FFCF47"}, {id: 2, text: "Slide 2", background: "#7ADCEF"}, {id: 3, text: "3rd Slide", background: "#a78df5" }, {id:4, text:"Last Slide.  4", background: "#ff8686"}];
     const heroSlides = [
-        // {
-        //     topic: 'Mountainfilm 2023 Passes',
-        //     heading: 'Festival Passes on sale now',
-        //     cta: 'Buy Passes',
-        //     url: '/passes/buy'
-        // },
+        {
+            topic: 'Mountainfilm 2023 Passes',
+            heading: 'Festival Passes on sale now',
+            cta: 'Buy Passes',
+            url: '/passes/buy'
+        },
         {
             topic: 'Host a Tour Stop',
             heading: 'Bring Mountainfilm to your community!',

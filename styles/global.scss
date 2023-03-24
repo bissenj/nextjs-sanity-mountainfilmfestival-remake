@@ -376,6 +376,11 @@ body {
 }
 
 
+.dragstart {
+    pointer-events: none;
+    background-color: yellow;
+}
+
 
 // ----------------------------------------------------------------------
 //                          MEDIA QUERIES
