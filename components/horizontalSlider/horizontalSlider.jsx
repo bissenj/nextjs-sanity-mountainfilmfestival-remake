@@ -21,7 +21,7 @@ export const HorizontalSlider = ({index, updateSelectedIndex, name, children}) =
     const animationRef = useRef(null);
 
     // CONSTRAINT VARIABLES
-    const MAX_INDEX = children.length - 1;
+    const MAX_INDEX = (children) ? children.length - 1 : 0;
     const MIN_INDEX = 0;
 
     const setBoundedIndex = (newIndex) => {
@@ -52,7 +52,7 @@ export const HorizontalSlider = ({index, updateSelectedIndex, name, children}) =
             setPositionByIndex();
         }
     }, [index]);
-
+    
 
     // USE EFFECT for Event Handlers
     useEffect(() => {                
@@ -93,7 +93,27 @@ export const HorizontalSlider = ({index, updateSelectedIndex, name, children}) =
     }
 
     // Handle drag start
-    function handleDragStart(e) {       
+    function handleDragStart(e) { 
+        console.log('handleDragStart');
+
+        //e.preventDefault();
+        //e.stopPropagation();
+        //e.stopImmediatePropagation();
+        //console.log(e);      
+        
+        //e.target.querySelector('a').classList.add('dragstart');
+        // if (e.target.href) {
+        //     e.target.classList.add('dragstart');
+        // }
+        // else {
+            // const elements = sliderRef.current.querySelectorAll('a').forEach((el) => {
+            //     console.log(el);
+            //     el.classList.add('dragstart');
+            // });
+        // }       
+        
+        //e.target.classList.add('dragstart');
+        
         if (!animating.current) {
             dragging.current = true;
             startPos.current = e.pageX;
@@ -110,6 +130,12 @@ export const HorizontalSlider = ({index, updateSelectedIndex, name, children}) =
 
      // Handle drag end
      function handleDragEnd(e) {
+        
+        // const elements = e.target.querySelectorAll('a').forEach((el) => {
+        //     el.classList.remove('dragstart');
+        // })       
+        
+
         dragging.current = false;
         cancelAnimationFrame(animationRef.current);
 
@@ -124,6 +150,8 @@ export const HorizontalSlider = ({index, updateSelectedIndex, name, children}) =
         setPositionByIndex();
 
         animating.current = true;
+
+        e.preventDefault();
     }
 
     
@@ -176,6 +204,17 @@ export const HorizontalSlider = ({index, updateSelectedIndex, name, children}) =
 
 
     function getElementDimensions(element) {
+        // Try to get the width of a slide so when we update the slide index we only move
+        // by one slide's width.
+        if (element.firstChild) {
+            const childElement = element.firstChild;
+            const childWidth = childElement.clientWidth;
+            const childHeight = childElement.clientHeight;
+            console.log('Child Dimensions: ', childWidth, childHeight);
+            return {width: childWidth, height: childHeight};
+        }
+
+        // Couldn't get slide with, so use the entire slide group.
         const width = element.clientWidth
         const height = element.clientHeight        
         return { width, height }
@@ -205,6 +244,16 @@ export const HorizontalSlider = ({index, updateSelectedIndex, name, children}) =
                 >
 
                     {children}
+
+                    {/* {React.Children.map(children,
+                    child => {
+                        return React.cloneElement(child,
+                        { animating: (dragging.current == true || animating.current == true ? true : false) }, null); //third parameter is null
+                        // Because we are not adding any children
+                    })} */}
+
+
+
                 
                     {/* {slides.map((item, _index) => {
                         // console.log("Render Slides: ", currentIndex.current, index);

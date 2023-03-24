@@ -12,6 +12,8 @@ import QuotePanel from './sections/quotePanel/quotePanel';
 import Sidebar from './sidebar/sidebar';
 import SiteMenu from './siteMenu/siteMenu';
 
+import NewsPanel from './sections/newsPanel/newsPanel';
+
 
 export default function Page({ data }) {
     // const [menuVisible, setMenuVisible] = useState(false);
@@ -48,6 +50,8 @@ export default function Page({ data }) {
                 
                 <SiteMenu data={data.siteMenu}></SiteMenu>
                 <Sidebar></Sidebar>
+
+                <NewsPanel></NewsPanel>
 
                 {/* <SingleImageBannerPanel></SingleImageBannerPanel> */}
 

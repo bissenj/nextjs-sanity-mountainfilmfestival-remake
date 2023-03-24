@@ -1,0 +1,39 @@
+
+.news-panel {
+
+    /* HACKS FOR DEV */
+    position: relative;
+    z-index: 1000;    
+    margin-top: 300px;    
+    margin-bottom: 200px;
+
+    /* REAL STYLES HERE */
+    padding-left: 80px;
+
+    display: grid;
+    grid-template-columns: 100px 1fr;
+}
+
+.banner {
+    border: 1px solid black;    
+}
+
+.content {
+    border: 1px solid red;
+}
+
+
+.content-footer {
+    height: 100%;
+    padding: 0 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.controls-container {
+    border: 1px solid red;    
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
