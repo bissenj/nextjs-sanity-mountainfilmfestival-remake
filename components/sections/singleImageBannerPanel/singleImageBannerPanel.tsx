@@ -14,27 +14,33 @@ export default function SingleImageBannerPanel({ data }) {
     const altText = data?.altText ?? null;
     
     const slides = [{id: 1, text: "This is Slide 1", background: "#FFCF47"}, {id: 2, text: "Slide 2", background: "#7ADCEF"}, {id: 3, text: "3rd Slide", background: "#a78df5" }, {id:4, text:"Last Slide.  4", background: "#ff8686"}];
-    const heroSlides = [
-        {
-            topic: 'Mountainfilm 2023 Passes',
-            heading: 'Festival Passes on sale now',
-            cta: 'Buy Passes',
-            url: '/passes/buy'
-        },
-        {
-            topic: 'Host a Tour Stop',
-            heading: 'Bring Mountainfilm to your community!',
-            cta: 'Learn More',
-            url: '/tour/host-mountainfilm-on-tour'
-        },
-        {
-            topic: '',
-            heading: 'Mountainfilm: Outsides Best U.S. Outdoor Festivals',
-            cta: 'Read the article!',
-            url: 'https://www.outsideonline.com/adventure-travel/destinations/north-america/best-outdoor-festivals-2023/'
-        },
-    ];
+    // const heroSlides = [
+    //     {
+    //         topic: 'Mountainfilm 2023 Passes',
+    //         heading: 'Festival Passes on sale now',
+    //         cta: 'Buy Passes',
+    //         url: '/passes/buy'
+    //     },
+    //     {
+    //         topic: 'Host a Tour Stop',
+    //         heading: 'Bring Mountainfilm to your community!',
+    //         cta: 'Learn More',
+    //         url: '/tour/host-mountainfilm-on-tour'
+    //     },
+    //     {
+    //         topic: '',
+    //         heading: 'Mountainfilm: Outsides Best U.S. Outdoor Festivals',
+    //         cta: 'Read the article!',
+    //         url: 'https://www.outsideonline.com/adventure-travel/destinations/north-america/best-outdoor-festivals-2023/'
+    //     },
+    // ];
 
+    // extract the slides if any exist.
+    const hasSlideShow = data?.datashow;
+    const heroSlides = data?.slideshow?.slides;
+    // const heroSlides = undefined;       // Negative testing
+
+    // Selected index of mini-slideshow.
     const [selectedIndex, setSelectedIndex] = useState(0);
 
     //console.log('Hero Slides: ', heroSlides);
@@ -81,28 +87,33 @@ export default function SingleImageBannerPanel({ data }) {
             </div>
 
             {/* Slider */}
-            <div id='slideContainer' className={`${style['slider-container']}`}>                
-                <HorizontalSlider index={selectedIndex} updateSelectedIndex={setSelectedIndex} name={'hero-slider'}>
-                    {/* <p>This is a child - 1</p>
-                    <p>This is a child - 2</p>
-                    <HeroSlide topic={'Topic'} heading={'Heading'} cta={'CTA'} url={'URL'} id={1} /> */}
+            { hasSlideShow && 
+                <div id='slideContainer' className={`${style['slider-container']}`}>                
+                    <HorizontalSlider index={selectedIndex} updateSelectedIndex={setSelectedIndex} name={'hero-slider'}>                    
 
+                        {heroSlides && 
+                            heroSlides.map((item, slideIndex) => {
+                                return <HeroSlide key={item._key} topic={item.topic} heading={item.title} cta={item.cta} url={item.url} id={`slide-${slideIndex}`}></HeroSlide>
+                            })
+                        }    
+                        {!heroSlides &&                         
+                            <HeroSlide key={0} topic={'Oops!'} heading={`Hey!  We're missing some slides here!`} cta={'Fix in Studio'} url={'/studio'} id={`slide-0`}></HeroSlide>
+                        }
+                    
+                    </HorizontalSlider>
+
+                    {/* If there are slides, display the control grid. */}
                     {heroSlides && 
-                        heroSlides.map((item, slideIndex) => {
-                            return <HeroSlide key={slideIndex} topic={item.topic} heading={item.heading} cta={item.cta} url={item.url} id={`slide-${slideIndex}`}></HeroSlide>
-                        })
-                    }                    
-                </HorizontalSlider>
+                        <div style={{position: 'relative', top: '-10px', margin: '0 auto', width: '200px'}}>     
+                            <ControlGrid quantity={heroSlides?.length} index={selectedIndex} updateSelectedIndex={setSelectedIndex} forwardBackControls={true} />
+                        </div>
+                    }
 
-                <div style={{position: 'relative', top: '-10px', margin: '0 auto', width: '200px'}}>     
-                    <ControlGrid quantity={heroSlides.length} index={selectedIndex} updateSelectedIndex={setSelectedIndex} forwardBackControls={true} />
                 </div>
-
-            </div>
+            }
 
             {/* Color Stripe */}
-            <div className={`${style['color-stripe']}`}>
-            </div>
+            <div className={`${style['color-stripe']}`}></div>
 
         </div>
     );

@@ -36,8 +36,8 @@
 
 
 .slide-group.animating {
-    transition: left 0.5s ease-out;
-    transition: transform 0.5s ease-out;
+    transition: left 1.5s ease-out;
+    transition: transform 0.3s ease-out;
   }
 
 .slide {    

@@ -16,6 +16,7 @@ import textImagePanel from './sanity/schemas/textImagePanel'
 import singleImageBannerPanel from './sanity/schemas/singleImageBannerPanel'
 import imageImagePanel from './sanity/schemas/imageImagePanel'
 import quotePanel from './sanity/schemas/quotePanel'
+import slideshow from './sanity/schemas/slideshow'
 
 import siteMenu from './sanity/schemas/siteMenu'
 import siteMenuItem from './sanity/schemas/siteMenuItem'
@@ -37,7 +38,8 @@ export default defineConfig({
       siteMenuItem,
       siteMenuContent,
       imageImagePanel,
-      quotePanel
+      quotePanel,
+      slideshow
     ],
   },
   plugins: [

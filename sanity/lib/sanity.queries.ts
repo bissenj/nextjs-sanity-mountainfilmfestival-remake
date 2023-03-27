@@ -42,6 +42,7 @@ export const homePageQuery = groq`
       buttonText,
       image,
       altText,
+      slideshow
     },
     _type == 'imageImagePanel' => {      
       imageList[]{

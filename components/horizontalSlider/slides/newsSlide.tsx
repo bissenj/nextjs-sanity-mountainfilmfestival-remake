@@ -20,21 +20,12 @@ export default function NewsSlide({post, animating = false} : { post: newsPost, 
 
     const border = (animating) ? '1px solid green' : '1px solid blue';
     
-
-    function handleClick(e) {
-        // console.log('handleClick');
+    function handleClick(e) {        
         console.log('handleClick: ', animating);
-
-        //if (animating) {
-            //e.preventDefault();
-        //}
-
-        
     }
 
     return(
-        <article key={id} className={styles['news-slide']} style={{border: `${border}`}}>
-            {/* <a href={postUrl} className={`${styles['post-link']} ${styles['dragstart']}`}> */}            
+        <article key={id} className={styles['news-slide']} style={{border: `${border}`}}>            
             <a href={postUrl} className={`${styles['post-link']}`} onClick={handleClick}>
                 {/* IMAGE */}
                 <div className={styles['post-image']}>

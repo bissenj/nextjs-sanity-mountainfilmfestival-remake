@@ -16,6 +16,8 @@ export default function IndexPage(props) {
 
 
 export const getStaticProps = async (ctx) => {
+  console.log('getStaticProps: ', ctx);
+
   //const { preview = false, previewData = {} } = ctx
 
   const [data] = await Promise.all([

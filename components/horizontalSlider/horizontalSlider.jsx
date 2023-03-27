@@ -134,15 +134,8 @@ export const HorizontalSlider = ({index, updateSelectedIndex, name, children}) =
      // Handle drag end
      function handleDragEnd(e) {
 
-        console.log('handleDragEnd: ', e.target);
-
-        enableClickEvents(e.target);
+        //console.log('handleDragEnd: ', e.target);
         
-        // const elements = e.target.querySelectorAll('a').forEach((el) => {
-        //     el.classList.remove('dragstart');
-        // })       
-        
-
         dragging.current = false;
         cancelAnimationFrame(animationRef.current);
 
@@ -159,6 +152,8 @@ export const HorizontalSlider = ({index, updateSelectedIndex, name, children}) =
         animating.current = true;
 
         e.preventDefault();
+
+        enableClickEvents(e.target);
     }
 
     
@@ -168,7 +163,7 @@ export const HorizontalSlider = ({index, updateSelectedIndex, name, children}) =
 
         if (dragging.current) {
 
-            console.log('handleDragMove');        
+            //console.log('handleDragMove');        
             disableClickEvents(e.target);
 
             const currentPosition = e.pageX;

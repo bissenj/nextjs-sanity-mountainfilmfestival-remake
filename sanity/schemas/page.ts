@@ -31,7 +31,13 @@ export default defineType({
         },
         validation: (rule) => rule.required(),
       }), 
-
+      defineField({
+        type: 'string',
+        name: 'root',
+        title: 'Root',
+        validation: (rule) => rule.required(),
+        description: 'Home, News, Festival, etc',
+      }),
       defineField({
         name: 'siteMenu',
         type: 'reference',

@@ -36,6 +36,8 @@ export default function Page({ data }) {
                 return <ImageImagePanel key={section.id} data={section}></ImageImagePanel>
             case 6:
                 return <QuotePanel key={section.id} data={section}></QuotePanel>
+            case 7:
+                return <NewsPanel key={section.id} data={section}></NewsPanel>
             default:
                 return <div key={section.id}>{section.title}</div>
         }

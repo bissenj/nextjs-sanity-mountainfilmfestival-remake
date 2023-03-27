@@ -1,11 +1,9 @@
 import styles from '../horizontalSlider.module.css'
 
-export default function HeroSlide({topic, heading, cta, url, id}) {
-    //console.log('HeroSlide: ', topic, heading, cta, url);
+export default function HeroSlide({topic, heading, cta, url, id}) {    
     return(
         <article key={id} className={styles['slide']}>
-            {topic && 
-                // <div className={styles['topic'] + " " + styles['animating']}> 
+            {topic &&                
                 <div className={styles['topic']}> 
                     {topic} 
                 </div>

@@ -29,6 +29,27 @@ export default function NewsPanel() {
             url: '/passes/buy',
             id: '2'
         },
+        {  
+            postImageSrc: '', 
+            postTitle: 'Festival Passes on sale now',
+            postDate: 'Buy Passes',
+            url: '/passes/buy',
+            id: '3'
+        },
+        {   
+            postImageSrc: '', 
+            postTitle: 'More Festival Passes on sale now',
+            postDate: 'More Passes',
+            url: '/passes/buy',
+            id: '4'
+        },
+        {   
+            postImageSrc: '', 
+            postTitle: 'All the Festival Passes on sale now',
+            postDate: 'All Passes',
+            url: '/passes/buy',
+            id: '5'
+        },
        
     ];
 
