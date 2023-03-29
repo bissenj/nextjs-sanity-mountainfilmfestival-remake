@@ -4,7 +4,10 @@ import { HorizontalSlider } from '../../horizontalSlider/horizontalSlider';
 import NewsSlide from '../../horizontalSlider/slides/newsSlide';
 import style from './newsPanel.module.css';
 
-export default function NewsPanel() {
+export default function NewsPanel({ data, news}) {
+
+    console.log('News Panel: ', data, news);
+
     const [selectedIndex, setSelectedIndex] = useState(0);    
 
     const newsSlides = [
@@ -65,11 +68,17 @@ export default function NewsPanel() {
                 <div className={`${style['content-body']}`}>
                     <HorizontalSlider index={selectedIndex} updateSelectedIndex={setSelectedIndex} name={'hero-slider'}>
 
-                        {newsSlides && 
+                        {/* {newsSlides && 
                             newsSlides.map((item, slideIndex) => {
                                 return <NewsSlide key={slideIndex} post={item} animating={false}></NewsSlide>
                             })
-                        }  
+                        }   */}
+
+                        {news &&
+                            news.map((item) => {
+                                return <NewsSlide key={item._id} post={item}></NewsSlide>
+                            })
+                        }
 
                     </HorizontalSlider>
                 </div>

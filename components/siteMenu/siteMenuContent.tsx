@@ -20,7 +20,7 @@ interface MenuList {
 }
 
 export default function SiteMenuContent({ visible, content }) {
-    console.log('Site Menu Content: ', visible, content);
+    //console.log('Site Menu Content: ', visible, content);
     
     const visibleClass = (visible ? 'active' : '');
 

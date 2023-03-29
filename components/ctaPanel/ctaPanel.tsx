@@ -12,7 +12,7 @@ interface iCTAPanel {
 
 export default function CTAPanel({data} : { data: iCTAPanel} )  {     
     
-    console.log('CTAPanel: ', data);
+    //console.log('CTAPanel: ', data);
 
     return(
         

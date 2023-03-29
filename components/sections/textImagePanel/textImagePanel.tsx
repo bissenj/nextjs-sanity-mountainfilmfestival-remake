@@ -15,10 +15,10 @@ export default function TextImagePanel({ data }) {
 
     
     let textOnLeft = data.textOnLeft ? '' : 'left';
-    console.log('Text Location: ', textOnLeft);
+    //console.log('Text Location: ', textOnLeft);
 
     function handleMouseOver(e) {
-      console.log('handleMouseOver(): ', e.target);
+      //console.log('handleMouseOver(): ', e.target);
       e.target.classList.add('active');
 
     }

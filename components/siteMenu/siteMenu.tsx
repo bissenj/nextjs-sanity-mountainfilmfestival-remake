@@ -45,12 +45,12 @@ export default function SiteMenu({ data }) {
         }              
     }
 
-    console.log('SiteMenu: ', selectedMenuIndex);
+    //console.log('SiteMenu: ', selectedMenuIndex);
 
     // This renders out each menuitem as it's own custom component.
     function menuItemFactory(menuItem, index) {
         const activeClass = (index == selectedMenuIndex) ? 'active' : '';
-        console.log(menuItem.text, activeClass, menuItem);
+        //console.log(menuItem.text, activeClass, menuItem);
 
         switch(menuItem.type) {
             case 0:

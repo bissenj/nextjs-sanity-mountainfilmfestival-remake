@@ -66,3 +66,45 @@ export const homePageQuery = groq`
   },       
 }
 `
+
+const postFields = groq`
+  _id,
+  title,
+  dates {
+    ...
+  },
+  summary,
+  coverImage,
+  "slug": slug.current,  
+  content[]{ 
+    _type == 'author' => {
+      "name": @->.name,
+      "picture": @->.picture,
+    },
+    _type == 'photogallery' => {
+      "name": @->.name,      
+      "images":@->images[]
+    },   
+    ... 
+  }
+`
+
+
+export const newsQuery = groq`
+*[_type == "post"] | order(date desc, _updatedAt desc)[] {
+  content,
+  ${postFields}
+}
+`
+export const newsFeedQuery = groq`
+*[_type == "post"] | order(date desc, _updatedAt desc) [0...12] {
+  content,
+  ${postFields}
+}
+`
+
+export const newsArticleQuery = groq`*[_type == "post" && slug.current == $slug][0]{
+  ${postFields}
+}`
+
+

@@ -5,7 +5,7 @@ import style from './imageImagePanel.module.css';
 
 export default function ImageImagePanel({ data }) {
 
-    console.log('ImageImagePanel: ', data);
+    //console.log('ImageImagePanel: ', data);
 
     const color = 'green';
 

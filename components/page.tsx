@@ -19,7 +19,9 @@ export default function Page({ data }) {
     // const [menuVisible, setMenuVisible] = useState(false);
     // const [selectedMenuIndex, setSelectedMenuIndex] = useState(-1);
 
-    //console.log('Page: ', data);
+    const { sections, news } = data;
+
+    console.log('Page: ', data);
 
     // This renders out each section as it's own custom component.
     function panelFactory(section) {
@@ -50,15 +52,15 @@ export default function Page({ data }) {
             </Head>
             <div className='page'>
                 
-                <SiteMenu data={data.siteMenu}></SiteMenu>
+                <SiteMenu data={sections.siteMenu}></SiteMenu>
                 <Sidebar></Sidebar>
 
-                <NewsPanel></NewsPanel>
+                <NewsPanel data={''} news={news}></NewsPanel>
 
                 {/* <SingleImageBannerPanel></SingleImageBannerPanel> */}
 
                 {/* Sections go here */}
-                {data.sections.map((s) => (
+                {sections.sections.map((s) => (
                     panelFactory(s)                
                 ))}
 

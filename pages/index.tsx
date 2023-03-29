@@ -1,15 +1,20 @@
 /* eslint-disable simple-import-sort/imports */
 import { GetStaticProps } from 'next'
 import Page from '../components/page'
-import { getHomePage } from '../sanity/lib/sanity.client'
+import { getHomePage, getNewsFeed } from '../sanity/lib/sanity.client'
 
 
 export default function IndexPage(props) {
-  const { data } = props;
+  const { data, news } = props;
+
+  console.log('Data: ', data);
+  console.log('News: ', news);
+
+  const pageData = { sections: data , news: news }
 
   return (
     <>
-      <Page data={data} />
+      <Page data={pageData} />
     </>
   )
 }
@@ -20,13 +25,15 @@ export const getStaticProps = async (ctx) => {
 
   //const { preview = false, previewData = {} } = ctx
 
-  const [data] = await Promise.all([
-    getHomePage()
+  const [data, news] = await Promise.all([
+    getHomePage(),  
+    getNewsFeed()  
   ]);
 
   return {
     props: {
-      data,      
+      data,    
+      news  
     },
   }
 }

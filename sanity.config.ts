@@ -9,15 +9,27 @@ import { deskTool } from 'sanity/desk'
 
 // see https://www.sanity.io/docs/api-versioning for how versioning works
 import { apiVersion, dataset, projectId } from './sanity/env'
-import { schema } from './sanity/schema'
+
+// Pages 
 import page from './sanity/schemas/page'
+
+// Sections
 import section from './sanity/schemas/section'
 import textImagePanel from './sanity/schemas/textImagePanel'
 import singleImageBannerPanel from './sanity/schemas/singleImageBannerPanel'
 import imageImagePanel from './sanity/schemas/imageImagePanel'
 import quotePanel from './sanity/schemas/quotePanel'
+
+// Components
+import photoGallery from './sanity/schemas/photoGallery'
 import slideshow from './sanity/schemas/slideshow'
 
+// Blog
+import post from './sanity/schemas/post'
+import author from './sanity/schemas/author'
+import blockContent from './sanity/schemas/blockContent'
+
+// Site Menu
 import siteMenu from './sanity/schemas/siteMenu'
 import siteMenuItem from './sanity/schemas/siteMenuItem'
 import siteMenuContent from './sanity/schemas/siteMenuContent'
@@ -39,7 +51,11 @@ export default defineConfig({
       siteMenuContent,
       imageImagePanel,
       quotePanel,
-      slideshow
+      slideshow,
+      post,
+      author,
+      blockContent,
+      photoGallery
     ],
   },
   plugins: [

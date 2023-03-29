@@ -1,35 +1,57 @@
+import Link from 'next/link'
+import Image from 'next/image'
+import { urlForImage } from '../../../sanity/lib/sanity.image'
+
 import styles from '../horizontalSlider.module.css'
 
-interface newsPost {
-    postImageSrc: string;
-    postDate: string;
-    postTitle: string;
-    url: string;
-    id: string;
-}
+import { format, parseISO } from 'date-fns'
 
-export default function NewsSlide({post, animating = false} : { post: newsPost, animating: boolean }) {    
+// interface newsPost {
+//     postImageSrc: string;
+//     postDate: string;
+//     postTitle: string;
+//     url: string;
+//     id: string;
+// }
+
+export default function NewsSlide({post, animating = false}) {    
     
     //console.log('NewsSlide: ', post); 
 
     const postImageSrc = post?.postImageSrc ?? '';
-    const postDate = post?.postDate ?? '';
-    const postTitle = post?.postTitle ?? '';
-    const postUrl = post?.url ?? '';
-    const id = post?.id ?? 0;
+    let postDate = post?.dates?.publishedDate ?? '';
+    const postTitle = post?.title ?? '';
+    const postUrl = post?.slug ?? '';
+    const id = post?._id ?? 0;
+    
+    if (postDate != '') {
+        console.log('Post Date: ', postDate);
+        postDate = format(parseISO(postDate), 'LLLL d, yyyy')
+        console.log('Formatted Date: ', postDate);
+    }
 
-    const border = (animating) ? '1px solid green' : '1px solid blue';
+    // const border = (animating) ? '1px solid green' : '1px solid blue';
     
     function handleClick(e) {        
         console.log('handleClick: ', animating);
     }
 
     return(
-        <article key={id} className={styles['news-slide']} style={{border: `${border}`}}>            
-            <a href={postUrl} className={`${styles['post-link']}`} onClick={handleClick}>
+        <article key={id} className={styles['news-slide']}>            
+            <Link href={`/news/${postUrl}`} className={`${styles['post-link']}`} onClick={handleClick}>
+                
                 {/* IMAGE */}
                 <div className={styles['post-image']}>
-                    <img src={postImageSrc} alt='Post Image' />
+                    <Image
+                        src={
+                        post?.coverImage?.asset?._ref
+                            ? urlForImage(post?.coverImage).fit('crop').url()
+                            : ''
+                        }
+                        fill={true}
+                        className="object-cover"                             
+                        alt={post?.coverImageAlt}
+                    />
                 </div>
 
                 {/* DATE */}
@@ -41,7 +63,8 @@ export default function NewsSlide({post, animating = false} : { post: newsPost, 
                 <div className={styles['post-title']}>
                     <h2>{postTitle}</h2>
                 </div>
-            </a>
+
+            </Link>
         </article>
     ); 
 }

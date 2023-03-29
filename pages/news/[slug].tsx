@@ -1,11 +1,12 @@
 // [slug].tsx
 
 import groq from 'groq';
-import { client } from '../../sanity/lib/sanity.client'
+import { client, getNewsArticle } from '../../sanity/lib/sanity.client'
+import PostPage from '../../components/blog/PostPage'
 import { useRouter } from 'next/router'
 
 
-const DynamicPage = ({page}) => {
+const DynamicPostPage = ({page}) => {
     const router = useRouter();
 
 
@@ -22,50 +23,22 @@ const DynamicPage = ({page}) => {
 
 
   return (
-    <div>Page - {title}</div>
+    <PostPage post={page}></PostPage>
+
+    // <div>Post Page</div>
+
   )
 }
 
 
-// export const homePageQuery = groq`
-// *[_type == "page"][0]{
-//   "id": _id,     
-//   overview,     
-//   title, 
-//   slug,
-//   siteMenu->{    
-//     menuItems[]->{
-//       "id": _id,
-//       type,
-//       text,
-//       classes,
-//       siteContent->{
-//         cta,
-//         'lists': contentLists[]{
-//           "id": _key,
-//           title,
-//           classes,
-//           menuItems[]{
-//             "id": _key,
-//             title,
-//             url
-//           }
-//         }
-//       }
-//     }    
-//   },
-
-
-
-// Get pages from Sanity.io
+// Get Posts from Sanity.io
 export async function getStaticPaths() {
-
+  
   try {
     const paths = await client.fetch(
         groq`*[_type == "page" && root == "news" && defined(slug.current)][].slug.current`
     );  
-    console.log('paths:', paths);  
-    //const map = paths.map((slug) => ({params: {slug}}));
+    console.log('paths:', paths);      
     
     return {
       paths: paths.map((slug) => ({params: {slug}})),
@@ -83,17 +56,16 @@ export async function getStaticPaths() {
 }
 
 
-const query = groq`*[_type == "page" && slug.current == $slug][0]{
-    title,
-}`
-
 // Gets data from params (instead of using React Router) and our main query
 export async function getStaticProps(context) {  
 
   try {
     // It's important to default the slug so that it doesn't return "undefined"
-    const { slug = "" } = context.params;
-    const page = await client.fetch(query, { slug })
+    const { slug = "" } = context.params;    
+
+    const [page] = await Promise.all([
+      getNewsArticle({ slug }),      
+    ]);
 
     if (!page || !page?.title) {
       console.log('Page is invalid - sending to 404 page');
@@ -117,14 +89,5 @@ export async function getStaticProps(context) {
 
 }
 
-export default DynamicPage
+export default DynamicPostPage
 
-
-
-/// References
-
-// basic routing
-// https://www.sergiobarria.com/blog/how-to-add-dynamic-routes-to-next-js-blog-with-sanity-io-content/
-
-// complex routing
-// https://www.simeongriggs.dev/nextjs-sanity-slug-patterns
