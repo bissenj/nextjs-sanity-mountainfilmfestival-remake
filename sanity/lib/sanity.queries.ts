@@ -1,25 +1,22 @@
 import { groq } from 'next-sanity'
 
-export const homePageQuery = groq`
-*[_type == "page"][0]{
+
+export const pageFields = groq`
   "id": _id,     
   overview,     
   title, 
   slug,
   siteMenu->{    
-    menuItems[]->{
-      "id": _id,
+    menuItems[]{      
       type,
-      text,
+      "text": title,
       classes,
       siteContent->{
         cta,
-        'lists': contentLists[]{
-          "id": _key,
+        'lists': contentLists[]{          
           title,
           classes,
-          menuItems[]{
-            "id": _key,
+          menuItems[]{            
             title,
             url
           }
@@ -27,43 +24,20 @@ export const homePageQuery = groq`
       }
     }    
   },
-  sections[]->{
-    _type == 'textImagePanel' => {
-      textOnLeft,
-      headerText,
-      bodyText,
-      buttonText,
-      image,
-      altText,
-    },
-    _type == 'singleImageBannerPanel' => {      
-      headerText,
-      bodyText,
-      buttonText,
-      image,
-      altText,
-      slideshow
-    },
-    _type == 'imageImagePanel' => {      
-      imageList[]{
-        "id": _key,
-        image,
-        altText,
-        heading,
-        details,           
-        url,
-        classes
-      }
-    },
-    _type == 'quotePanel' => {  
-      "id": _key,
-      quote,
-      author        
-    },
-    "id": _id,
-    type,
-    title,      
+  sections[]{
+  ...  
   },       
+`
+
+
+export const pageQuery = groq`*[_type == "page" && slug.current == $slug][0]{
+  ${pageFields}
+}`
+
+
+export const homePageQuery = groq`
+*[_type == "page"][0]{
+  ${pageFields}
 }
 `
 

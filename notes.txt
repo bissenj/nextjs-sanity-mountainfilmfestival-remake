@@ -1,6 +1,6 @@
 
 cd 'C:\Users\aspen\Projects\React\Sanity\L5-MFF\nextjs-sanity-mountainfilmfestival-remake'
 
-npm run dev
+    npm run dev
 
 npm run test

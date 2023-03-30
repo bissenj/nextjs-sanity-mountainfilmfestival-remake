@@ -24,9 +24,10 @@ export default defineType({
           "All the Menu Items",
         of: [          
           defineArrayMember({
-            type: 'reference',
+            type: 'siteMenuItem',
             name: 'siteMenuItem',
-            to: [{ type: siteMenuItem.name }],
+            title: 'Site Menu Item'
+            // to: [{ type: siteMenuItem.name }],
           }),
         ]
       }

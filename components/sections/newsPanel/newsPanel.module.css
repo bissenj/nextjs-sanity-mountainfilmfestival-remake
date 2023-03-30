@@ -25,12 +25,15 @@
 .content-body {
     position: relative;
     overflow-x:hidden;
+
+    display: grid;
+    grid-template-rows: 1fr 80px;
 }
 
 
 .content-footer {
-    height: 100%;
-    padding: 0 60px;
+    /* height: 100%; */
+    /* padding: 0 60px; */
     display: flex;
     justify-content: space-between;
     align-items: center;

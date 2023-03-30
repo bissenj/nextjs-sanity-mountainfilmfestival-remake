@@ -4,7 +4,7 @@ import { defineField, defineType } from 'sanity'
 import slideshow from './slideshow'
 
 export default defineType({
-    type: 'document',
+    type: 'object',
     name: 'singleImageBannerPanel',
     title: 'Single Image Banner Panel',
     icon: ImageIcon,
@@ -38,9 +38,9 @@ export default defineType({
         title: 'Body',        
       }),
       defineField({
-        type: 'string',
-        name: 'buttonText',
-        title: 'Button Text',        
+        type: 'ctaButton',
+        name: 'ctaButton',
+        title: 'CTA Button',        
       }),        
       defineField({
         type: 'image',

@@ -3,7 +3,7 @@ import { defineArrayMember, defineField, defineType } from 'sanity'
 
 
 export default defineType({
-    type: 'document',
+    type: 'object',
     name: 'quotePanel',
     title: 'Quote Panel',
     icon: ImageIcon,
@@ -27,7 +27,7 @@ export default defineType({
         }).warning(),        
       }),      
       defineField({
-        type: 'string',
+        type: 'text',
         name: 'quote',
         title: 'Quote',                    
       }),      

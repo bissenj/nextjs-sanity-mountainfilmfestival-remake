@@ -2,11 +2,11 @@
 import { DocumentIcon, ImageIcon } from '@sanity/icons'
 import { defineArrayMember, defineField, defineType } from 'sanity'
 
-import section from './section'
 import textImagePanel from './textImagePanel'
 import singleImageBannerPanel from './singleImageBannerPanel'
 import imageImagePanel from './imageImagePanel'
 import quotePanel from './quotePanel'
+import newsPanel from './newsPanel'
 import siteMenu from './siteMenu'
 
 
@@ -44,102 +44,47 @@ export default defineType({
         to: [{ type: 'siteMenu' }],                
       }), 
             
+      // Page Sections
       defineField({
         type: 'array',
         name: 'sections',
         title: 'Sections',
         description:
           "All the page sections",
-        of: [
-          // Page Sections
+        of: [          
+          
+          // Text Image Panel
           defineArrayMember({
-            type: 'reference',
-            name: 'section',
-            to: [{ type: section.name }],
-          }), 
-          // Page Sections
-          defineArrayMember({
-            type: 'reference',
-            name: 'textImagePanel',
-            to: [{ type: textImagePanel.name }],
+            type: 'textImagePanel',
+            name: 'textImagePanel',            
           }),
+
+          // Single Image Banner Panel
           defineArrayMember({
-            type: 'reference',
-            name: 'singleImageBannerPanel',
-            to: [{ type: singleImageBannerPanel.name }],
+            type: 'singleImageBannerPanel',
+            name: 'singleImageBannerPanel',            
           }), 
+
+          // Image Image Panel
           defineArrayMember({
-            type: 'reference',
-            name: 'imageImagePanel',
-            to: [{ type: imageImagePanel.name }],
+            type: 'imageImagePanel',
+            name: 'imageImagePanel',            
           }), 
+
+          // Quote Panel
           defineArrayMember({
-            type: 'reference',
-            name: 'quotePanel',
-            to: [{ type: quotePanel.name }],
+            type: 'quotePanel',
+            name: 'quotePanel',                        
+          }), 
+
+          // News Panel
+          defineArrayMember({
+            type: 'newsPanel',
+            name: 'newsPanel',
+            title: 'News Panel'            
           }),                              
         ],
-      }), 
-
-      defineField({
-        type: 'array',
-        name: 'body',
-        title: 'Body',
-        description:
-          "This is where you can write the page's content. Including custom blocks like timelines for more a more visual display of information.",
-        of: [
-          // Paragraphs
-          defineArrayMember({
-            type: 'block',
-            marks: {
-              annotations: [
-                {
-                  name: 'link',
-                  type: 'object',
-                  title: 'Link',
-                  fields: [
-                    {
-                      name: 'href',
-                      type: 'url',
-                      title: 'Url',
-                    },
-                  ],
-                },
-              ],
-            },
-            styles: [],
-          }),          
-          defineField({
-            type: 'image',
-            icon: ImageIcon,
-            name: 'image',
-            title: 'Image',
-            options: {
-              hotspot: true,
-            },
-            preview: {
-              select: {
-                imageUrl: 'asset.url',
-                title: 'caption',
-              },
-            },
-            fields: [
-              defineField({
-                title: 'Caption',
-                name: 'caption',
-                type: 'string',
-              }),
-              defineField({
-                name: 'alt',
-                type: 'string',
-                title: 'Alt text',
-                description:
-                  'Alternative text for screenreaders. Falls back on caption if not set',
-              }),
-            ],
-          }),
-        ],
-      }),
+      }),     
     ],
     preview: {
       select: {

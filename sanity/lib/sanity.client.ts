@@ -1,5 +1,5 @@
 import { createClient } from 'next-sanity'
-import { homePageQuery, newsQuery, newsFeedQuery, newsArticleQuery } from './sanity.queries'
+import { pageQuery, homePageQuery, newsQuery, newsFeedQuery, newsArticleQuery } from './sanity.queries'
 
 import { apiVersion, dataset, projectId, useCdn } from '../env'
 
@@ -18,6 +18,14 @@ export const client = createClient({
 export async function getHomePage() {
   if (client) {
     return (await client.fetch(homePageQuery)) || {}
+  }
+  return {}
+}
+
+
+export async function getPage(slug) {
+  if (client) {
+    return (await client.fetch(pageQuery, slug)) || {}
   }
   return {}
 }

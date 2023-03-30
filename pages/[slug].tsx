@@ -4,8 +4,11 @@ import groq from 'groq';
 import { client } from '../sanity/lib/sanity.client'
 import { useRouter } from 'next/router'
 
+import Page from '../components/page'
+import { getPage } from '../sanity/lib/sanity.client'
 
-const DynamicPage = ({page}) => {
+
+const DynamicRootPage = ({page}) => {
     const router = useRouter();
 
 
@@ -22,13 +25,16 @@ const DynamicPage = ({page}) => {
 
 
   return (
-    <div>Page - {title}</div>
+    <>
+      <Page data={page} />
+    </>
   )
 }
 
 
 // Get pages from Sanity.io
 export async function getStaticPaths() {
+  //console.log('getStaticPaths: ');
 
   try {
     const paths = await client.fetch(
@@ -54,17 +60,20 @@ export async function getStaticPaths() {
 }
 
 
-const query = groq`*[_type == "page" && slug.current == $slug][0]{
-    title,
-}`
+// const query = groq`*[_type == "page" && slug.current == $slug][0]{
+//     title,
+// }`
 
 // Gets data from params (instead of using React Router) and our main query
 export async function getStaticProps(context) {  
+  console.log('getStaticProps: ', context);
 
   try {
     // It's important to default the slug so that it doesn't return "undefined"
     const { slug = "" } = context.params;
-    const page = await client.fetch(query, { slug })
+    const page = await getPage({ slug });
+
+    console.log('Got Page: ', page);
 
     if (!page || !page?.title) {
       console.log('Page is invalid - sending to 404 page');
@@ -88,14 +97,5 @@ export async function getStaticProps(context) {
 
 }
 
-export default DynamicPage
+export default DynamicRootPage
 
-
-
-/// References
-
-// basic routing
-// https://www.sergiobarria.com/blog/how-to-add-dynamic-routes-to-next-js-blog-with-sanity-io-content/
-
-// complex routing
-// https://www.simeongriggs.dev/nextjs-sanity-slug-patterns

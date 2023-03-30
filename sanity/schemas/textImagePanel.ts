@@ -3,7 +3,7 @@ import { defineArrayMember, defineField, defineType } from 'sanity'
 
 
 export default defineType({
-    type: 'document',
+    type: 'object',
     name: 'textImagePanel',
     title: 'Text Image Panel',
     icon: ImageIcon,
@@ -39,10 +39,10 @@ export default defineType({
         title: 'Body',        
       }),
       defineField({
-        type: 'string',
-        name: 'buttonText',
-        title: 'Button Text',        
-      }),
+        type: 'ctaButton',
+        name: 'ctaButton',
+        title: 'CTA Button',        
+      }),  
       defineField({
         type: 'boolean',
         name: 'textOnLeft',

@@ -15,33 +15,39 @@ import SiteMenu from './siteMenu/siteMenu';
 import NewsPanel from './sections/newsPanel/newsPanel';
 
 
-export default function Page({ data }) {
+export default function Page({ data, news }) {
     // const [menuVisible, setMenuVisible] = useState(false);
     // const [selectedMenuIndex, setSelectedMenuIndex] = useState(-1);
 
-    const { sections, news } = data;
-
+    const { sections, siteMenu } = data;
+    
     console.log('Page: ', data);
+    //console.log('Sections: ', sections);
 
     // This renders out each section as it's own custom component.
-    function panelFactory(section) {
+    function panelFactory(section, news, id) {
+        if (section == null) {
+            return;
+        }
+
+        console.log('panelFactory: ', section, news);
         switch(section.type) {
             case 1:
-                return <Header key={section.id} data={section}></Header>
+                return <Header key={id} data={section}></Header>
             case 2:
-                return <Footer key={section.id} data={section}></Footer>
+                return <Footer key={id} data={section}></Footer>
             case 3:
-                return <TextImagePanel key={section.id} data={section}></TextImagePanel>
+                return <TextImagePanel key={id} data={section}></TextImagePanel>
             case 4:
-                return <SingleImageBannerPanel key={section.id} data={section}></SingleImageBannerPanel>
+                return <SingleImageBannerPanel key={id} data={section}></SingleImageBannerPanel>
             case 5:
-                return <ImageImagePanel key={section.id} data={section}></ImageImagePanel>
+                return <ImageImagePanel key={id} data={section}></ImageImagePanel>
             case 6:
-                return <QuotePanel key={section.id} data={section}></QuotePanel>
+                return <QuotePanel key={id} data={section}></QuotePanel>
             case 7:
-                return <NewsPanel key={section.id} data={section}></NewsPanel>
+                return <NewsPanel key={id} data={section} news={news}></NewsPanel>
             default:
-                return <div key={section.id}>{section.title}</div>
+                return <div key={id}>{section.title}</div>
         }
     }
 
@@ -52,20 +58,20 @@ export default function Page({ data }) {
             </Head>
             <div className='page'>
                 
-                <SiteMenu data={sections.siteMenu}></SiteMenu>
+                {siteMenu && 
+                    <SiteMenu data={siteMenu}></SiteMenu>
+                }
                 <Sidebar></Sidebar>
 
-                <NewsPanel data={''} news={news}></NewsPanel>
-
-                {/* <SingleImageBannerPanel></SingleImageBannerPanel> */}
+                {/* {news && 
+                    <NewsPanel data={''} news={news}></NewsPanel>
+                } */}
 
                 {/* Sections go here */}
-                {sections.sections.map((s) => (
-                    panelFactory(s)                
+                {sections?.map((s, index) => (
+                    panelFactory(s, news, `section-${index}`)                
                 ))}
-
-                {/* TEST */}
-                {/* <QuotePanel data={''}></QuotePanel> */}
+                
 
                 <div style={{backgroundColor: '#000', minHeight:'70vh'}}></div>
             </div>

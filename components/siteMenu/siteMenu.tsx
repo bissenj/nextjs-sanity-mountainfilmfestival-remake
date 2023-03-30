@@ -47,10 +47,10 @@ export default function SiteMenu({ data }) {
 
     //console.log('SiteMenu: ', selectedMenuIndex);
 
-    // This renders out each menuitem as it's own custom component.
+    // This renders out each menu item as it's own custom component.
     function menuItemFactory(menuItem, index) {
         const activeClass = (index == selectedMenuIndex) ? 'active' : '';
-        //console.log(menuItem.text, activeClass, menuItem);
+        console.log(menuItem.text, activeClass, menuItem);
 
         switch(menuItem.type) {
             case 0:
@@ -69,7 +69,7 @@ export default function SiteMenu({ data }) {
             <nav className={`${style['site-menu']}`}>
                     
                 {data.menuItems.map((i, index) => (
-                <div key={i.id} data-index={index}>
+                <div key={`menuitem-${index}`} data-index={index}>
                     { menuItemFactory(i, index) }    
                     {/* &#x1F50E;&#xFE0E; -- Magnifying glass icon */}
                 </div>  

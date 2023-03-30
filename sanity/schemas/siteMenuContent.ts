@@ -7,32 +7,43 @@ export default defineType({
     title: 'Menu Content',
     icon: ImageIcon,
     fields: [
+
+      // Title
       defineField({
         type: 'string',
         name: 'title',
         title: 'Title',
         validation: (rule) => rule.required(),
       }), 
+
+      // CTA
       defineField({
         type: 'object',
         name: 'cta',
         title: 'Call To Action',
-        fields: [          
+        fields: [            
+          // Heading
           defineField({
             type: 'string',
             name: 'heading',
             title: 'Heading',                
           }), 
+
+          // Details
           defineField({
             type: 'string',
             name: 'details',
             title: 'Details (Link Text)',                
           }), 
+
+          // URL
           defineField({
             type: 'string',
             name: 'url',
             title: 'Url (Link)',                
           }), 
+
+          // Classes
           defineField({
             type: 'string',
             name: 'classes',
@@ -40,7 +51,9 @@ export default defineType({
             initialValue: 'blue'
           }), 
         ]
-      }),    
+      }),   
+      
+      // Lists
       defineField({
         type: 'array',
         name: 'contentLists',
@@ -53,11 +66,15 @@ export default defineType({
             name: 'linkList',
             title: 'Menu Items',
             fields: [
+
+              // Title
               defineField({
                 type: 'string',
                 name: 'title',
                 title: 'Title',                
               }), 
+
+              // Classes
               defineField({
                 type: 'string',
                 name: 'classes',
@@ -76,11 +93,15 @@ export default defineType({
                     title: 'Menu Link',
                     icon: ImageIcon,
                     fields: [
+
+                      // Title
                       defineField({
                         type: 'string',
                         name: 'title',
                         title: 'Title',                    
                       }),
+
+                      // URL
                       defineField({
                         type: 'string',
                         name: 'url',
@@ -89,7 +110,7 @@ export default defineType({
                     ]
                   }),      
                 ]
-              }
+              },
             ]
           }),
         ]

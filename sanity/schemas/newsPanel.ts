@@ -9,6 +9,7 @@ export default defineType({
     title: 'News Panel',
     icon: ImageIcon,
     fields: [
+
       // Title - 'News & Community'
       defineField({
         type: 'string',
@@ -16,6 +17,8 @@ export default defineType({
         title: 'Title',
         validation: (rule) => rule.required(),
       }),
+
+      // TYPE - 7
       defineField({        
         type: 'number',
         name: 'type',
@@ -28,18 +31,12 @@ export default defineType({
             return index != 7 ? 'Index must be 7' : true 
         }).warning(),        
       }),
-      //  Button Text - 'See All News'
+      
+      // CTA Button
       defineField({
-        type: 'string',
-        name: 'buttonText',
-        title: 'Button Text',        
-      }),
-      defineField({
-        type: 'Slideshow',
-        name: 'slideshow',
-        title: 'Slideshow',
-        description: 'Slideshow for the section',
-        validation: (rule) => rule.required(),
-      }),      
+        type: 'ctaButton',
+        name: 'ctaButton',
+        title: 'CTA Button',        
+      }),           
     ]
 })

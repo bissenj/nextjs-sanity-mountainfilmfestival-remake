@@ -45,12 +45,12 @@ export default function SiteMenuContent({ visible, content }) {
             <CTAPanel data={cta}></CTAPanel>
 
             {/* Site Menu Links */}
-            {content?.siteContent?.lists.map((list) => (
-                <div key={list.id}>
+            {content?.siteContent?.lists.map((list, index) => (
+                <div key={`menulist-${index}`}>
                     <h1 className={`${list.classes}`}>{list.title}</h1>
                     <ul>                    
-                        {list.menuItems.map((item) => (
-                            <li key={item.id}>
+                        {list.menuItems.map((item, index) => (
+                            <li key={`cta-menu-item-${index}`}>
                                 <a href={item.url} className={'site-menu-item'}>
                                     {item.title}
                                 </a>

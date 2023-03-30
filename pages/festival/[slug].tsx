@@ -27,35 +27,6 @@ const DynamicPage = ({page}) => {
 }
 
 
-// export const homePageQuery = groq`
-// *[_type == "page"][0]{
-//   "id": _id,     
-//   overview,     
-//   title, 
-//   slug,
-//   siteMenu->{    
-//     menuItems[]->{
-//       "id": _id,
-//       type,
-//       text,
-//       classes,
-//       siteContent->{
-//         cta,
-//         'lists': contentLists[]{
-//           "id": _key,
-//           title,
-//           classes,
-//           menuItems[]{
-//             "id": _key,
-//             title,
-//             url
-//           }
-//         }
-//       }
-//     }    
-//   },
-
-
 
 // Get pages from Sanity.io
 export async function getStaticPaths() {

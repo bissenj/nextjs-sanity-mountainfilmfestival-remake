@@ -33,9 +33,9 @@ export default function TextImagePanel({ data }) {
                 { data.bodyText && 
                   <div>{data.bodyText}</div>
                 }
-                { data.buttonText && 
-                  <a href='/' className='button hollow' style={{width:'fit-content'}}>{data.buttonText}</a>
-                }
+                { data.ctaButton && 
+                  <a href={data.ctaButton.url} className='button hollow' style={{width:'fit-content'}}>{data.ctaButton.text}</a>
+                }                
             </div>
 
             {/* Image */}

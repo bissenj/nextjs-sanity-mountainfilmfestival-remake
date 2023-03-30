@@ -50,19 +50,7 @@ export default defineType({
                     type: 'string',
                     name: 'url',
                     title: 'Url',                
-                  }),
-                  // IMAGE - background image 
-                  defineField({
-                    type: 'image',
-                    name: 'image',
-                    title: 'Select an Image',
-                  }),
-                  // POST DATE - When the post went live
-                  defineField({
-                    type: 'date',
-                    name: 'postDate',
-                    title: 'Enter date post goes live',
-                  }),
+                  }),                                 
                 ]
             }) 
         ]

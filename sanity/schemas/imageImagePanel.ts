@@ -3,7 +3,7 @@ import { defineArrayMember, defineField, defineType } from 'sanity'
 
 
 export default defineType({
-    type: 'document',
+    type: 'object',
     name: 'imageImagePanel',
     title: 'Image Image Panel',
     icon: ImageIcon,

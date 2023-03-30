@@ -4,7 +4,7 @@ import { defineArrayMember, defineField, defineType } from 'sanity'
 import siteMenuContent from './siteMenuContent'
 
 export default defineType({
-    type: 'document',
+    type: 'object',
     name: 'siteMenuItem',
     title: 'Site Menu Item',
     icon: ImageIcon,
@@ -19,6 +19,7 @@ export default defineType({
         name: 'type',
         type: 'number',       
         title: 'Type Index',
+        description: '0 = normal link, 1 = CTA button',
         initialValue: 0,   // 0 = button, 1 = link
         validation: (rule) => rule.required().warning(),        
       }),
@@ -26,12 +27,7 @@ export default defineType({
         name: 'classes',
         type: 'string',        
         title: 'Styles',        
-      }),
-      defineField({
-        name: 'text',
-        type: 'string',        
-        title: 'Text',        
-      }),
+      }),      
       defineField({
         name: 'siteContent',
         title: 'Content Panel', 

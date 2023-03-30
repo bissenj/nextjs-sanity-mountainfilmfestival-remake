@@ -14,7 +14,7 @@ export default function IndexPage(props) {
 
   return (
     <>
-      <Page data={pageData} />
+      <Page data={data} news={news}/>
     </>
   )
 }

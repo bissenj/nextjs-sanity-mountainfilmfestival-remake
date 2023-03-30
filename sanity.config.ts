@@ -14,15 +14,17 @@ import { apiVersion, dataset, projectId } from './sanity/env'
 import page from './sanity/schemas/page'
 
 // Sections
-import section from './sanity/schemas/section'
+
 import textImagePanel from './sanity/schemas/textImagePanel'
 import singleImageBannerPanel from './sanity/schemas/singleImageBannerPanel'
 import imageImagePanel from './sanity/schemas/imageImagePanel'
 import quotePanel from './sanity/schemas/quotePanel'
+import newsPanel from './sanity/schemas/newsPanel'
 
 // Components
 import photoGallery from './sanity/schemas/photoGallery'
 import slideshow from './sanity/schemas/slideshow'
+import ctaButton from './sanity/schemas/ctaButton'
 
 // Blog
 import post from './sanity/schemas/post'
@@ -42,8 +44,7 @@ export default defineConfig({
   schema: {
     // If you want more content types, you can add them to this array
     types: [      
-      page,
-      section,
+      page,      
       textImagePanel,
       singleImageBannerPanel,
       siteMenu,
@@ -51,11 +52,13 @@ export default defineConfig({
       siteMenuContent,
       imageImagePanel,
       quotePanel,
+      newsPanel,
       slideshow,
+      ctaButton,
       post,
       author,
       blockContent,
-      photoGallery
+      photoGallery,      
     ],
   },
   plugins: [
