@@ -18,7 +18,7 @@ import authorType from './author'
 
 export default defineType({
   name: 'post',
-  title: 'Post',
+  title: 'Posts',
   icon: BookIcon,
   type: 'document',
   fields: [
@@ -87,7 +87,7 @@ export default defineType({
             defineField({
                 name: 'publishedDate',
                 title: 'Published',
-                type: 'date',
+                type: 'datetime',
                 initialValue: () => new Date().toISOString(),
             }),
 

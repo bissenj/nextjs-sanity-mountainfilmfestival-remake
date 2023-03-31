@@ -6,7 +6,7 @@ import style from './newsPanel.module.css';
 
 export default function NewsPanel({ data, news }) {
 
-    console.log('News Panel: ', data, news);
+    //console.log('News Panel: ', data, news);
 
     const [selectedIndex, setSelectedIndex] = useState(0);    
     

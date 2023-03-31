@@ -16,18 +16,18 @@ import { format, parseISO } from 'date-fns'
 
 export default function NewsSlide({post, animating = false}) {    
     
-    //console.log('NewsSlide: ', post); 
+    // console.log('NewsSlide: ', post); 
 
     const postImageSrc = post?.postImageSrc ?? '';
     let postDate = post?.dates?.publishedDate ?? '';
     const postTitle = post?.title ?? '';
     const postUrl = post?.slug ?? '';
-    const id = post?._id ?? 0;
+    //const id = post?._id ?? 0;
     
     if (postDate != '') {
-        console.log('Post Date: ', postDate);
+        //console.log('Post Date: ', postDate);
         postDate = format(parseISO(postDate), 'LLLL d, yyyy')
-        console.log('Formatted Date: ', postDate);
+        //console.log('Formatted Date: ', postDate);
     }
 
     // const border = (animating) ? '1px solid green' : '1px solid blue';
@@ -37,7 +37,7 @@ export default function NewsSlide({post, animating = false}) {
     }
 
     return(
-        <article key={id} className={styles['news-slide']}>            
+        <article className={styles['news-slide']}>            
             <Link href={`/news/${postUrl}`} className={`${styles['post-link']}`} onClick={handleClick}>
                 
                 {/* IMAGE */}
@@ -50,7 +50,7 @@ export default function NewsSlide({post, animating = false}) {
                         }
                         fill={true}
                         className="object-cover"                             
-                        alt={post?.coverImageAlt}
+                        alt={(post?.coverImageAlt) ? post.coverImageAlt : 'Missing Alt Text'}
                     />
                 </div>
 

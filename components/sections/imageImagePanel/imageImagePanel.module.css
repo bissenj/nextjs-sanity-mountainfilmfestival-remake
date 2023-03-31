@@ -6,7 +6,7 @@
     gap: 20px;
     color: white;
 
-    padding-left: 80px;   
+    padding: 140px 80px;
 }
 
 .cta {
@@ -28,7 +28,7 @@
 
 .image-wrapper {    
     position: relative;
-    height: 50vh;
+    height: 40vh;
     width: 100%;
     background-color: #ccc;
     overflow:hidden;

@@ -13,7 +13,7 @@ import siteMenu from './siteMenu'
 export default defineType({
     type: 'document',
     name: 'page',
-    title: 'Page',
+    title: 'Pages',
     icon: DocumentIcon,
     fields: [
       defineField({

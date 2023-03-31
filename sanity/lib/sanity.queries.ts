@@ -65,13 +65,13 @@ const postFields = groq`
 
 
 export const newsQuery = groq`
-*[_type == "post"] | order(date desc, _updatedAt desc)[] {
+*[_type == "post"] | order(date desc, dates.publishedDate desc)[] {
   content,
   ${postFields}
 }
 `
 export const newsFeedQuery = groq`
-*[_type == "post"] | order(date desc, _updatedAt desc) [0...12] {
+*[_type == "post"] | order(date desc, dates.publishedDate desc) [0...12] {
   content,
   ${postFields}
 }

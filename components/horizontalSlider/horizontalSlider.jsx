@@ -10,6 +10,12 @@ import styles from './horizontalSlider.module.css'
 export const HorizontalSlider = ({index, updateSelectedIndex, name, children}) => {   
     const sliderRef = useRef(null);
     const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+    const [moves, setMoves] = useState([]);
+        
+    // Positional variables    
+    const slidesPerIndex = useRef(0);
+    const windowWidth = useRef(0);
+
     const currentIndex = useRef(-1);
     const currentTranslate = useRef(0);
     const prevTranslate = useRef(0);
@@ -19,10 +25,12 @@ export const HorizontalSlider = ({index, updateSelectedIndex, name, children}) =
     const dragging = useRef(false);
     const startPos = useRef(0);
     const animationRef = useRef(null);
+    const moveCounter = useRef(0);
 
     // CONSTRAINT VARIABLES
     const MAX_INDEX = (children) ? children.length - 1 : 0;
     const MIN_INDEX = 0;
+    //const SLIDES_PER_INDEX = 1;
 
     const setBoundedIndex = (newIndex) => {
         let index = newIndex;
@@ -38,15 +46,27 @@ export const HorizontalSlider = ({index, updateSelectedIndex, name, children}) =
     }
 
 
-    const setPositionByIndex = useCallback((width = dimensions.width) => {  
-        currentTranslate.current = currentIndex.current * -width;
+    const setPositionByIndex = useCallback((width = dimensions.width) => {          
+        const oldX = currentTranslate.current;
+        let newX = currentIndex.current * (-width * slidesPerIndex.current);
+        
+        if (newX < (MAX_INDEX * -width) ) {
+            newX = (MAX_INDEX * -width);
+        }        
+        currentTranslate.current = newX;
+                
+
+        console.log('setPositionByIndex: ', currentIndex.current, oldX, newX);
+
         prevTranslate.current = currentTranslate.current;
+
         setSliderPosition();
     }, [dimensions.width]);
 
 
     // USE EFFECT when index changes
     useEffect(() => {
+        //console.log('useEffect');
         if (currentIndex.current !== index) {            
             currentIndex.current = index;
             setPositionByIndex();
@@ -57,6 +77,9 @@ export const HorizontalSlider = ({index, updateSelectedIndex, name, children}) =
     // USE EFFECT for Event Handlers
     useEffect(() => {                
         window.addEventListener('resize', handleResize);
+
+        const width = window.innerWidth;        
+        windowWidth.current = width;      // Used to determine how much screen space a slide takes up.
 
         return () => {
             window.removeEventListener('keydown', handleKeyDown)
@@ -113,13 +136,10 @@ export const HorizontalSlider = ({index, updateSelectedIndex, name, children}) =
     }
 
     // Handle drag start
-    function handleDragStart(e) { 
-        //console.log('handleDragStart');        
-        
-        if (!animating.current) {
-            console.log('drag start animating');
-            dragging.current = true;
-            startPos.current = e.pageX;
+    function handleDragStart(e) {         
+        if (!animating.current) {            
+            dragging.current = true;            
+            startPos.current = e.pageX;            
             animationRef.current = requestAnimationFrame(animation);
         }
         else {
@@ -127,33 +147,54 @@ export const HorizontalSlider = ({index, updateSelectedIndex, name, children}) =
         }
     }
 
-    // Handle Transition End
-    function handleTransitionEnd(e) {        
-    }
-
      // Handle drag end
-     function handleDragEnd(e) {
-
-        //console.log('handleDragEnd: ', e.target);
+     function handleDragEnd(e) {        
+        moveCounter.current = 0;            // helps control the drag speed.  Since drag is over, reset the counter.
         
         dragging.current = false;
         cancelAnimationFrame(animationRef.current);
 
-        const threshold = 50;
-        const movedBy = currentTranslate.current - prevTranslate.current;
+        const threshold = 250;
+         const movedBy = currentTranslate.current - prevTranslate.current;
         if (movedBy < -threshold) {
-            setBoundedIndex(currentIndex.current += 1)            
+            console.log('Move Right');
+            calculateIndexFromPosition(1);        
         }
-        if (movedBy > threshold) {
-            setBoundedIndex(currentIndex.current -= 1)            
+        else if (movedBy > threshold) {
+            console.log('Move Left');
+            calculateIndexFromPosition(-1);        
         }
-        setPositionByIndex();
+        else {
+            calculateIndexFromPosition(0);
+            setPositionByIndex();
+        }
+                
 
         animating.current = true;
 
-        e.preventDefault();
+        if (e) {
+            e.preventDefault();
+            enableClickEvents(e.target);
+        }        
+    }
 
-        enableClickEvents(e.target);
+    function calculateIndexFromPosition(direction = 0) {
+        let x = -currentTranslate.current;
+        let w = dimensions.width * slidesPerIndex.current;
+        let index = Math.floor(x / w);
+        console.log('Index: ', index, x, w, direction);
+
+        //let direction = (currentIndex.current > index) ? -1 : 1;  
+        
+        // if (x < w) {
+        //     direction = 0;
+        // }
+        
+
+        let newIndex = currentIndex.current + direction;
+        
+        setBoundedIndex(newIndex)   
+        //setPositionByIndex(newIndex);
     }
 
     
@@ -167,15 +208,25 @@ export const HorizontalSlider = ({index, updateSelectedIndex, name, children}) =
             disableClickEvents(e.target);
 
             const currentPosition = e.pageX;
-            const newTranslate = prevTranslate.current + currentPosition - startPos.current;
-            //console.log(newTranslate);
+                       
+            if (moveCounter.current < 10) {
+                moveCounter.current = moveCounter.current + 1;
+            }
 
-           // const distanceMoved = prevTranslate.current + currentPosition;
-            
+            // Controls the speed of the drag.  Without this the drag speed increases the longer the drag takes place.            
+            const INCREMENT = (25 - moveCounter.current);
+           
+            const move = (currentPosition - startPos.current) > 0 ? INCREMENT : -INCREMENT;       // Negative is right, Positive is left.
+                       
+                        
+            const newTranslate = currentTranslate.current + move;
+
+            startPos.current = currentPosition;
             
             // if (newTranslate < 0 && newTranslate > (-dimensions.width * (slides.length-1))) {
-            if (newTranslate < 0 && newTranslate > (-dimensions.width * MAX_INDEX)) {
-                currentTranslate.current = prevTranslate.current + currentPosition - startPos.current;
+            if (newTranslate < 0 && newTranslate > ( -dimensions.width * MAX_INDEX) ) {
+                // currentTranslate.current = prevTranslate.current + currentPosition - startPos.current;
+                currentTranslate.current = newTranslate;                
             }
 
             // Handle crazy mouse clicking which loses the mouse down
@@ -193,6 +244,8 @@ export const HorizontalSlider = ({index, updateSelectedIndex, name, children}) =
     // USE LAYOUT EFFECT when setPositionByIndex is called? 
     useLayoutEffect(() => {        
         if (sliderRef.current) {
+            console.log('useLayoutEffect');
+
             const dims = getElementDimensions(sliderRef.current);            
             setDimensions(dims);
             setPositionByIndex(dims.width);
@@ -214,19 +267,54 @@ export const HorizontalSlider = ({index, updateSelectedIndex, name, children}) =
 
 
     function getElementDimensions(element) {
+        const width = element.clientWidth
+        const height = element.clientHeight   
+        console.log('width: ', width);
+        console.log('screen width: ', windowWidth.current);
+
+        //slidesPerIndex
         // Try to get the width of a slide so when we update the slide index we only move
         // by one slide's width.
         if (element.firstChild) {
             const childElement = element.firstChild;
-            const childWidth = childElement.clientWidth;
+
+            let styles = window.getComputedStyle(childElement);
+            let ml = styles.getPropertyValue("margin-left") 
+            if (ml) { 
+                ml = Number.parseInt(ml.replace("px", "")); 
+            }
+            else {
+                ml = 0;
+            }
+
+            let mr = styles.getPropertyValue("margin-right");
+            if (mr) {
+                mr = Number.parseInt(mr.replace("px", ""));
+            }
+            else {
+                mr = 0;
+            }
+            //console.log('Margins: ', ml, mr);
+            //slideMargin.current = (ml + mr);
+
+            // Calculate child width as width + margin.
+            const childWidth = childElement.clientWidth + (ml + mr);
             const childHeight = childElement.clientHeight;
+           
+
+            console.log('childWidth: ', childWidth);
+
+            // Calculate how many slides to show per screen.
+            let d = Math.floor(windowWidth.current / childWidth);
+            console.log('d: ', d);
+            slidesPerIndex.current = d;
+
             //console.log('Child Dimensions: ', childWidth, childHeight);
             return {width: childWidth, height: childHeight};
         }
 
         // Couldn't get slide with, so use the entire slide group.
-        const width = element.clientWidth
-        const height = element.clientHeight        
+        slidesPerIndex.current = 1;
         return { width, height }
     }
     
@@ -241,7 +329,7 @@ export const HorizontalSlider = ({index, updateSelectedIndex, name, children}) =
                     ref={sliderRef} 
                     className={styles['slide-group'] + " " + styles['animating']} 
                     style={{ transform: `translateX(-${index * 100}%)` }}                    
-                    onTransitionEnd={handleTransitionEnd}
+                    //onTransitionEnd={handleTransitionEnd}
                     onPointerDown={handleDragStart}
                     onPointerUp={handleDragEnd}
                     onPointerMove={handleDragMove}                    

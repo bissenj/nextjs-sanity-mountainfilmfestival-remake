@@ -36,8 +36,8 @@
 
 
 .slide-group.animating {
-    transition: left 1.5s ease-out;
-    transition: transform 0.3s ease-out;
+    /* transition: left 1.5s ease-out; */
+    transition: transform 0.8s ease-out;
   }
 
 .slide {    
@@ -120,6 +120,7 @@
 
 .news-slide {    
     width: 275px;
+    /* width: 600px; */
     height: 100%;
 
     /* border: 1px solid green; */
@@ -127,7 +128,7 @@
 
     margin-right: 20px;    
 
-    color: black;
+    /* color: black; */
     transition: color 0.2s;
 }
 

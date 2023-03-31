@@ -12,9 +12,9 @@ export default function ImageImagePanel({ data }) {
     return(
         <div className={`${style['image-image-container']}`}>
 
-            {data?.imageList.map((item) => (
+            {data?.imageList.map((item, index) => (
                 
-                <div key={item.id}>
+                <div key={`imageitem-${index}`}>
                     {/* IMAGE */}
                     <div className={`${style['image-wrapper']}`}>
                         <Image

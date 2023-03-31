@@ -21,7 +21,7 @@ export default function Page({ data, news }) {
 
     const { sections, siteMenu } = data;
     
-    console.log('Page: ', data);
+    //console.log('Page: ', data);
     //console.log('Sections: ', sections);
 
     // This renders out each section as it's own custom component.
@@ -30,7 +30,7 @@ export default function Page({ data, news }) {
             return;
         }
 
-        console.log('panelFactory: ', section, news);
+        //console.log('panelFactory: ', section, news);
         switch(section.type) {
             case 1:
                 return <Header key={id} data={section}></Header>

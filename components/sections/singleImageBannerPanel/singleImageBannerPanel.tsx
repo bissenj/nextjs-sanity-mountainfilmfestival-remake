@@ -11,7 +11,7 @@ import HeroSlide from '../../horizontalSlider/slides/heroSlide';
 
 export default function SingleImageBannerPanel({ data }) {
 
-    console.log('SingleImageBannerPanel: ', data);
+    //console.log('SingleImageBannerPanel: ', data);
 
     const image = data?.image ?? null;
     const altText = data?.altText ?? null;

@@ -7,8 +7,8 @@ import { getHomePage, getNewsFeed } from '../sanity/lib/sanity.client'
 export default function IndexPage(props) {
   const { data, news } = props;
 
-  console.log('Data: ', data);
-  console.log('News: ', news);
+  //console.log('Data: ', data);
+  //console.log('News: ', news);
 
   const pageData = { sections: data , news: news }
 
