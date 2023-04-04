@@ -36,18 +36,30 @@ export const HorizontalSlider = ({index, updateSelectedIndex, setMaxIndex, name,
     const setBoundedIndex = (newIndex) => {
         let index = newIndex;
         
-        if (index > MAX_INDEX) {
-            index = MAX_INDEX;
+        if (index > maxGroupIndex) {
+            index = maxGroupIndex;
         }
         if (index < MIN_INDEX) { 
             index = MIN_INDEX;
         }
         
         updateSelectedIndex(index);
+        //currentIndex.current = index;
+
+        const obj = {
+            'index': index,
+            'slidersPerIndex': slidesPerIndex.current,
+            'maxGroupIndex': maxGroupIndex
+        }
+
+        console.log('setBoundedIndex: ', obj);
     }
 
 
-    const setPositionByIndex = useCallback((width = dimensions.width) => {          
+    const setPositionByIndex = useCallback((width = dimensions.width) => {    
+        
+        //setBoundedIndex(currentIndex.current);
+
         const oldX = currentTranslate.current;
         let newX = currentIndex.current * (-width * slidesPerIndex.current);
         
@@ -79,7 +91,7 @@ export const HorizontalSlider = ({index, updateSelectedIndex, setMaxIndex, name,
         if (setMaxIndex) {
             setMaxIndex(maxGroupIndex);
         }
-    }, maxGroupIndex);
+    }, [maxGroupIndex]);
     
 
     // USE EFFECT for Event Handlers
@@ -190,7 +202,6 @@ export const HorizontalSlider = ({index, updateSelectedIndex, setMaxIndex, name,
         let x = -currentTranslate.current;
         let w = dimensions.width * slidesPerIndex.current;
         let index = Math.floor(x / w);
-        console.log('Index: ', index, x, w, direction);
 
         //let direction = (currentIndex.current > index) ? -1 : 1;  
         
@@ -198,8 +209,9 @@ export const HorizontalSlider = ({index, updateSelectedIndex, setMaxIndex, name,
         //     direction = 0;
         // }
         
-
         let newIndex = currentIndex.current + direction;
+
+        console.log('calculateIndexFromPosition: ', index, newIndex, x, w, direction);
         
         setBoundedIndex(newIndex)   
         //setPositionByIndex(newIndex);
@@ -231,8 +243,13 @@ export const HorizontalSlider = ({index, updateSelectedIndex, setMaxIndex, name,
 
             startPos.current = currentPosition;
             
+            // Calculate the farthest X position that the slider can be dragged to.  
+            // Needs to take slide groups into effect.
+            const max_pos = -dimensions.width * slidesPerIndex.current * maxGroupIndex;
+
             // if (newTranslate < 0 && newTranslate > (-dimensions.width * (slides.length-1))) {
-            if (newTranslate < 0 && newTranslate > ( -dimensions.width * MAX_INDEX) ) {
+            // if (newTranslate < 0 && newTranslate > ( -dimensions.width * MAX_INDEX) ) {
+            if (newTranslate < 0 && newTranslate > ( max_pos ) ) {
                 // currentTranslate.current = prevTranslate.current + currentPosition - startPos.current;
                 currentTranslate.current = newTranslate;                
             }
@@ -274,9 +291,16 @@ export const HorizontalSlider = ({index, updateSelectedIndex, setMaxIndex, name,
     }
 
 
+    // ----------------------------------------------------------------------------------------
+    // 
+    // Responsible for setting:
+    //  @slidesPerIndex
+    //  @maxGroupIndex
+    // ----------------------------------------------------------------------------------------
     function getElementDimensions(element) {
         const width = element.clientWidth
         const height = element.clientHeight   
+        
         console.log('width: ', width);
         console.log('screen width: ', windowWidth.current);
 
@@ -314,6 +338,7 @@ export const HorizontalSlider = ({index, updateSelectedIndex, setMaxIndex, name,
 
             // Calculate how many slides to show per screen.
             let d = Math.floor(windowWidth.current / childWidth);
+            if (d == 0) d = 1;
             console.log('d: ', d);
             slidesPerIndex.current = d;
             const max = Math.floor(children.length / slidesPerIndex.current);
@@ -325,6 +350,7 @@ export const HorizontalSlider = ({index, updateSelectedIndex, setMaxIndex, name,
 
         // Couldn't get slide with, so use the entire slide group.
         slidesPerIndex.current = 1;
+        setMaxGroupIndex(children.length-1);
         return { width, height }
     }
     
@@ -338,7 +364,7 @@ export const HorizontalSlider = ({index, updateSelectedIndex, setMaxIndex, name,
                     data-index={index}
                     ref={sliderRef} 
                     className={styles['slide-group'] + " " + styles['animating']} 
-                    style={{ transform: `translateX(-${index * 100}%)` }}                    
+                    style={{ transform: `translateX(-${currentIndex.current * 100}%)` }}                    
                     //onTransitionEnd={handleTransitionEnd}
                     onPointerDown={handleDragStart}
                     onPointerUp={handleDragEnd}
