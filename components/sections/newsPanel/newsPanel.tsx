@@ -1,8 +1,8 @@
-
 import React, {useState} from 'react'
 import { HorizontalSlider } from '../../horizontalSlider/horizontalSlider';
 import NewsSlide from '../../horizontalSlider/slides/newsSlide';
 import style from './newsPanel.module.css';
+import Link from 'next/link'
 
 export default function NewsPanel({ data, news }) {
 
@@ -49,7 +49,10 @@ export default function NewsPanel({ data, news }) {
 
                 {/* Slider Footer and Controls */}
                 <div className={`${style['content-footer']}`}>
-                    <button>See All News</button>
+                    <Link href={`/news`} className={`${style['post-link']}`}>
+                        See All News
+                    </Link>
+
                     <div className={`${style['controls-container']}`}>
                         <button 
                             className={`${style['left-control']}`}
