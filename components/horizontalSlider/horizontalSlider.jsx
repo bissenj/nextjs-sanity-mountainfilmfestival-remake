@@ -7,10 +7,11 @@ import styles from './horizontalSlider.module.css'
 // const data = [{id: 1, text: "This is Slide 1", background: "#FFCF47"}, {id: 2, text: "Slide 2", background: "#7ADCEF"}, {id: 3, text: "3rd Slide", background: "#a78df5" }, {id:4, text:"Last Slide.  4", background: "#ff8686"}];
 
 // export const HorizontalSlider = ({index, updateSelectedIndex, data}) => {
-export const HorizontalSlider = ({index, updateSelectedIndex, name, children}) => {   
+export const HorizontalSlider = ({index, updateSelectedIndex, setMaxIndex, name, children}) => {   
     const sliderRef = useRef(null);
     const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
-    const [moves, setMoves] = useState([]);
+    const [maxGroupIndex, setMaxGroupIndex] = useState(0);
+    // const [moves, setMoves] = useState([]);
         
     // Positional variables    
     const slidesPerIndex = useRef(0);
@@ -66,12 +67,19 @@ export const HorizontalSlider = ({index, updateSelectedIndex, name, children}) =
 
     // USE EFFECT when index changes
     useEffect(() => {
-        //console.log('useEffect');
+        console.log('useEffect - Index Change');
         if (currentIndex.current !== index) {            
             currentIndex.current = index;
             setPositionByIndex();
         }
     }, [index]);
+
+
+    useEffect(() => {
+        if (setMaxIndex) {
+            setMaxIndex(maxGroupIndex);
+        }
+    }, maxGroupIndex);
     
 
     // USE EFFECT for Event Handlers
@@ -308,6 +316,8 @@ export const HorizontalSlider = ({index, updateSelectedIndex, name, children}) =
             let d = Math.floor(windowWidth.current / childWidth);
             console.log('d: ', d);
             slidesPerIndex.current = d;
+            const max = Math.floor(children.length / slidesPerIndex.current);
+            setMaxGroupIndex(max);
 
             //console.log('Child Dimensions: ', childWidth, childHeight);
             return {width: childWidth, height: childHeight};
@@ -404,36 +414,3 @@ export const HorizontalSlider = ({index, updateSelectedIndex, name, children}) =
     );
 
 }
-
-//export default HorizontalSlider;
-
-
-// LET THE LEARNING BEGIN (...continue) -> References
-
-// 1.  React Touch Drag Slider.  Pretty good example of what I want to build.
-//     https://www.npmjs.com/package/react-touch-drag-slider
-//     https://github.com/bushblade/react-touch-drag-slider/tree/main/src
-
-
-
-// 2.  Clever way to move slides on index changed.  No drag support though.
-//     https://medium.com/tinyso/how-to-create-the-responsive-and-swipeable-carousel-slider-component-in-react-99f433364aa0
-
-// 3.  Example of drag slider.  No snap to slide though.
-//     https://codesandbox.io/s/j356wz6wy5?file=/src/Carousel.js
-
-// 4.  React Draggable Slider - Open source project to check out.  Uses React Spring and GSAP
-//     https://www.npmjs.com/package/react-draggable-slider
-
-// 5.  Bear Carousel - Text content fade ins when animations finish
-//     https://carousel.bearests.com/example/text-animations
-//     https://github.com/imagine10255/bear-react-carousel
-
-// 6.  useLayoutEffect
-//     https://upmostly.com/tutorials/react-uselayouteffect-hook?gclid=Cj0KCQiAgribBhDkARIsAASA5bu64wv1TgvjfgbuT2-J4clO126hP7aH-gLlTcCFN4OQbZqMQQwi-4IaAnSDEALw_wcB
-
-// 7.  will-change -> Might help with about page animations
-//     https://css-tricks.com/almanac/properties/w/will-change/
-
-
-

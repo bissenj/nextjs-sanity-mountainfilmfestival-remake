@@ -9,6 +9,22 @@ export default function NewsPanel({ data, news }) {
     //console.log('News Panel: ', data, news);
 
     const [selectedIndex, setSelectedIndex] = useState(0);    
+    const [maxIndex, setMaxIndex] = useState(0);    
+
+    function handleIndexChange(direction) {
+        console.log('handleIndexChange: ', direction);
+        let newIndex = selectedIndex + direction;
+        
+        if (newIndex > maxIndex) {
+            newIndex = maxIndex;
+        }
+
+        if (newIndex < 0) {
+            newIndex = 0;
+        }
+
+        setSelectedIndex(newIndex);
+    }
     
     return (
         <section className={`${style['news-panel']}`}>
@@ -20,7 +36,7 @@ export default function NewsPanel({ data, news }) {
             <div className={`${style['news-content']}`}>
                 {/* Slider */}
                 <div className={`${style['content-body']}`}>
-                    <HorizontalSlider index={selectedIndex} updateSelectedIndex={setSelectedIndex} name={'hero-slider'}>
+                    <HorizontalSlider index={selectedIndex} updateSelectedIndex={setSelectedIndex} setMaxIndex={setMaxIndex} name={'hero-slider'}>
 
                         {news &&
                             news.map((item, index) => {
@@ -35,8 +51,18 @@ export default function NewsPanel({ data, news }) {
                 <div className={`${style['content-footer']}`}>
                     <button>See All News</button>
                     <div className={`${style['controls-container']}`}>
-                        <div className={`${style['left-control']}`}> Left </div>
-                        <div className={`${style['right-control']}`}> Right </div>
+                        <button 
+                            className={`${style['left-control']}`}
+                            onClick={() => handleIndexChange(-1)}
+                        > 
+                            Left 
+                        </button>
+                        <button 
+                            className={`${style['right-control']}`}
+                            onClick={() => handleIndexChange(1)}
+                        > 
+                            Right 
+                        </button>
                     </div>
                 </div>
             </div>
