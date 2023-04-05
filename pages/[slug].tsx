@@ -34,7 +34,7 @@ const DynamicRootPage = ({page}) => {
 
 // Get pages from Sanity.io
 export async function getStaticPaths() {
-  //console.log('getStaticPaths: ');
+  console.log('getStaticPaths: ');
 
   try {
     const paths = await client.fetch(
@@ -43,9 +43,18 @@ export async function getStaticPaths() {
     );  
     console.log('paths:', paths);  
     //const map = paths.map((slug) => ({params: {slug}}));
-    
+
+    const staticPaths = 'news'
+
+    let allPaths = paths.map((slug) => ({params: {slug}}));
+    allPaths = allPaths.filter((item) => {
+      // console.log(item.params.slug, staticPaths);
+      return item.params.slug != staticPaths
+    });
+    // console.log('allPaths: ', allPaths );
+
     return {
-      paths: paths.map((slug) => ({params: {slug}})),
+      paths: allPaths,
       fallback: true,      
     }
 

@@ -15,7 +15,7 @@ import SiteMenu from './siteMenu/siteMenu';
 import NewsPanel from './sections/newsPanel/newsPanel';
 
 
-export default function Page({ data, news }) {
+export default function Page({ data, news = null }) {
     // const [menuVisible, setMenuVisible] = useState(false);
     // const [selectedMenuIndex, setSelectedMenuIndex] = useState(-1);
 

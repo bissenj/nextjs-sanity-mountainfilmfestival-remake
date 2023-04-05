@@ -2,6 +2,10 @@ import Image from 'next/image'
 import { urlForImage } from '../../sanity/lib/sanity.image'
 import { format, parseISO } from 'date-fns'
 
+import styles from './blog.module.css'
+
+
+
 export default function PostHeader({data}) {
 
     const { title, coverImage, coverImageAlt, publishedDate } = data;
@@ -12,7 +16,8 @@ export default function PostHeader({data}) {
     }
 
     return (
-        <div className="bg-black grid grid-cols-2 " style={{position: 'relative', height:'50vh'}}>
+        <div className={'bg-black'}>
+        <div className={`${styles.fadeIn} bg-black grid grid-cols-2`} style={{position: 'relative', height:'50vh'}}>
 
             {/* DATE & TITLE */}
             <div className='grid items-center text-white px-20'>
@@ -45,6 +50,7 @@ export default function PostHeader({data}) {
                 />
             </div>           
 
+        </div>
         </div>
     )
 }

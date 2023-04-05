@@ -1,7 +1,13 @@
 import React, {useState} from 'react'
 import { HorizontalSlider } from '../../horizontalSlider/horizontalSlider';
 import NewsSlide from '../../horizontalSlider/slides/newsSlide';
+
+// import { Flicker } from '../../flicker/flicker';
+// import NewsSlide from '../../flicker/slides/newsSlide';
+
 import style from './newsPanel.module.css';
+
+
 import Link from 'next/link'
 
 export default function NewsPanel({ data, news }) {

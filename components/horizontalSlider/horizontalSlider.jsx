@@ -7,7 +7,7 @@ import styles from './horizontalSlider.module.css'
 // const data = [{id: 1, text: "This is Slide 1", background: "#FFCF47"}, {id: 2, text: "Slide 2", background: "#7ADCEF"}, {id: 3, text: "3rd Slide", background: "#a78df5" }, {id:4, text:"Last Slide.  4", background: "#ff8686"}];
 
 // export const HorizontalSlider = ({index, updateSelectedIndex, data}) => {
-export const HorizontalSlider = ({index, updateSelectedIndex, setMaxIndex, name, children}) => {   
+export const HorizontalSlider = ({index, updateSelectedIndex, setMaxIndex = null, name, children}) => {   
     const sliderRef = useRef(null);
     const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
     const [maxGroupIndex, setMaxGroupIndex] = useState(0);
@@ -74,6 +74,7 @@ export const HorizontalSlider = ({index, updateSelectedIndex, setMaxIndex, name,
         prevTranslate.current = currentTranslate.current;
 
         setSliderPosition();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [dimensions.width]);
 
 
@@ -84,6 +85,7 @@ export const HorizontalSlider = ({index, updateSelectedIndex, setMaxIndex, name,
             currentIndex.current = index;
             setPositionByIndex();
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [index]);
 
 
@@ -91,6 +93,7 @@ export const HorizontalSlider = ({index, updateSelectedIndex, setMaxIndex, name,
         if (setMaxIndex) {
             setMaxIndex(maxGroupIndex);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [maxGroupIndex]);
     
 
@@ -105,6 +108,7 @@ export const HorizontalSlider = ({index, updateSelectedIndex, setMaxIndex, name,
             window.removeEventListener('keydown', handleKeyDown)
             window.removeEventListener('resize', handleResize);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
 
@@ -275,6 +279,7 @@ export const HorizontalSlider = ({index, updateSelectedIndex, setMaxIndex, name,
             setDimensions(dims);
             setPositionByIndex(dims.width);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [setPositionByIndex]);
 
 
