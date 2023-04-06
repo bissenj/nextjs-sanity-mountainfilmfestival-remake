@@ -24,6 +24,28 @@ export const pageFields = groq`
       }
     }    
   },
+  footer->{
+    legal{
+      copyright,
+      links[]{
+        title,
+        url
+      },
+    },
+    siteContent->{
+      cta,
+      'lists': contentLists[]{
+        "id": _key,
+        title,
+        classes,
+        menuItems[]{
+          "id": _key,
+          title,
+          url
+        }
+      }
+    }
+  },
   sections[]{
   ...  
   },       

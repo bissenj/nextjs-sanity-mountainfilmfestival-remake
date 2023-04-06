@@ -262,6 +262,10 @@ body {
   background-color: var(--accent-color-blue);
 }
 
+.light-blue {
+  background-color: var(--accent-color-bright);
+}
+
 .red {
   background-color: var(--accent-color-red);
 }
@@ -352,11 +356,19 @@ body {
   height: 100%;
   top: 0;
   left: -100%;
-  transition: transform 0.2s;
+  transition: transform 0.3s ease-in-out;
 }
 
 .site-menu-item:hover, .site-menu-item.active {
   color: white;
+}
+
+.footer-menu .site-menu-item:hover, .site-menu-item.active {
+  color: black;
+}
+
+.footer-menu .site-menu-item::before {
+  background-color: #3bd0ff;
 }
 
 .site-menu-item:hover::before, .site-menu-item.active::before {

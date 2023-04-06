@@ -5,9 +5,13 @@ npm run dev
 
 npm run test
 
+// Sanity Schema Icons
+https://icons.sanity.build/all?scheme=light&value=eJyrrgUAAXUA+Q==
+
 
 
 /// Current Issues
 
 1.  Scroll Restoration between main page and detail pages.
-    https://stackoverflow.com/questions/64052148/how-to-change-scroll-behavior-while-going-back-in-next-js
+    Concept:  https://stackoverflow.com/questions/64052148/how-to-change-scroll-behavior-while-going-back-in-next-js
+    Results:  Tried the experimental flag and it worked in chrome dev.

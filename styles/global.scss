@@ -372,6 +372,10 @@ body {
     background-color: var(--accent-color-blue);
 }
 
+.light-blue {
+    background-color: var(--accent-color-bright);
+}
+
 .red {
     background-color: var(--accent-color-red);
 }
@@ -478,8 +482,7 @@ body {
     cursor: pointer;    
     transition: color 0.2s ease-in;
     z-index: 1000;  
-
-    padding: 3px 10px;
+    padding: 3px 10px;    
     
     overflow: hidden;
 }
@@ -495,11 +498,19 @@ body {
     top: 0;
     left: -100%;    
 
-    transition: transform 0.2s;
+    transition: transform 0.3s ease-in-out;
 }
 
 .site-menu-item:hover, .site-menu-item.active {
     color:white;
+}
+
+.footer-menu .site-menu-item:hover, .site-menu-item.active {
+    color: black;
+}
+
+.footer-menu .site-menu-item::before { 
+    background-color: $accent-color-bright;
 }
 
 .site-menu-item:hover::before, .site-menu-item.active::before {

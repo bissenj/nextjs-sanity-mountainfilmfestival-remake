@@ -9,9 +9,10 @@
     position: sticky;
     top: 22px;    
     z-index: 200;
-    margin-bottom: 200px;   
-    margin-top: -130vh;
-        /* -80%;                  WHY 80%????                  */
+    /* margin-bottom: 200px;   
+    margin-top: -130vh; */
+    margin-bottom: 115px;
+    margin-top: -115vh;    
 }
 
 

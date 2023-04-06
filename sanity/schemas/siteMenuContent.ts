@@ -1,11 +1,11 @@
-import { ImageIcon } from '@sanity/icons'
+import { ImageIcon, OlistIcon } from '@sanity/icons'
 import { defineArrayMember, defineField, defineType } from 'sanity'
 
 export default defineType({
     type: 'document',
     name: 'siteMenuContent',
-    title: 'Menu Content',
-    icon: ImageIcon,
+    title: 'Site Menu Content',
+    icon: OlistIcon,
     fields: [
 
       // Title

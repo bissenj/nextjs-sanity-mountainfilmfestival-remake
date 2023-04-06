@@ -36,6 +36,8 @@ import siteMenu from './sanity/schemas/siteMenu'
 import siteMenuItem from './sanity/schemas/siteMenuItem'
 import siteMenuContent from './sanity/schemas/siteMenuContent'
 
+import footer from './sanity/schemas/footer'
+
 export default defineConfig({
   basePath: '/studio',
   projectId,
@@ -45,20 +47,21 @@ export default defineConfig({
     // If you want more content types, you can add them to this array
     types: [      
       page,      
+      post,
       textImagePanel,
       singleImageBannerPanel,
       siteMenu,
       siteMenuItem,
       siteMenuContent,
+      footer,
       imageImagePanel,
       quotePanel,
       newsPanel,
       slideshow,
-      ctaButton,
-      post,
+      ctaButton,      
       author,
       blockContent,
-      photoGallery,      
+      photoGallery, 
     ],
   },
   plugins: [

@@ -13,7 +13,7 @@ export default defineType({
   name: 'photogallery',
   title: 'Photo Gallery',
   icon: ImagesIcon,
-  type: 'document',
+  type: 'object',
   fields: [
     defineField({
       name: 'name',
