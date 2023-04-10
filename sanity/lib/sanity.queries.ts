@@ -57,6 +57,11 @@ export const pageQuery = groq`*[_type == "page" && slug.current == $slug][0]{
 }`
 
 
+export const newsPageQuery = groq`*[_type == "page" && slug.current == 'news'][0]{
+  ${pageFields}
+}`
+
+
 export const homePageQuery = groq`
 *[_type == "page"][0]{
   ${pageFields}

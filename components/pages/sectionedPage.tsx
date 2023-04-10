@@ -4,19 +4,20 @@ import React, { useState, useRef } from 'react';
 import Head from 'next/head';
 
 
-import Header from './header';
-import TextImagePanel from './sections/textImagePanel/textImagePanel';
-import SingleImageBannerPanel from './sections/singleImageBannerPanel/singleImageBannerPanel';
-import ImageImagePanel from './sections/imageImagePanel/imageImagePanel';
-import QuotePanel from './sections/quotePanel/quotePanel';
-import Sidebar from './sidebar/sidebar';
-import SiteMenu from './siteMenu/siteMenu';
-import Footer from './footer/footer';
+import Header from '../header';
+import TextImagePanel from '../sections/textImagePanel/textImagePanel';
+import SingleImageBannerPanel from '../sections/singleImageBannerPanel/singleImageBannerPanel';
+import ImageImagePanel from '../sections/imageImagePanel/imageImagePanel';
+import QuotePanel from '../sections/quotePanel/quotePanel';
 
-import NewsPanel from './sections/newsPanel/newsPanel';
+import Sidebar from '../sidebar/sidebar';
+import SiteMenu from '../siteMenu/siteMenu';
+import Footer from '../footer/footer';
+
+import NewsPanel from '../sections/newsPanel/newsPanel';
 
 
-export default function Page({ data, news = null }) {
+export default function SectionedPage({ data, news = null }) {
     // const [menuVisible, setMenuVisible] = useState(false);
     // const [selectedMenuIndex, setSelectedMenuIndex] = useState(-1);
 
@@ -57,6 +58,7 @@ export default function Page({ data, news = null }) {
             <Head>
                 <title>Home | Mountainfilm Festival</title>        
             </Head>
+
             <div className='page'>
                 
                 {siteMenu && 
@@ -64,17 +66,18 @@ export default function Page({ data, news = null }) {
                 }
                 <Sidebar></Sidebar>
 
-                
-                {sections?.map((s, index) => (
-                    panelFactory(s, news, `section-${index}`)                
-                ))}
+                {/* <div className='content-wrapper'>       */}
 
+                    {sections?.map((s, index) => (
+                        panelFactory(s, news, `section-${index}`)                
+                    ))}
+
+                {/* </div> */}
                 
                 {footer &&
                     <Footer data={footer}></Footer>
                 }                
-
-                {/* <div style={{backgroundColor: '#000', minHeight:'70vh'}}></div> */}
+                
             </div>
         </>
     );

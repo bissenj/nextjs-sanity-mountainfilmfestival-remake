@@ -19,6 +19,10 @@ body,
   --primary-color: #000;
   --secondary-color: #fff;
   --small-screen: 767px;
+  --fluid-nav-height: 110px;
+  --offset-sidebar: clamp(4.375rem,-0.0694444444rem + 9.2592592593vw,6.875rem);
+  --offset-sidebar: 110px;
+  --offset-bottom: 80px;
 }
 
 html {
@@ -40,6 +44,11 @@ body {
   border: 1px solid #ccc;
   display: grid;
   place-content: center;
+}
+
+.content-wrapper {
+  padding-left: var(--offset-sidebar);
+  margin-bottom: var(--offset-bottom);
 }
 
 .post-content p {

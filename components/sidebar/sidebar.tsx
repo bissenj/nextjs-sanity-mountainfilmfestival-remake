@@ -2,10 +2,13 @@ import styles from './sidebar.module.css'
 
 export default function Sidebar() {
     return (
-        <div className={styles["floating-nav"]}>               
+        <div className={styles["floating-nav"]}>  
+                     
             {/* BRAND */}
-            <div className={`${styles['brand-nav']} ${styles['flex-col']}`}> 
-                <a className={`${styles['brand-logo']} ${styles['circle']}`} href='/'>M</a>
+            <div className={`${styles['brand-nav']}`}> 
+                <div className={`${styles['brand-logo']}`}>
+                    <a className={`${styles['circle']}`} href='/'>M</a>
+                </div>
                 <div className={`${styles['upper-case']} ${styles['no-wrap']} ${styles['vertical-text']}`}>Mountain Film </div>
             </div>  
 
@@ -17,6 +20,7 @@ export default function Sidebar() {
                     <span>v</span>
                 {/* </div> */}
             </div>
+
         </div>
     );
 

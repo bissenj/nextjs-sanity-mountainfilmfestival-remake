@@ -22,6 +22,13 @@ body,
     --secondary-color: #fff;   
     
     --small-screen: 767px;
+
+    // --fluid-nav-height: clamp(6.375rem,4.5972222222rem + 3.7037037037vw,7.375rem);
+    --fluid-nav-height: 110px;
+    // --fluid-container-padding-desktop: clamp(4.375rem,-0.0694444444rem + 9.2592592593vw,6.875rem);
+    --offset-sidebar: clamp(4.375rem,-0.0694444444rem + 9.2592592593vw,6.875rem);
+    --offset-sidebar: 110px;
+    --offset-bottom: 80px;
 }
 
 $accent-color-yellow: #ffde59;
@@ -59,6 +66,11 @@ body {
 
   display: grid;
   place-content: center;
+}
+
+.content-wrapper {
+    padding-left: var(--offset-sidebar);
+    margin-bottom: var(--offset-bottom);
 }
 
 

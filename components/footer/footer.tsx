@@ -2,14 +2,9 @@ import style from './footer.module.css';
 
 export default function Footer({data}) {
     console.log('Footer Data: ', data);
-
-    //const {links} = data.links;
-    const {cta, lists} = data?.siteContent;
-    // const {legal} = data?.legal;
     
-    // console.log('Legal Links: ', data.links);
-    // console.log('Legal: ', legal);
-
+    const {cta, lists} = data?.siteContent;
+    
     return (
         <section className={`${style['footer-container']} bg-black white`}>            
 

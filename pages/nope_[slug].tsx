@@ -4,7 +4,7 @@ import groq from 'groq';
 import { client } from '../sanity/lib/sanity.client'
 import { useRouter } from 'next/router'
 
-import Page from '../components/page'
+import Page from '../components/pages/sectionedPage'
 import { getPage } from '../sanity/lib/sanity.client'
 
 

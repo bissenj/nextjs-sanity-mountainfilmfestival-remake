@@ -49,7 +49,7 @@ export default function SingleImageBannerPanel({ data }) {
     //console.log('Hero Slides: ', heroSlides);
 
     return (
-        <div className={`${style['container']}`}>
+        <div className={`${style['container']} content-wrapper`}>
 
             {/* Background */}
             <div className={`${style['image-wrapper']}`}>
@@ -91,26 +91,27 @@ export default function SingleImageBannerPanel({ data }) {
 
             {/* Slider */}
             { hasSlideShow && 
-                <div id='slideContainer' className={`${style['slider-container']}`}>                
-                    <HorizontalSlider index={selectedIndex} updateSelectedIndex={setSelectedIndex} name={'hero-slider'}>                    
+                <div id='slideContainer' className={`${style['slider-container']}`}>   
+                    <div className={`${style['slider-inner']}`}>     
+                        
+                        <HorizontalSlider index={selectedIndex} updateSelectedIndex={setSelectedIndex} name={'hero-slider'}>                    
 
-                        {heroSlides && 
-                            heroSlides.map((item, slideIndex) => {
-                                return <HeroSlide key={item._key} topic={item.topic} heading={item.title} cta={item.cta} url={item.url} id={`slide-${slideIndex}`}></HeroSlide>
-                            })
-                        }    
-                        {!heroSlides &&                         
-                            <HeroSlide key={0} topic={'Oops!'} heading={`Hey!  We're missing some slides here!`} cta={'Fix in Studio'} url={'/studio'} id={`slide-0`}></HeroSlide>
-                        }
+                            {heroSlides && 
+                                heroSlides.map((item, slideIndex) => {
+                                    return <HeroSlide key={item._key} topic={item.topic} heading={item.title} cta={item.cta} url={item.url} id={`slide-${slideIndex}`}></HeroSlide>
+                                })
+                            }    
+                            {!heroSlides &&                         
+                                <HeroSlide key={0} topic={'Oops!'} heading={`Hey!  We're missing some slides here!`} cta={'Fix in Studio'} url={'/studio'} id={`slide-0`}></HeroSlide>
+                            }
+                        
+                        </HorizontalSlider>                    
                     
-                    </HorizontalSlider>
-
-                    {/* If there are slides, display the control grid. */}
-                    {heroSlides && 
                         <div style={{position: 'relative', top: '-10px', margin: '0 auto', width: '200px'}}>     
                             <ControlGrid quantity={heroSlides?.length} index={selectedIndex} updateSelectedIndex={setSelectedIndex} forwardBackControls={true} />
                         </div>
-                    }
+                    
+                    </div>
 
                 </div>
             }

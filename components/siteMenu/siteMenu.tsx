@@ -65,7 +65,7 @@ export default function SiteMenu({ data }) {
     }
 
     return (
-        <>
+        <div className={`${style['site-menu-container']}`}>
             <nav className={`${style['site-menu']}`}>
                     
                 {data.menuItems.map((i, index) => (
@@ -78,6 +78,6 @@ export default function SiteMenu({ data }) {
             </nav>
 
             <SiteMenuContent visible={menuVisible} content={data.menuItems[selectedMenuIndex]}></SiteMenuContent>
-        </>
+        </div>
     );
 }
