@@ -2,6 +2,10 @@
 import Image from 'next/image'
 import { urlForImage } from '../../../sanity/lib/sanity.image'
 
+import { useInView, InView } from 'react-intersection-observer';
+
+
+
 interface TextImagePanel {
     textOnLeft: boolean;
     headerText: string;
@@ -13,17 +17,32 @@ interface TextImagePanel {
 export default function TextImagePanel({ data }) {
     const { image, altText } = data;
 
+
+    const { ref, inView, entry } = useInView({
+      threshold: 0.6,
+      // delay: 500,
+      onChange: (inView, entry) => {
+        if (inView) handleInView(entry)
+      },
+    })
+
+
     
     let textOnLeft = data.textOnLeft ? '' : 'left';
     //console.log('Text Location: ', textOnLeft);
 
     function handleMouseOver(e) {
       //console.log('handleMouseOver(): ', e.target);
-      e.target.classList.add('active');
+      //e.target.classList.add('active');
+    }
 
+    function handleInView(entry) {      
+      //console.log('Entry: ', entry, entry.target);
+      entry.target.parentElement.classList.add('active');
     }
 
     return (
+        
         <div className={`textImagePanel ${textOnLeft} gap-12 p-10`} onMouseOver={handleMouseOver}>
             {/* Text */}
             <div className='contentPanel'>
@@ -38,8 +57,8 @@ export default function TextImagePanel({ data }) {
                 }                
             </div>
 
-            {/* Image */}
-            <div className='imagePanel'>
+            {/* Image */}            
+            <div className='imagePanel' ref={ref}>
               <Image
                 src={
                   image?.asset?._ref
@@ -50,7 +69,8 @@ export default function TextImagePanel({ data }) {
                 className="object-cover"                             
                 alt={altText}
               />
-            </div>
+            </div>            
+
         </div>
     );
 }
