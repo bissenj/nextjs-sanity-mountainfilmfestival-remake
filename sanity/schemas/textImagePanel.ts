@@ -17,7 +17,7 @@ export default defineType({
       defineField({        
         type: 'number',
         name: 'type',
-        title: 'Type Index',
+        title: 'Type Index - 3',
         initialValue: 3,
         validation: (rule) => rule.required().custom(index => {
             if (typeof index === 'undefined') {

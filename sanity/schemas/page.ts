@@ -1,5 +1,5 @@
 /* eslint-disable simple-import-sort/imports */
-import { DocumentIcon,DocumentsIcon, ImageIcon, ImagesIcon, InlineIcon, BlockElementIcon, DashboardIcon, UserIcon, BinaryDocumentIcon } from '@sanity/icons'
+import { DocumentIcon,DocumentsIcon, ImageIcon, ImagesIcon, InlineIcon, BlockElementIcon, DashboardIcon, UserIcon, BinaryDocumentIcon, ThLargeIcon } from '@sanity/icons'
 import { defineArrayMember, defineField, defineType } from 'sanity'
 
 import textImagePanel from './textImagePanel'
@@ -7,6 +7,8 @@ import singleImageBannerPanel from './singleImageBannerPanel'
 import imageImagePanel from './imageImagePanel'
 import quotePanel from './quotePanel'
 import newsPanel from './newsPanel'
+import newsGrid from './newsGrid'
+import heroText from './heroText'
 import siteMenu from './siteMenu'
 import footer from './footer'
 
@@ -54,13 +56,21 @@ export default defineType({
         description:
           "All the page sections",
         of: [          
+
+          // Hero Text 
+          defineArrayMember({
+            type: 'heroText',
+            name: 'Hero Text',    
+            title: 'Hero Text - Heading with solid color background',
+            icon: InlineIcon
+          }),
           
           // Text Image Panel
           defineArrayMember({
             type: 'textImagePanel',
             name: 'textImagePanel',    
             title: 'Split Text and Image',
-            icon: 'InlineIcon'
+            icon: InlineIcon
           }),
 
           // Single Image Banner Panel
@@ -68,7 +78,7 @@ export default defineType({
             type: 'singleImageBannerPanel',
             name: 'singleImageBannerPanel',    
             title: 'Hero with Image and CTA',
-            icon: 'BashboardIcon'        
+            icon: DashboardIcon        
           }), 
 
           // Image Image Panel
@@ -76,7 +86,7 @@ export default defineType({
             type: 'imageImagePanel',
             name: 'imageImagePanel',  
             title: 'Images Section', 
-            icon: 'ImagesIcon'          
+            icon: ImagesIcon          
           }), 
 
           // Quote Panel
@@ -84,7 +94,7 @@ export default defineType({
             type: 'quotePanel',
             name: 'quotePanel',   
             title: 'Quote',
-            icon: 'UserIcon'                     
+            icon: UserIcon                     
           }), 
 
           // News Panel
@@ -92,7 +102,15 @@ export default defineType({
             type: 'newsPanel',
             name: 'newsPanel',
             title: 'News Panel',
-            icon: 'BinaryDocumentIcon'            
+            icon: BinaryDocumentIcon            
+          }), 
+
+           // News Grid
+           defineArrayMember({
+            type: 'newsGrid',
+            name: 'newsGrid',
+            title: 'News Grid',
+            icon: ThLargeIcon            
           }), 
 
         ],        
