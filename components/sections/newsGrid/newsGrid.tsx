@@ -20,7 +20,7 @@ export default function NewsGrid({ posts, usePagination } : { posts : any, usePa
         const end = start + NUM_PER_PAGE;
         const newPosts = posts.slice(start, end);
         setVisiblePosts(newPosts);
-    }, [currentPage]);
+    }, [currentPage, posts]);       //posts was added to make eslint happy during prod build.
 
 
     console.log('NumPages: ', numPages);

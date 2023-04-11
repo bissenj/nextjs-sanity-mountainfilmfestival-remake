@@ -8,6 +8,9 @@ import Page from '../components/pages/sectionedPage'
 import { getPage } from '../sanity/lib/sanity.client'
 
 
+// I DON'T THINK THIS FILE IS ACTUALLY USED - YET.
+
+
 const DynamicRootPage = ({page}) => {
     const router = useRouter();
 

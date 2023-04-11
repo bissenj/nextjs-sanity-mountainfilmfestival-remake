@@ -1,5 +1,3 @@
-
-
 import TextImagePanel from '../sections/textImagePanel/textImagePanel';
 import SingleImageBannerPanel from '../sections/singleImageBannerPanel/singleImageBannerPanel';
 import ImageImagePanel from '../sections/imageImagePanel/imageImagePanel';
@@ -17,8 +15,8 @@ export function sectionFactory(section, news, id) {
 
     //console.log('panelFactory: ', section, news);
     switch(section.type) {
-        case 1:
-            return <Header key={id} data={section}></Header>
+        // case 1:
+        //     return <Header key={id} data={section}></Header>
         // case 2:
         //     return <Footer key={id} data={section}></Footer>
         case 3:

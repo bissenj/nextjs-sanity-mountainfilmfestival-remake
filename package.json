@@ -1,6 +1,7 @@
 {
   "private": true,
   "scripts": {
+    "prod": "next build && npx vercel --prod",
     "build": "next build",
     "dev": "next",
     "format": "npx prettier --write . --ignore-path .gitignore",
