@@ -4,8 +4,11 @@ import groq from 'groq';
 import { client } from '../sanity/lib/sanity.client'
 import { useRouter } from 'next/router'
 
-import Page from '../components/page'
+import Page from '../components/pages/sectionedPage'
 import { getPage } from '../sanity/lib/sanity.client'
+
+
+// I DON'T THINK THIS FILE IS ACTUALLY USED - YET.
 
 
 const DynamicRootPage = ({page}) => {
@@ -34,7 +37,7 @@ const DynamicRootPage = ({page}) => {
 
 // Get pages from Sanity.io
 export async function getStaticPaths() {
-  //console.log('getStaticPaths: ');
+  console.log('getStaticPaths: ');
 
   try {
     const paths = await client.fetch(
@@ -43,9 +46,18 @@ export async function getStaticPaths() {
     );  
     console.log('paths:', paths);  
     //const map = paths.map((slug) => ({params: {slug}}));
-    
+
+    const staticPaths = 'news'
+
+    let allPaths = paths.map((slug) => ({params: {slug}}));
+    allPaths = allPaths.filter((item) => {
+      // console.log(item.params.slug, staticPaths);
+      return item.params.slug != staticPaths
+    });
+    // console.log('allPaths: ', allPaths );
+
     return {
-      paths: paths.map((slug) => ({params: {slug}})),
+      paths: allPaths,
       fallback: true,      
     }
 

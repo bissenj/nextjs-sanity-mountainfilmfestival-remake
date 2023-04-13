@@ -1,13 +1,11 @@
 
 .quote-container {
-    padding-left: 80px;    
-    /* margin: 6rem;  */
-    margin: 6rem 12rem;
-    /* margin: 6rem clamp(12rem, 18vw, 20rem); */
-    /* padding-left: clamp(1rem, 6vw, 20rem); */
-    /* padding-right: clamp(1rem, 6vw, 20rem); */
-    /* border: 1px solid red; */
-    
+    margin: 1rem;
+    padding-top: 80px;
+    padding-bottom: 80px;
+
+    padding-left: clamp(6.875rem,-8.0925324675rem + 25.974025974vw,19.8295454545rem);
+    padding-right: clamp(1.5rem,-13.2868601986rem + 30.8059587471vw,19.8295454545rem);    
 }
 
 .quote-text {

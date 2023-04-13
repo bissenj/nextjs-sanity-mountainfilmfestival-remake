@@ -1,3 +1,5 @@
+import { test, expect, type Page } from '@playwright/test';
+
 test('site menu click - open', async ({ page }) => {  
     await page.goto('http://localhost:3000/');
   

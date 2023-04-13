@@ -14,17 +14,18 @@ import { apiVersion, dataset, projectId } from './sanity/env'
 import page from './sanity/schemas/page'
 
 // Sections
-
 import textImagePanel from './sanity/schemas/textImagePanel'
 import singleImageBannerPanel from './sanity/schemas/singleImageBannerPanel'
 import imageImagePanel from './sanity/schemas/imageImagePanel'
 import quotePanel from './sanity/schemas/quotePanel'
 import newsPanel from './sanity/schemas/newsPanel'
+import newsGrid from './sanity/schemas/newsGrid'
 
 // Components
 import photoGallery from './sanity/schemas/photoGallery'
 import slideshow from './sanity/schemas/slideshow'
 import ctaButton from './sanity/schemas/ctaButton'
+import heroText from './sanity/schemas/heroText'
 
 // Blog
 import post from './sanity/schemas/post'
@@ -36,6 +37,8 @@ import siteMenu from './sanity/schemas/siteMenu'
 import siteMenuItem from './sanity/schemas/siteMenuItem'
 import siteMenuContent from './sanity/schemas/siteMenuContent'
 
+import footer from './sanity/schemas/footer'
+
 export default defineConfig({
   basePath: '/studio',
   projectId,
@@ -45,20 +48,23 @@ export default defineConfig({
     // If you want more content types, you can add them to this array
     types: [      
       page,      
+      post,
       textImagePanel,
       singleImageBannerPanel,
       siteMenu,
       siteMenuItem,
       siteMenuContent,
+      footer,
       imageImagePanel,
       quotePanel,
       newsPanel,
+      newsGrid,
       slideshow,
-      ctaButton,
-      post,
+      ctaButton,      
       author,
       blockContent,
-      photoGallery,      
+      photoGallery, 
+      heroText,
     ],
   },
   plugins: [

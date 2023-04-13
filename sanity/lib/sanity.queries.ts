@@ -24,6 +24,28 @@ export const pageFields = groq`
       }
     }    
   },
+  footer->{
+    legal{
+      copyright,
+      links[]{
+        title,
+        url
+      },
+    },
+    siteContent->{
+      cta,
+      'lists': contentLists[]{
+        "id": _key,
+        title,
+        classes,
+        menuItems[]{
+          "id": _key,
+          title,
+          url
+        }
+      }
+    }
+  },
   sections[]{
   ...  
   },       
@@ -31,6 +53,11 @@ export const pageFields = groq`
 
 
 export const pageQuery = groq`*[_type == "page" && slug.current == $slug][0]{
+  ${pageFields}
+}`
+
+
+export const newsPageQuery = groq`*[_type == "page" && slug.current == 'news'][0]{
   ${pageFields}
 }`
 

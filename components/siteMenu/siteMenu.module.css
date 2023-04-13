@@ -1,16 +1,13 @@
 
-/* :root {
-    --accent-color-yellow: #ffde59;
-    --accent-color-green: #00a17b;
-    --accent-color-bright: #3bd0ff;
-    --accent-color-blue: #0038d6;
-    --accent-color-red: #ff1e29;
-} */
+.site-menu-container {
+    font-weight: 700;
+    font-size: 1.1rem;
+}
 
 .site-menu {
     position: relative;
     z-index: 100;
-    height: 80px;
+    height: var(--fluid-nav-height);
     width: 100%;
 
     background-color: white;

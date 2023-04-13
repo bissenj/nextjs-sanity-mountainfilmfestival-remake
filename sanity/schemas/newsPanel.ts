@@ -10,7 +10,7 @@ export default defineType({
     icon: ImageIcon,
     fields: [
 
-      // Title - 'News & Community'
+      // TITLE - 'News & Community'
       defineField({
         type: 'string',
         name: 'title',
@@ -22,7 +22,7 @@ export default defineType({
       defineField({        
         type: 'number',
         name: 'type',
-        title: 'Type Index',
+        title: 'Type Index - 7',
         initialValue: 7,
         validation: (rule) => rule.required().custom(index => {
             if (typeof index === 'undefined') {

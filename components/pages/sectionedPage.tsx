@@ -3,25 +3,27 @@ import React, { useState, useRef } from 'react';
 
 import Head from 'next/head';
 
-import Footer from './footer';
-import Header from './header';
-import TextImagePanel from './sections/textImagePanel/textImagePanel';
-import SingleImageBannerPanel from './sections/singleImageBannerPanel/singleImageBannerPanel';
-import ImageImagePanel from './sections/imageImagePanel/imageImagePanel';
-import QuotePanel from './sections/quotePanel/quotePanel';
-import Sidebar from './sidebar/sidebar';
-import SiteMenu from './siteMenu/siteMenu';
 
-import NewsPanel from './sections/newsPanel/newsPanel';
+import Header from '../header';
+import TextImagePanel from '../sections/textImagePanel/textImagePanel';
+import SingleImageBannerPanel from '../sections/singleImageBannerPanel/singleImageBannerPanel';
+import ImageImagePanel from '../sections/imageImagePanel/imageImagePanel';
+import QuotePanel from '../sections/quotePanel/quotePanel';
+
+import Sidebar from '../sidebar/sidebar';
+import SiteMenu from '../siteMenu/siteMenu';
+import Footer from '../footer/footer';
+
+import NewsPanel from '../sections/newsPanel/newsPanel';
 
 
-export default function Page({ data, news }) {
+export default function SectionedPage({ data, news = null }) {
     // const [menuVisible, setMenuVisible] = useState(false);
     // const [selectedMenuIndex, setSelectedMenuIndex] = useState(-1);
 
-    const { sections, siteMenu } = data;
-    
-    //console.log('Page: ', data);
+    const { sections, siteMenu, footer } = data;
+        
+    console.log('Page: ', data);
     //console.log('Sections: ', sections);
 
     // This renders out each section as it's own custom component.
@@ -34,8 +36,8 @@ export default function Page({ data, news }) {
         switch(section.type) {
             case 1:
                 return <Header key={id} data={section}></Header>
-            case 2:
-                return <Footer key={id} data={section}></Footer>
+            // case 2:
+            //     return <Footer key={id} data={section}></Footer>
             case 3:
                 return <TextImagePanel key={id} data={section}></TextImagePanel>
             case 4:
@@ -56,6 +58,7 @@ export default function Page({ data, news }) {
             <Head>
                 <title>Home | Mountainfilm Festival</title>        
             </Head>
+
             <div className='page'>
                 
                 {siteMenu && 
@@ -63,21 +66,19 @@ export default function Page({ data, news }) {
                 }
                 <Sidebar></Sidebar>
 
-                {/* {news && 
-                    <NewsPanel data={''} news={news}></NewsPanel>
-                } */}
+                {/* <div className='content-wrapper'>       */}
 
-                {/* Sections go here */}
-                {sections?.map((s, index) => (
-                    panelFactory(s, news, `section-${index}`)                
-                ))}
+                    {sections?.map((s, index) => (
+                        panelFactory(s, news, `section-${index}`)                
+                    ))}
+
+                {/* </div> */}
                 
-
-                <div style={{backgroundColor: '#000', minHeight:'70vh'}}></div>
+                {footer &&
+                    <Footer data={footer}></Footer>
+                }                
+                
             </div>
-            <div style={{backgroundColor: '#fff', minHeight:'10vh'}}></div>
-            <div style={{backgroundColor: '#000', minHeight:'40vh'}}></div>
-        
         </>
     );
 }

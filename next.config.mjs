@@ -7,6 +7,7 @@ const config = {
   },
   experimental: {
     appDir: false,
+    scrollRestoration: true,
   },
 }
 

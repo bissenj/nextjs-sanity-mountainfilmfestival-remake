@@ -4,3 +4,19 @@ cd 'C:\Users\aspen\Projects\React\Sanity\L5-MFF\nextjs-sanity-mountainfilmfestiv
 npm run dev
 
 npm run test
+
+npm run build
+npx vercel --prod
+
+// Github account is messed up again.
+
+// Sanity Schema Icons
+https://icons.sanity.build/all?scheme=light&value=eJyrrgUAAXUA+Q==
+
+
+
+/// Current Issues
+
+1.  Scroll Restoration between main page and detail pages.
+    Concept:  https://stackoverflow.com/questions/64052148/how-to-change-scroll-behavior-while-going-back-in-next-js
+    Results:  Tried the experimental flag and it worked in chrome dev.

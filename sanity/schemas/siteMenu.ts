@@ -1,4 +1,4 @@
-import { ImageIcon } from '@sanity/icons'
+import { EllipsisHorizontalIcon } from '@sanity/icons'
 import { defineArrayMember, defineField, defineType } from 'sanity'
 
 import siteMenuItem from './siteMenuItem'
@@ -8,7 +8,7 @@ export default defineType({
     type: 'document',
     name: 'siteMenu',
     title: 'Site Menu',
-    icon: ImageIcon,
+    icon: EllipsisHorizontalIcon,
     fields: [
       defineField({
         type: 'string',

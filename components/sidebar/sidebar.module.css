@@ -5,19 +5,28 @@
     mix-blend-mode: difference;
 
     height: 100vh;
-    width: 80px;   
+    /* width: 80px;    */
+    width: var(--offset-sidebar);
+
     position: sticky;
     top: 22px;    
     z-index: 200;
-    margin-bottom: 200px;   
-    margin-top: -130vh;
-        /* -80%;                  WHY 80%????                  */
+
+    /* margin-bottom: 200px;   
+    margin-top: -130vh; */
+    margin-bottom: 115px;
+    margin-top: -115vh;    
+
+    /* border: 1px solid red; */
 }
 
 
 .brand-nav {       
     padding: 10px;
-    width:80px;  
+
+    /* width:80px;   */
+    width: var(--offset-sidebar);
+
     height: 260px;    
 
     /* mix-blend so need to set the opposite of what you actually want. 
@@ -25,6 +34,10 @@
     color: white;    
 
     /* border: 1px solid gray; */
+}
+
+.brand-logo {
+    text-align: center;
 }
 
 
@@ -48,8 +61,10 @@
 .circle {
     border-radius: 50%;
     padding: 8px 12px;
-    margin: 5px;
-    min-width: 16px;
+    
+    /* margin: 5px; */
+    margin: 0 auto;
+    min-width: 16px;    
     min-height: 16px;
     text-align: center;
     color: black;
@@ -65,7 +80,8 @@
 
 
 .social-nav {     
-    width: 80px;    
+    /* width: 80px;     */
+    width: var(--offset-sidebar);
 
     padding-top: 28vh;
     display: flex;

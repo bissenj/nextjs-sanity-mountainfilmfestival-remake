@@ -1,5 +1,6 @@
+import groq from 'groq';
 import { createClient } from 'next-sanity'
-import { pageQuery, homePageQuery, newsQuery, newsFeedQuery, newsArticleQuery } from './sanity.queries'
+import { pageQuery, homePageQuery, newsPageQuery, newsQuery, newsFeedQuery, newsArticleQuery } from './sanity.queries'
 
 import { apiVersion, dataset, projectId, useCdn } from '../env'
 
@@ -9,6 +10,7 @@ export const client = createClient({
   projectId,
   useCdn,
 })
+
 
 
 // ----------------------------------------------------------------
@@ -22,8 +24,8 @@ export async function getHomePage() {
   return {}
 }
 
-
 export async function getPage(slug) {
+  console.log('getPage: ', slug);
   if (client) {
     return (await client.fetch(pageQuery, slug)) || {}
   }
