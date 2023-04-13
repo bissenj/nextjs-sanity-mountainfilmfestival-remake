@@ -8,7 +8,7 @@ npm run test
 npm run build
 npx vercel --prod
 
-
+// Github account is messed up again.
 
 // Sanity Schema Icons
 https://icons.sanity.build/all?scheme=light&value=eJyrrgUAAXUA+Q==
