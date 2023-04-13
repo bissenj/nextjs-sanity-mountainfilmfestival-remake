@@ -18,3 +18,55 @@ https://icons.sanity.build/all?scheme=light&value=eJyrrgUAAXUA+Q==
 1.  Scroll Restoration between main page and detail pages.
     Concept:  https://stackoverflow.com/questions/64052148/how-to-change-scroll-behavior-while-going-back-in-next-js
     Results:  Tried the experimental flag and it worked in chrome dev.
+
+
+
+
+
+/// Groqs
+
+*[_type=="post"][] { title, 
+    content[] {
+      children[] {
+      text match '*mountain*' => {
+        "found": text
+      }   
+    }
+  } 
+}
+
+
+// Results body:true if search term is in blockContent
+*[_type=="post"][] { title,
+    "body": pt::text(content) match 'mountain'
+}
+
+// Get the whole chunk of text if the 'content' field has 'mountains' in it.
+*[_type=="post"][] { title,
+    pt::text(content) match 'mountain' => {
+      "body": pt::text(content)
+    }
+}
+
+//
+*[_type=="post"][] { "matchTitle": title match 'mountain',
+    "matchBody": pt::text(content) match 'mountain'
+}
+
+
+// Find any Title, Body, or Author matching search term.
+*[_type=="post"][] {   
+  title match '*mountain*' => {
+    "title": title,
+    "slug": slug.current
+  },
+  pt::text(content) match '*mountain*' => {
+    "title": title,
+    "slug": slug.current
+  }, 
+  author -> { name }.name match '*dude*' => {
+    "auth": author -> {name}.name,
+    "title": title,
+    "slug": slug.current
+  }  
+}

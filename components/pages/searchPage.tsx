@@ -20,6 +20,8 @@ import { isObjectEmpty } from '../../util/helpers'
 export default function SearchPage({ data }) {
     const { sections, siteMenu, footer } = data;
 
+    const [authors, setAuthors] = useState([]);
+    const [posts, setPosts] = useState([]);    
 
     useEffect(() => {
         // get query params
@@ -31,19 +33,27 @@ export default function SearchPage({ data }) {
             return;
         }
         
-        console.log('Search Terms are: ', params);
-
-        // const term = params.reduce((item, cur) => {
-        //     return cur + " " + item;
-        // }, "");
+        //console.log('Search Terms are: ', params);
+       
+        // This is the search term from the query param that the user typed in.
         const term = params.q;
-        // const term = 'mountain';
-        
-        //getSearchQuery({term:`*${term}*`}),
-        
+               
         const search = async() => {
             const results = await getSearchResults({term:`*${term}*`});
-            console.log('Search Results: ', results);
+            //console.log('Search Results: ', results);
+
+            /// Get authors
+            // filter out any undefined author fields, then map over the result and pull out only the author field.
+            const a = results.filter(item => typeof item.author === 'string').map(({author}) => author);                        
+            let uniqueAuthors = [...new Set(a)];
+            //console.log('Authors: ', uniqueAuthors);
+            setAuthors(uniqueAuthors);
+
+            /// Get Posts
+            const p = results.filter(item => typeof item.slug === 'string').map((item) => { return {'title': item.title, 'url': item.slug }});
+            let uniquePosts = [...new Set(p)];
+            //console.log('Posts: ', uniquePosts);
+            setPosts(uniquePosts);
         }
         search();
 
@@ -83,6 +93,32 @@ export default function SearchPage({ data }) {
                  {/* SEARCH RESULTS */}
                  <div className='content-wrapper'>
                     <h2>SEARCH RESULTS FOR: </h2>
+
+                    { posts && 
+                        <>
+                            <h3>Posts</h3>
+                            <ul style={{listStyle: 'square'}}>
+                                {posts.map((item, index) => (
+                                    <li key={`post-${index}`} style={{marginLeft:'20px'}}>
+                                        <a href={`news/${item.url}`}>{item.title}</a>
+                                    </li>
+                                ))}
+                                
+                            </ul>
+                        </>
+                    }
+
+                    { authors && 
+                        <>
+                            <h3>Authors</h3>
+                            <ul style={{listStyle: 'square'}}>
+                                {authors.map((item, index) => (
+                                    <li key={`author-${index}`} style={{marginLeft:'20px'}}>{item}</li>
+                                ))}
+                                
+                            </ul>
+                        </>
+                    }
                 </div>
                                 
                 {/* <div className='content-wrapper'>  

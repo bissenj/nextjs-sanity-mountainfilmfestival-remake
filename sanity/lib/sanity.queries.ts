@@ -120,7 +120,25 @@ export const newsArticleQuery = groq`*[_type == "post" && slug.current == $slug]
 // can probably hijack the query parameters, see here:  https://www.sanity.io/docs/groq-parameters
 // getSearchQuery({term:`*${term}*`}),
 
+// export const searchQuery = groq`
+// *[_type=="post" && title match $term] { title }
+// `;
+
 export const searchQuery = groq`
-*[_type=="post" && title match $term] { title }
+  *[_type=="post"][] {   
+    title match $term => {
+      "title": title,
+      "slug": slug.current
+    },
+    pt::text(content) match $term => {
+      "title": title,
+      "slug": slug.current
+    }, 
+    author -> { name }.name match $term => {
+      "author": author -> {name}.name,
+      "title": title,
+      "slug": slug.current
+    }  
+  }
 `;
 
