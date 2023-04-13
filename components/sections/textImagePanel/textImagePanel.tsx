@@ -47,13 +47,14 @@ export default function TextImagePanel({ data }) {
             {/* Text */}
             <div className='contentPanel'>
                 { data.headerText && 
-                  <div className='heading'>{data.headerText}</div>
+                  <h2 className='heading'>{data.headerText}</h2>
                 }
                 { data.bodyText && 
-                  <div>{data.bodyText}</div>
+                  <div className='body'>{data.bodyText}</div>
                 }
                 { data.ctaButton && 
-                  <a href={data.ctaButton.url} className='button hollow' style={{width:'fit-content'}}>{data.ctaButton.text}</a>
+                  // <a href={data.ctaButton.url} className='button hollow' style={{width:'fit-content'}}>{data.ctaButton.text}</a>
+                  <a href={data.ctaButton.url} className='button hollow'>{data.ctaButton.text}</a>
                 }                
             </div>
 

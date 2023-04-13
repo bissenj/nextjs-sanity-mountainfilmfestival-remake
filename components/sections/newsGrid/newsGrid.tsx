@@ -3,7 +3,8 @@ import style from './ctaPanel.module.css';
 
 import {useState, useEffect} from 'react';
 
-import NewsSlide from '../../horizontalSlider/slides/newsSlide'
+// import NewsSlide from '../../horizontalSlider/slides/newsSlide'
+import NewsItem from './newsItem';
 
 export default function NewsGrid({ posts, usePagination } : { posts : any, usePagination: boolean} ) {
 
@@ -49,10 +50,10 @@ export default function NewsGrid({ posts, usePagination } : { posts : any, usePa
 
             {/* {posts?.length} / {numPages} */}
 
-            <div className='grid grid-cols-3 gap-y-20'>
+            <div className='grid grid-cols-2 md:grid-cols-3 gap-y-14'>
                 
                 {visiblePosts.map((post) => (             
-                    <NewsSlide key={post._id} post={post}></NewsSlide>              
+                    <NewsItem key={post._id} post={post}></NewsItem>              
                 ))}                
                 
             </div> 

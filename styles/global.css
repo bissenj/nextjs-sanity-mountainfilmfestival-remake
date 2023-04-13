@@ -70,9 +70,6 @@ body {
 }
 
 .contentPanel {
-  place-content: center;
-  display: flex;
-  flex-direction: column;
   gap: 15px;
 }
 .contentPanel .heading {
@@ -85,6 +82,13 @@ body {
 .contentPanel .body {
   font-size: 1rem;
   font-size: clamp(0.9rem, -1.25rem + 2.8333333333vw, 1rem);
+  margin-top: 2rem;
+}
+.contentPanel a.button {
+  margin-top: 2rem;
+  width: -moz-fit-content;
+  width: fit-content;
+  display: block;
 }
 
 .textImagePanel {
@@ -95,6 +99,7 @@ body {
   margin: 40px;
   display: grid;
   grid-template-columns: 1.4fr 2fr;
+  align-items: center;
 }
 .textImagePanel .imagePanel {
   pointer-events: none;
@@ -321,8 +326,9 @@ body {
     max-height: unset;
     min-height: unset;
     margin: 0;
+    margin-bottom: 80px;
     padding: 20px;
-    padding-left: 80px;
+    padding-left: var(--offset-sidebar);
   }
   .textImagePanel .imagePanel, .textImagePanel.left .imagePanel {
     grid-row-start: -1;
@@ -370,10 +376,6 @@ body {
 
 .site-menu-item:hover, .site-menu-item.active {
   color: white;
-}
-
-.footer-menu .site-menu-item:hover, .site-menu-item.active {
-  color: black;
 }
 
 .footer-menu .site-menu-item::before {
