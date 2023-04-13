@@ -16,7 +16,7 @@ interface iHeroText {
 
 export default function HeroText({data} : { data: iHeroText} )  {     
     
-    console.log('HeroText: ', data);
+    // console.log('HeroText: ', data);
 
     const {classes, heading, details, url} = data.settings;
 

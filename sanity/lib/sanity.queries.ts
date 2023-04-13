@@ -109,3 +109,18 @@ export const newsArticleQuery = groq`*[_type == "post" && slug.current == $slug]
 }`
 
 
+
+// SEARCH
+
+// See slack....from Matt about using groqd to create custom queries.  Below is what we need.
+// *[_type=="post" && title match '*mountain*'] {
+//  title
+//}
+// OR
+// can probably hijack the query parameters, see here:  https://www.sanity.io/docs/groq-parameters
+// getSearchQuery({term:`*${term}*`}),
+
+export const searchQuery = groq`
+*[_type=="post" && title match $term] { title }
+`;
+

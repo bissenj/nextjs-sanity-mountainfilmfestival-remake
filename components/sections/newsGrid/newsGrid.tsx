@@ -7,6 +7,15 @@ import {useState, useEffect} from 'react';
 import NewsItem from './newsItem';
 
 export default function NewsGrid({ posts, usePagination } : { posts : any, usePagination: boolean} ) {
+    
+    // Make sure there are posts available to work with.
+    if (!posts) {
+        return (
+            <div className='content-wrapper'> 
+                No Posts available.
+            </div>
+        )
+    }
 
     const hasPosts = posts?.length > 0;
 

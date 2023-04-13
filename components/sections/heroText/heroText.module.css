@@ -49,6 +49,16 @@
     background-color: var(--accent-color-yellow);
 }
 
+
+.hero-text-panel.black {
+    background-color: var(--accent-color-black);    
+}
+
+.hero-text-panel.black::after {
+    opacity: 0.15;
+    filter: invert(1);
+}
+
 .hero-text-content {
     position: relative;
     z-index: 3;

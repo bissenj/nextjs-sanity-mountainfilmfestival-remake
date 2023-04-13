@@ -16,6 +16,7 @@ body,
   --accent-color-bright: #3bd0ff;
   --accent-color-blue: #0038d6;
   --accent-color-red: #ff1e29;
+  --accent-color-black: #000000;
   --primary-color: #000;
   --secondary-color: #fff;
   --small-screen: 767px;
@@ -290,6 +291,10 @@ body {
 
 .yellow {
   background-color: var(--accent-color-yellow);
+}
+
+.black {
+  background-color: var(--accent-color-black);
 }
 
 .hover-link {

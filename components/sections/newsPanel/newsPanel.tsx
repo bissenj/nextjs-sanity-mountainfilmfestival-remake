@@ -10,10 +10,7 @@ import style from './newsPanel.module.css';
 
 import Link from 'next/link'
 
-export default function NewsPanel({ data, news }) {
-
-    //console.log('News Panel: ', data, news);
-
+export default function NewsPanel({ news }) {   
     const [selectedIndex, setSelectedIndex] = useState(0);    
     const [maxIndex, setMaxIndex] = useState(0);    
 

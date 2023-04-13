@@ -1,7 +1,7 @@
 import style from './footer.module.css';
 
 export default function Footer({data}) {
-    console.log('Footer Data: ', data);
+    // console.log('Footer Data: ', data);
     
     const {cta, lists} = data?.siteContent;
     
