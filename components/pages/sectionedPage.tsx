@@ -47,7 +47,7 @@ export default function SectionedPage({ data, news = null }) {
             case 6:
                 return <QuotePanel key={id} data={section}></QuotePanel>
             case 7:
-                return <NewsPanel key={id} data={section} news={news}></NewsPanel>
+                return <NewsPanel key={id} news={news}></NewsPanel>
             default:
                 return <div key={id}>{section.title}</div>
         }
