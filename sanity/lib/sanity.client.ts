@@ -2,13 +2,21 @@ import groq from 'groq';
 import { createClient } from 'next-sanity'
 import { pageQuery, homePageQuery, newsPageQuery, newsQuery, newsFeedQuery, newsArticleQuery, searchQuery } from './sanity.queries'
 
-import { apiVersion, dataset, projectId, useCdn } from '../env'
+import { apiVersion, dataset, projectId, useCdn, writeToken } from '../env'
 
 export const client = createClient({
   apiVersion,
   dataset,
   projectId,
   useCdn,
+})
+
+export const writeClient = createClient({
+  apiVersion,
+  dataset,
+  projectId,
+  useCdn,
+  token: writeToken
 })
 
 

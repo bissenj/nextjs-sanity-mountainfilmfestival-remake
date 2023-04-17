@@ -13,6 +13,8 @@ export const projectId = assertValue(
 
 export const readToken = process.env.SANITY_API_READ_TOKEN
 
+export const writeToken = process.env.POST_CRUD_TOKEN
+
 export const previewSecretDocumentId: `${string}.${string}` = 'preview.secret'
 
 export const useCdn = false
