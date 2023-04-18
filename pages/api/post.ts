@@ -21,74 +21,130 @@ interface newPost_Sanity {
   author: object;
 }
 
-// set bodyparser
-export const config = {
-  api: {
-    bodyParser: false
+
+
+export default async function handler(req, res) {
+  console.log('request: ' );
+
+  switch (req.method) {
+
+    // CREATE
+    case "POST":      
+      const newPost = await JSON.parse(req.body);
+      console.log('New Post: ', newPost);
+
+      // Create a slug -> TODO:  check that this is unique.  If not, make it unique.
+      const slug = {
+        _type: 'slug',
+        current: newPost.title.replace('.','').replace(/["]+/g, '').replace(/\s+/g, '-').toLowerCase()
+      }
+      //console.log('slug: ', slug);
+
+      try {
+        await writeClient
+          .create({
+            _type: "post",
+            title: newPost.title,
+            slug: slug,
+            summary: newPost.summary,   
+            dates: {
+              publishedDate: newPost.create
+            },
+            coverImage: {
+              asset: {
+                _type: "reference",
+                _ref: newPost.imageId
+              }
+            }                               
+          })
+          .then((response) => {
+            //console.log(res);
+            //console.log(`Post was created, document ID is ${response._id}`);
+            
+            // send back a Success message
+            res.status(200).json({ msg: `Post was created, document ID is ${response._id}` });
+          });       
+      } catch (err) {
+        console.error(err);
+        res.status(500).json({ msg: "Error, check console" });
+      }
+
+      break;
   }
+
+  //res.status(200).json({ msg: "Done, check console" });
 }
 
-const form = formidable()
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
 
-  console.log('Got here');
+// set bodyparser
+// export const config = {
+//   api: {
+//     bodyParser: false
+//   }
+// }
 
-  const data = await new Promise((resolve, reject) => {
-    //const form = new formidable()
+// const form = formidable()
 
-    form.parse(req, (err, fields, files) => {
+// export default async (req: NextApiRequest, res: NextApiResponse) => {
+
+//   console.log('Got here');
+
+//   const data = await new Promise((resolve, reject) => {
+//     //const form = new formidable()
+
+//     form.parse(req, (err, fields, files) => {
     
-      console.log(files);
+//       console.log(files);
 
-      const file = files;
+//       const file = files;
 
-      uploadImage(file.image);
+//       uploadImage(file.image);
       
 
-      // fetch(file.image.filepath)
-      // .then((response) => {
-      //   uploadImage(file, response);   
-      // })
+//       // fetch(file.image.filepath)
+//       // .then((response) => {
+//       //   uploadImage(file, response);   
+//       // })
       
      
 
-      if (err) reject({ err })
-        resolve({ err, fields, files })
-    }) 
-  })
+//       if (err) reject({ err })
+//         resolve({ err, fields, files })
+//     }) 
+//   })
 
-  //return the data back or just do whatever you want with it
-  res.status(200).json({
-    status: 'ok',
-    data
-  })
-}
+//   //return the data back or just do whatever you want with it
+//   res.status(200).json({
+//     status: 'ok',
+//     data
+//   })
+// }
 
-async function uploadImage(file) {
-  console.log('uploadImage:', file);
+// async function uploadImage(file) {
+//   console.log('uploadImage:', file);
 
-    //const filepath = image.filepath;
-    //console.log('filePath: ', filepath);
+//     //const filepath = image.filepath;
+//     //console.log('filePath: ', filepath);
    
-    const { mimetype, size, originalFilename } =  file;
+//     const { mimetype, size, originalFilename } =  file;
 
-    console.log(mimetype, size, originalFilename );
+//     console.log(mimetype, size, originalFilename );
 
-    //const buf = await new Response(file.image).arrayBuffer();
-    //const buffer = Buffer.from(buf);
-    //const bufferStr = JSON.stringify(file.image);
+//     //const buf = await new Response(file.image).arrayBuffer();
+//     //const buffer = Buffer.from(buf);
+//     //const bufferStr = JSON.stringify(file.image);
  
-    await writeClient.assets.upload('image', file, { contentType: mimetype, filename: originalFilename})
-    .then((image) => {
-      console.log('The image was uploaded: ', image)
-    })
-    .catch((error) => {
-      console.error('Upload failed:', error.message);
-    })
+//     await writeClient.assets.upload('image', file, { contentType: mimetype, filename: originalFilename})
+//     .then((image) => {
+//       console.log('The image was uploaded: ', image)
+//     })
+//     .catch((error) => {
+//       console.error('Upload failed:', error.message);
+//     })
   
  
-}
+// }
 
 
 

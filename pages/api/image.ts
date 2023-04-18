@@ -10,18 +10,25 @@ export const config = {
   
   export default function handler( req: NextApiRequest, res: NextApiResponse)
   {
-    console.log('images route');
+    let message = '';
 
-    const buffer = req.read(req.readableLength);
+    try {
+      console.log('images route');
 
-    console.log('buffer: ', buffer)
+      const buffer = req.read(req.readableLength);
+      if (!buffer) {
+        throw Error('No file found');
+      }
 
-    writeClient.assets.upload('image', buffer).then((imageAsset) => { 
-      console.log('imageAsset:', imageAsset);
-
-      res.status(200).json({ id: imageAsset._id });
-
-    });
-    
-    
+      console.log('buffer: ', buffer)
+      writeClient.assets.upload('image', buffer).then((imageAsset) => { 
+        console.log('imageAsset:', imageAsset);
+        res.status(200).json({ id: imageAsset._id });
+      });
+    }
+    catch(err) {  
+      console.log(err.message);    
+      message = `${err.message}`;
+      res.status(500).json({ message });
+    }    
   }
